@@ -40,7 +40,4 @@ Thumbs.db
 # vim temp files #
 ##################
 *~
-<<<<<<< HEAD
 *.swp
-=======
->>>>>>> origin/master
