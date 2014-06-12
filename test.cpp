@@ -2,5 +2,5 @@
 
 int main()
 {
-  std::cout << "YAyyy!";
+  std::cout << "last YAyyy!";
 }
