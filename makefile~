@@ -1,0 +1,14 @@
+CXX = g++
+CXXFLAGS = -Wall -std=c++0x -MMD
+OBJECTS = Userid.o Password.o UserAccount.o TestHarness.o
+DEPENDS = ${OBJECTS:.o=.d}
+EXEC = Passwords
+
+${EXEC} : ${OBJECTS}
+	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
+
+clean :
+	rm -rf ${DEPENDS} ${OBJECTS} ${EXEC}
+
+-include ${DEPENDS}	# reads the .d files and reruns dependencies
+
