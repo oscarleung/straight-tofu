@@ -3,7 +3,8 @@
 
 #include <ostream>
 #include <istream>
-
+// card.h
+// 
 enum Suit { CLUB, DIAMOND, HEART, SPADE, SUIT_COUNT };
 enum Rank { ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN,
 			EIGHT, NINE, TEN, JACK, QUEEN, KING, RANK_COUNT };
