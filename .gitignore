@@ -39,3 +39,4 @@ Thumbs.db
 # vim temp files #
 ##################
 *~
+*.swp
