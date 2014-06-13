@@ -2,6 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <cassert>
 #include "Card.h"
 
 void Game::init()
