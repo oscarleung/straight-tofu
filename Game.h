@@ -9,6 +9,7 @@ class Game{
         void start();
     private:
 		void init();
+        void initPlayer();
         vector<Card> deck;
 
 

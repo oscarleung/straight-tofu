@@ -15,11 +15,28 @@ void Game::init()
 			deck.push_back(tempCard);
 		}
 	}
-	cout << "test" ;
+	cout << "test - int" ;
+    initPlayer();
+}
+
+void Game::initPlayer() {
+    for (int i = 1; i<=4; i++) {
+        cout << "Is player " << i << " a human(h) or a computer(c)?" << endl;
+        char playerType;
+        cin >> playerType;
+        
+        if (playerType == 'h') {
+            // make human player
+        }
+        if (playerType == 'c') {
+            // make computer player
+        }
+
+    }
 }
 
 void Game::start()
 {
 	init();
-	cout << "test";
+	cout << "test - start";
 }
