@@ -1,9 +1,10 @@
-//
-//  CompPlayer.cpp
-//  straight-tofu
-//
-//  Created by Oscar Leung on 2014-06-12.
-//  Copyright (c) 2014 Oscar Leung. All rights reserved.
-//
-
+#include <vector>
+#include <string>
+#include "Card.h"
 #include "CompPlayer.h"
+
+
+CompPlayer::CompPlayer()
+{
+    
+}
