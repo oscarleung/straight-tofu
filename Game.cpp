@@ -24,7 +24,7 @@ void Game::initPlayer() {
         cout << "Is player " << i << " a human(h) or a computer(c)?" << endl;
         char playerType;
         cin >> playerType;
-        
+        assert( playerType == 'h' || playerType == 'H' || playerType == 'c' || playerType == 'C' );
         if (playerType == 'h') {
             // make human player
         }
