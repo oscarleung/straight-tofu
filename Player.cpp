@@ -1,6 +1,24 @@
 #include "Player.h"
 
 using namespace std;
+namespace{
+	bool isPlayable(Card inPlay, Card inHand)
+	{
+		if (inHand.getRank() == SEVEN)
+		{
+			return true;
+		}
+		if (inHand.getSuit() == inPlay.getSuit())
+		{
+			Rank temp = (Rank)(inPlay.getRank() + 1);
+			if (inHand.getRank() == (Rank)(inPlay.getRank() + 1) || (inHand.getRank() == (Rank)(inPlay.getRank() - 1)))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+}
 
 Player::Player() {
     
@@ -44,3 +62,38 @@ void Player::addScore(int x) {
 void Player::reset() {
     
 }
+
+vector<Card> Player::getPlays(vector<Card> inPlay)
+{
+	vector<Card> plays;
+	int x = hand_.size();
+	vector<bool> playableFlag;
+	for (int i = 0; i < hand_.size(); i++)
+	{
+		playableFlag.push_back(false);
+	}
+	if (inPlay.size()== 0)
+	{
+		plays.push_back(Card(SPADE,SEVEN));
+		return plays;
+	}
+
+	for (int i = 0; i < hand_.size(); i++)
+	{
+		for (int j = 0; j < inPlay.size(); j++)
+		{
+			if (isPlayable(inPlay[j], hand_[i]))
+			{
+				playableFlag[i] = true;
+			}
+		}
+	}
+
+	for (int i = 0; i < hand_.size(); i++)
+	{
+		if (playableFlag[i])
+			plays.push_back(hand_[i]);
+	}
+	return plays;
+}
+

@@ -16,6 +16,7 @@ public:
 	void addCard(Card);                     // mutator
     void discard(Card);                     // mutator
     void addHand(vector<Card>);             // mutator
+	vector<Card> getPlays(vector<Card>);
 	void addScore(int);                     // mutator
 	void reset();
 private:

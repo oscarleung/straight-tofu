@@ -1,5 +1,48 @@
 #include "Game.h"
+#include "Command.h"
 
+void Game::printTable()
+{
+	vector<Card> clubs;
+	vector<Card> diamonds;
+	vector<Card> hearts;
+	vector<Card> spades;
+	for (int i = 0; i < table_.size(); i++)
+	{
+		if (table_[i].getSuit() == CLUB)
+			clubs.push_back(table_[i]);
+		else if (table_[i].getSuit() == DIAMOND)
+			diamonds.push_back(table_[i]);
+		else if (table_[i].getSuit() == HEART)
+			hearts.push_back(table_[i]);
+		else 
+			spades.push_back(table_[i]);
+	}
+	cout << "Clubs:";
+	for (Card i : clubs)
+	{
+		cout << " " + i.getRank();
+	}
+	cout << endl;
+	cout << "Diamonds:";
+	for (Card i : diamonds)
+	{
+		cout << " " + i.getRank();
+	}
+	cout << endl;
+	cout << "Hearts:";
+	for (Card i : hearts)
+	{
+		cout << " " + i.getRank();
+	}
+	cout << endl;
+	cout << "Spades:";
+	for (Card i : spades)
+	{
+		cout << " " + i.getRank();
+	}
+	cout << endl;
+}
 void Game::initDeck()
 {
     // init the deck
@@ -41,6 +84,7 @@ void Game::initPlayer(Player* list[]) {
 
 void Game::start()
 {
+	int activePlayer;
     Player* playerList [4];
     initPlayer(playerList);         // init all player once
     initDeck();                     // init the deck
@@ -57,13 +101,40 @@ void Game::start()
         Card startCard(SPADE, SEVEN);
         for (int i = 0; i<4; i++) {
             if(playerList[i]->hasCard(startCard)) {
+				activePlayer = i;
                 cout << "A new round begins. It's player " << i+1 << "'s turn to play." << endl;
                 break;
             }
         }
-        
         // TODO play the game
-        
+		cout << "Cards on the table:"<<endl;
+		printTable();
+		cout << "Your hand:";
+		for (Card c : playerList[activePlayer]->getHand())
+		{
+			cout <<" "<< c;
+		}
+		cout << endl;
+		cout << "Legal Plays:";
+		vector<Card> legalPlays = playerList[activePlayer]->getPlays(table_);
+		for (Card c : legalPlays)
+		{
+			cout <<" "<< c;
+		}
+		cout << endl;
+		Command cmd;
+		cin >> cmd;
+		switch (cmd.type)
+		{
+		case PLAY:
+		case DISCARD:
+		case DECK:
+		case QUIT:
+		case RAGEQUIT:
+		case BAD_COMMAND:
+		default:
+			break;
+		}
         
         
         

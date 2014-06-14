@@ -15,8 +15,10 @@ class Game{
     private:
 		void initDeck();
         void shuffleDeck();
+		void printTable();
         void initPlayer(Player* list[]);
         vector<Card> deck_;
+        vector<Card> table_;
 
 
 
