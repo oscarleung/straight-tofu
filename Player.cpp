@@ -3,24 +3,24 @@
 #include "Card.h"
 #include "Player.h"
 
-Player::Player()
-{
-
+Player::Player() {
+    
 }
-
-void Player::addCard(Card newCard)
-{
-	hand.push_back(newCard);
+vector<Card> Player::getHand() const {
+	return hand_;
 }
-vector<Card> Player::getHand() const
-{
-	return hand;
+int Player::getScore() const {
+    return score_;
 }
-void Player::addScore(int x)
-{
-	score += x;
+void Player::addCard(Card newCard) {
+	hand_.push_back(newCard);
 }
-void Player::reset()
-{
-
+void Player::addHand(vector<Card> newHand) {
+    hand_ = newHand;
+}
+void Player::addScore(int x) {
+	score_ += x;
+}
+void Player::reset() {
+    
 }

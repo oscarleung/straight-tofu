@@ -1,3 +1,6 @@
+#ifndef __straight_tofu__Player__
+#define __straight_tofu__Player__
+
 #include <vector>
 #include <string>
 #include "Card.h"
@@ -7,11 +10,16 @@ using namespace std;
 class Player{
 public:
 	Player();
+    int getScore() const;                   // accessor
+	vector<Card> getHand() const;           // accessor
 	void addCard(Card);
-	vector<Card> getHand() const;
+    void addHand(vector<Card>);
 	void addScore(int);
 	void reset();
 private:
-	int score=0;
-	vector<Card> hand;
+	int score_ = 0;
+    vector<Card> hand_;
+	
 };
+
+#endif /* defined(__straight_tofu__Player__) */

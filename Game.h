@@ -1,6 +1,9 @@
 #include <vector>
 #include <string>
 #include "Card.h"
+#include "Player.h"
+#include "HumanPlayer.h"
+#include "CompPlayer.h"
 
 using namespace std;
 
@@ -8,9 +11,9 @@ class Game{
     public:
         void start();
     private:
-		void init();
-        void initPlayer();
-        vector<Card> deck;
+		void initDeck();
+        void initPlayer(Player* list[]);
+        vector<Card> deck_;
 
 
 

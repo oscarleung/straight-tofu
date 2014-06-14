@@ -4,7 +4,6 @@
 #include "CompPlayer.h"
 
 
-CompPlayer::CompPlayer()
-{
+CompPlayer::CompPlayer(): Player() {
     
 }
