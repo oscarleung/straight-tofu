@@ -1,5 +1,7 @@
 #include <vector>
 #include <string>
+#include <iostream>
+#include <cassert>
 #include "Card.h"
 #include "Player.h"
 #include "HumanPlayer.h"
