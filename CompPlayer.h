@@ -14,6 +14,7 @@ public:
 	CompPlayer();
 	int getScore() const;
 	vector<Card> getHand() const;
+    bool findCard(Card) const;
 	void addCard(Card);
     void addHand(vector<Card>);
 	void addScore(int);

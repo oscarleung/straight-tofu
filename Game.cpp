@@ -16,9 +16,6 @@ void Game::initDeck()
 			deck_.push_back(tempCard);
 		}
 	}
-    for(int i=0; i<52; i++) {
-        cout << deck_.at(i);
-    }
     // TODO shuffling the deck
 	
     
@@ -59,7 +56,14 @@ void Game::start()
         for( int j=0; j<13; j++) {
             cout << playerList[i]->getHand().at(j) << ' ';
         }
-        
+        cout << endl;
+    }
+    Card startCard(SPADE, SEVEN);
+    for (int i = 1; i<=4; i++) {
+        if(playerList[i]->findCard(startCard)) {
+            cout << "A new round begins. It's player " << i << "'s turn to play." << endl;
+            break;
+        }
     }
 	
 }

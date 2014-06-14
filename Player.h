@@ -4,7 +4,7 @@
 #include <vector>
 #include <string>
 #include "Card.h"
-
+#include <iostream>
 using namespace std;
 
 class Player{
@@ -12,6 +12,7 @@ public:
 	Player();
     int getScore() const;                   // accessor
 	vector<Card> getHand() const;           // accessor
+    bool findCard(Card) const;
 	void addCard(Card);
     void addHand(vector<Card>);
 	void addScore(int);
