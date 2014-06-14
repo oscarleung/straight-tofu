@@ -22,6 +22,7 @@ private:
 	int score_ = 0;
     vector<Card> hand_;
 	vector<Card> discardPile_;
+    int cardPos(Card) const;                // helper to find position of card
 };
 
 #endif /* defined(__straight_tofu__Player__) */

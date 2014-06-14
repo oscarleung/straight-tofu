@@ -16,7 +16,5 @@ int main(int argc, char* argv[])
     }
 	Game x;
 	x.start();
-	int t;
-	cin >> t;
 	return 0;
 }

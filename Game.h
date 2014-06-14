@@ -14,6 +14,7 @@ class Game{
         void start();
     private:
 		void initDeck();
+        void shuffleDeck();
         void initPlayer(Player* list[]);
         vector<Card> deck_;
 

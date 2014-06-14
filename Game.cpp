@@ -12,9 +12,11 @@ void Game::initDeck()
 			deck_.push_back(tempCard);
 		}
 	}
-    // TODO shuffling the deck
-	
     
+}
+
+void Game::shuffleDeck() {
+    // TODO shuffling
 }
 
 void Game::initPlayer(Player* list[]) {
@@ -40,30 +42,31 @@ void Game::initPlayer(Player* list[]) {
 void Game::start()
 {
     Player* playerList [4];
-    initPlayer(playerList);       // init all player once
+    initPlayer(playerList);         // init all player once
+    initDeck();                     // init the deck
     while (!cin.eof()) {
-        initDeck();             // init the deck and shuffle
+        shuffleDeck();
         
         // deal the deck
         for (int i = 0; i<4; i++) {
             vector<Card> temp (deck_.begin()+ (i)*13, deck_.begin()+ (i+1)*13);
             playerList[i]->addHand(temp);
             
-            for( int j=0; j<13; j++) {
-                cout << playerList[i]->getHand().at(j) << ' ';
-            }
-            cout << endl;
         }
         // find starting person
         Card startCard(SPADE, SEVEN);
         for (int i = 0; i<4; i++) {
-            if(playerList[i]->findCard(startCard)) {
+            if(playerList[i]->hasCard(startCard)) {
                 cout << "A new round begins. It's player " << i+1 << "'s turn to play." << endl;
                 break;
             }
         }
         
         // TODO play the game
+        
+        
+        
+        
         
         
         // temporary thing to add score so that it ends after 4 round.
