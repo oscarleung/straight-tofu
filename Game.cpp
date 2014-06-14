@@ -18,7 +18,7 @@ void Game::initDeck()
 }
 
 void Game::initPlayer(Player* list[]) {
-    for (int i = 1; i<=4; i++) {
+    for (int i = 0; i<4; i++) {
         cout << "Is player " << i << " a human(h) or a computer(c)?" << endl;
         char playerType;
         cin >> playerType;
@@ -33,7 +33,7 @@ void Game::initPlayer(Player* list[]) {
             Player* p = new CompPlayer();
             list[i] = p;
         }
-
+        
     }
 }
 
@@ -41,25 +41,46 @@ void Game::start()
 {
     Player* playerList [4];
     initPlayer(playerList);       // init all player once
-    
-	initDeck();             // init the deck and shuffle
-    
-    // deal the deck
-    for (int i = 1; i<=4; i++) {
-        vector<Card> temp (deck_.begin()+ (i-1)*13, deck_.begin()+ i*13);
-        playerList[i]->addHand(temp);
+    while (!cin.eof()) {
+        initDeck();             // init the deck and shuffle
         
-        for( int j=0; j<13; j++) {
-            cout << playerList[i]->getHand().at(j) << ' ';
+        // deal the deck
+        for (int i = 0; i<4; i++) {
+            vector<Card> temp (deck_.begin()+ (i)*13, deck_.begin()+ (i+1)*13);
+            playerList[i]->addHand(temp);
+            
+            for( int j=0; j<13; j++) {
+                cout << playerList[i]->getHand().at(j) << ' ';
+            }
+            cout << endl;
         }
-        cout << endl;
-    }
-    Card startCard(SPADE, SEVEN);
-    for (int i = 1; i<=4; i++) {
-        if(playerList[i]->findCard(startCard)) {
-            cout << "A new round begins. It's player " << i << "'s turn to play." << endl;
-            break;
+        Card startCard(SPADE, SEVEN);
+        for (int i = 0; i<4; i++) {
+            if(playerList[i]->findCard(startCard)) {
+                cout << "A new round begins. It's player " << i+1 << "'s turn to play." << endl;
+                break;
+            }
+        }
+        
+        // TODO play the game
+        
+        
+        // temporary thing to add score so that it ends after 4 round.
+        playerList[0]->addScore(20);
+        
+        // check if 80 point is reached
+        for (int i = 0; i<4; i++) {
+            if (playerList[i]->getScore() >= 80) {
+                // game is over, find winner and print winner message
+                int lowest = playerList[1]->getScore();
+                for (int j=1; j<4; j++) {
+                    if (playerList[j]->getScore() < lowest) lowest = playerList[j]->getScore();
+                }
+                for (int j=0; j<4; j++) {
+                    if (playerList[j]->getScore() == lowest) cout << "Player " << j+1 << " wins!" << endl;
+                }
+                return;
+            }
         }
     }
-	
 }
