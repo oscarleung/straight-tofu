@@ -11,9 +11,10 @@ vector<Card> Player::getHand() const {
 int Player::getScore() const {
     return score_;
 }
-bool Player::findCard(Card target) const {
+
+bool Player::hasCard(Card target) const {
     for (int i=0; i < hand_.size(); i++) {
-        if (hand_.at(i).getRank() == target.getRank() && hand_.at(i).getSuit() == target.getSuit()) {
+        if (hand_.at(i) == target) {
             return true;
         }
     }
@@ -21,6 +22,16 @@ bool Player::findCard(Card target) const {
 }
 void Player::addCard(Card newCard) {
 	hand_.push_back(newCard);
+}
+void Player::discard(Card target) {
+    // TODO the following two lines are repeating hasCard
+    for (int i=0; i < hand_.size(); i++) {
+        if (hand_.at(i) == target) {
+            hand_.erase(hand_.begin()+i);
+            discardPile_.push_back(target);
+            return;
+        }
+    }
 }
 void Player::addHand(vector<Card> newHand) {
     hand_ = newHand;

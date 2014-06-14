@@ -12,12 +12,13 @@ using namespace std;
 class CompPlayer: public Player{
 public:
 	CompPlayer();
-	int getScore() const;
-	vector<Card> getHand() const;
-    bool findCard(Card) const;
-	void addCard(Card);
-    void addHand(vector<Card>);
-	void addScore(int);
+	int getScore() const;                   // accessor
+	vector<Card> getHand() const;           // accessor
+    bool hasCard(Card) const;
+	void addCard(Card);                     // mutator
+    void discard(Card);                     // mutator
+    void addHand(vector<Card>);             // mutator
+	void addScore(int);                     // mutator
 	void reset();
 private:
 	int score_ = 0;

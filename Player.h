@@ -12,15 +12,16 @@ public:
 	Player();
     int getScore() const;                   // accessor
 	vector<Card> getHand() const;           // accessor
-    bool findCard(Card) const;
-	void addCard(Card);
-    void addHand(vector<Card>);
-	void addScore(int);
+    bool hasCard(Card) const;
+	void addCard(Card);                     // mutator
+    void discard(Card);                     // mutator
+    void addHand(vector<Card>);             // mutator
+	void addScore(int);                     // mutator
 	void reset();
 private:
 	int score_ = 0;
     vector<Card> hand_;
-	
+	vector<Card> discardPile_;
 };
 
 #endif /* defined(__straight_tofu__Player__) */

@@ -54,6 +54,7 @@ void Game::start()
             }
             cout << endl;
         }
+        // find starting person
         Card startCard(SPADE, SEVEN);
         for (int i = 0; i<4; i++) {
             if(playerList[i]->findCard(startCard)) {
