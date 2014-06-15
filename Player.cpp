@@ -63,6 +63,7 @@ void Player::discard(Card target) {
     hand_.erase(hand_.begin() + pos);
     discardPile_.push_back(target);
 	cout << "Player " << playerNumber_ << " discards " << target << "." << endl;
+	addScore(1);
 }
 void Player::addHand(vector<Card> newHand) {
     hand_ = newHand;
