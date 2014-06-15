@@ -14,9 +14,9 @@ class Game{
         void start();
     private:
 		void initDeck();
+		bool playersHaveCards();
         void shuffleDeck();
-		void printTable();
-        void initPlayer(Player* list[]);
+        void initPlayers(Player* list[]);
         vector<Card> deck_;
         vector<Card> table_;
 

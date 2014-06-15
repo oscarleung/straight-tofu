@@ -11,8 +11,8 @@ using namespace std;
 
 class CompPlayer: public Player{
 public:
-	CompPlayer();
-	int getScore() const;                   // accessor
+	CompPlayer(int);
+	CompPlayer(int,vector<Card>, vector<Card>, int);
 	vector<Card> getHand() const;           // accessor
     bool hasCard(Card) const;
 	void addCard(Card);                     // mutator
@@ -21,8 +21,6 @@ public:
 	void reset();
 	void turn(vector<Card> &);
 private:
-	int score_ = 0;
-	vector<Card> hand_;
 };
 
 

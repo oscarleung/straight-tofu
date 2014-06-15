@@ -1,17 +1,74 @@
 #include "HumanPlayer.h"
 #include "Card.h"
 #include "Command.h"
-
-
-HumanPlayer::HumanPlayer() :Player(){
+#include <set>
+namespace{
+	void printTable(vector<Card> table_)
+	{
+		set<Card> clubs;
+		set<Card> diamonds;
+		set<Card> hearts;
+		set<Card> spades;
+		for (int i = 0; i < table_.size(); i++)
+		{
+			if (table_[i].getSuit() == CLUB)
+				clubs.insert(table_[i]);
+			else if (table_[i].getSuit() == DIAMOND)
+				diamonds.insert(table_[i]);
+			else if (table_[i].getSuit() == HEART)
+				hearts.insert(table_[i]);
+			else
+				spades.insert(table_[i]);
+		}
+		cout << "Clubs:";
+		for (Card i : clubs)
+		{
+			cout << " " << i.getRank();
+		}
+		cout << endl;
+		cout << "Diamonds:";
+		for (Card i : diamonds)
+		{
+			cout << " " << i.getStrRank();
+		}
+		cout << endl;
+		cout << "Hearts:";
+		for (Card i : hearts)
+		{
+			cout << " " << i.getStrRank();
+		}
+		cout << endl;
+		cout << "Spades:";
+		for (Card i : spades)
+		{
+			cout << " " << i.getStrRank();
+		}
+		cout << endl;
+	}
+}
+HumanPlayer::HumanPlayer(int playerNo) :Player(playerNo){
     
 }
 
 void HumanPlayer::turn(vector<Card> &table)
 {
+	cout << "Cards on the table:" << endl;
+	printTable(table);
+	cout << "Your hand:";
+	for (Card c : hand_)
+	{
+		cout << " " << c;
+	}
+	cout << endl;
+	cout << "Legal Plays:";
+	vector<Card> legalPlays = getPlays(table);
+	for (Card c : legalPlays)
+	{
+		cout << " " << c;
+	}
+	cout << endl;
 	Command cmd;
 	bool successfulPlay = false;
-	vector<Card> legalPlays = getPlays(table);
 	while (!successfulPlay)
 	{
 		cin >> cmd;
@@ -41,7 +98,11 @@ void HumanPlayer::turn(vector<Card> &table)
 			break;
 		case DECK:
 		case QUIT:
+			exit(0);
+			break;
 		case RAGEQUIT:
+			throw ragequit_exception(hand_,discardPile_,getScore());
+			break;
 		case BAD_COMMAND:
 		default:
 			break;

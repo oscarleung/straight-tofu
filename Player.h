@@ -9,7 +9,7 @@ using namespace std;
 
 class Player{
 public:
-	Player();
+	Player(int);
     int getScore() const;                   // accessor
 	vector<Card> getHand() const;           // accessor
     bool hasCard(Card) const;
@@ -21,12 +21,24 @@ public:
 	void reset();
 	virtual void turn(vector<Card> &) = 0;
 	void play(Card&, vector<Card> &);
-private:
-	int score_ = 0;
-    vector<Card> hand_;
+protected:
+	vector<Card> hand_;
 	vector<Card> discardPile_;
-	bool active=true;
+	int score_ = 0;
+	int playerNumber_;
+private:
     int cardPos(Card) const;                // helper to find position of card
 };
-
+class ragequit_exception :exception
+{
+public:
+	ragequit_exception(vector<Card> hand, vector<Card> discard, int score){
+		hand_ = hand;
+		discard_ = discard;
+		score_ = score;
+	}
+	vector<Card> hand_;
+	vector<Card> discard_;
+	int score_;
+};
 #endif /* defined(__straight_tofu__Player__) */

@@ -11,8 +11,7 @@ using namespace std;
 
 class HumanPlayer: public Player{
 public:
-	HumanPlayer();
-	int getScore() const;                   // accessor
+	HumanPlayer(int);
 	vector<Card> getHand() const;           // accessor
     bool hasCard(Card) const;
 	void addCard(Card);                     // mutator
@@ -21,8 +20,6 @@ public:
 	void reset();
 	void turn(vector<Card> &);
 private:
-	int score_ = 0;
-	vector<Card> hand_;
 };
 
 

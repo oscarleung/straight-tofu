@@ -20,8 +20,8 @@ namespace{
 	}
 }
 
-Player::Player() {
-    
+Player::Player(int num) {
+	playerNumber_ = num;
 }
 vector<Card> Player::getHand() const {
 	return hand_;
@@ -101,5 +101,6 @@ void Player::play(Card &c, vector<Card> &table)
 {
 	table.push_back(c);
 	hand_.erase(find(hand_.begin(),hand_.end(),c));
+	cout << "Player " << playerNumber_ << " plays " << c << "." << endl;
 
 }
