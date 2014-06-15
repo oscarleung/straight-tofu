@@ -7,7 +7,7 @@
 *.o
 *.so
 *.d
-*
+straights
 
 # Packages #
 ############

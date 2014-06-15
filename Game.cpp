@@ -1,6 +1,4 @@
 #include "Game.h"
-#include "Command.h"
-#include <set>
 
 bool Game::playersHaveCards(Player* playerList[])
 {
@@ -8,34 +6,6 @@ bool Game::playersHaveCards(Player* playerList[])
         if (playerList[i]->getHand().size() != 0) return true;
     }
 	return false;
-}
-
-void Game::initDeck()
-{
-    // init the deck
-	deck_.clear();
-	for (int i = 0; i<=3;i++)
-	{
-		for (int j = 0; j <= 12; j++)
-		{
-			Card tempCard((Suit)i, (Rank)j);
-			deck_.push_back(tempCard);
-		}
-	}
-    
-}
-
-void Game::shuffleDeck() {
-    // shuffling
-    int n = 52;
-    
-	while ( n > 1 ) {
-		int k = (int) (lrand48() % n);
-		--n;
-		Card c = deck_[n];
-		deck_[n] = deck_[k];
-		deck_[k] = c;
-	}
 }
 
 void Game::initPlayers(Player* list[]) {
@@ -63,14 +33,15 @@ void Game::start()
 	int activePlayer = 0;
     Player* playerList [4];
     initPlayers(playerList);         // init all player once
-    initDeck();                     // init the deck
+    Deck gameDeck;                     // init the deck
     while (!cin.eof()) {
-        shuffleDeck();
+        gameDeck.shuffle();
         
         // deal the deck
         for (int i = 0; i<4; i++) {
-            vector<Card> temp (deck_.begin()+ (i)*13, deck_.begin()+ (i+1)*13);
-            playerList[i]->addHand(temp);
+            vector<Card> temp = gameDeck.getDeck();
+            vector<Card> sub (temp.begin()+i*13, temp.begin()+(i+1)*13);
+            playerList[i]->addHand(sub);
             
         }
         // find starting person
