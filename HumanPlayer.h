@@ -4,8 +4,11 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <set>
 #include "Card.h"
 #include "Player.h"
+#include "Deck.h"
+#include "Command.h"
 
 using namespace std;
 

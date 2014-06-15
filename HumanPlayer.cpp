@@ -1,7 +1,5 @@
 #include "HumanPlayer.h"
-#include "Card.h"
-#include "Command.h"
-#include <set>
+
 namespace{
 	void printTable(vector<Card> table_)
 	{
@@ -97,6 +95,10 @@ void HumanPlayer::turn(vector<Card> &table)
 			}
 			break;
 		case DECK:
+            // this is not printing.. needs a deck object,
+            // i guess u could do a throw.. and exception...
+            //Deck::printDeck();
+            break;
 		case QUIT:
 			exit(0);
 			break;

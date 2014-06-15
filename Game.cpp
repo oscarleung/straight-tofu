@@ -36,7 +36,7 @@ void Game::start()
     Deck gameDeck;                     // init the deck
     while (!cin.eof()) {
         gameDeck.shuffle();
-        
+        table_.clear();
         // deal the deck
         for (int i = 0; i<4; i++) {
             vector<Card> temp = gameDeck.getDeck();
