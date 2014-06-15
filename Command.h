@@ -15,5 +15,4 @@ struct Command{
 };
 
 std::istream &operator>>(std::istream &, Command &);
-bool isValidCommand(Command, std::vector<Card>);
 #endif

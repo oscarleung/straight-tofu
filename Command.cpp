@@ -29,13 +29,3 @@ istream &operator>>(istream &in, Command &c){
 	return in;
 }
 
-bool isValidCommand(Command cmd, vector<Card> x)
-{
-	switch (cmd.type)
-	{
-	case PLAY:
-	default:
-		break;
-	}
-	return true;
-}
