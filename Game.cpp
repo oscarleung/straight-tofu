@@ -2,9 +2,12 @@
 #include "Command.h"
 #include <set>
 
-bool Game::playersHaveCards()
+bool Game::playersHaveCards(Player* playerList[])
 {
-	return true;
+    for (int i=0; i<4; i++) {
+        if (playerList[i]->getHand().size() != 0) return true;
+    }
+	return false;
 }
 
 void Game::initDeck()
@@ -48,7 +51,7 @@ void Game::initPlayers(Player* list[]) {
 
 void Game::start()
 {
-	int activePlayer;
+	int activePlayer = 0;
     Player* playerList [4];
     initPlayers(playerList);         // init all player once
     initDeck();                     // init the deck
@@ -70,8 +73,8 @@ void Game::start()
                 break;
             }
         }
-        // TODO play the game
-		while (playersHaveCards())
+        // play the game
+		while (playersHaveCards(playerList))
 		{
 
 			try{
@@ -83,29 +86,28 @@ void Game::start()
 				playerList[activePlayer] = new CompPlayer(activePlayer,e.hand_, e.discard_, e.score_);
 				playerList[activePlayer]->turn(table_);
 			}
-
-
-			// temporary thing to add score so that it ends after 4 round.
-			//playerList[0]->addScore(20);
-
-			// check if 80 point is reached
-			for (int i = 0; i < 4; i++) {
-				if (playerList[i]->getScore() >= 80) {
-					// game is over, find winner and print winner message
-					int lowest = playerList[1]->getScore();
-					for (int j = 1; j < 4; j++) {
-						if (playerList[j]->getScore() < lowest) lowest = playerList[j]->getScore();
-					}
-					for (int j = 0; j < 4; j++) {
-						if (playerList[j]->getScore() == lowest) cout << "Player " << j + 1 << " wins!" << endl;
-					}
-					return;
-				}
-			}
+			
 			if (activePlayer == 3)
 				activePlayer = 0;
 			else
 				activePlayer++;
 		}
+        
+        // round end, calculate score
+        for (int i = 0; i < 4; i++) {
+            playerList[i]->getDiscardPileScore();
+            
+            if (playerList[i]->getScore() >= 80) {
+                // game is over, find winner and print winner message
+                int lowest = playerList[1]->getScore();
+                for (int j = 1; j < 4; j++) {
+                    if (playerList[j]->getScore() < lowest) lowest = playerList[j]->getScore();
+                }
+                for (int j = 0; j < 4; j++) {
+                    if (playerList[j]->getScore() == lowest) cout << "Player " << j + 1 << " wins!" << endl;
+                }
+                return;
+            }
+        }
     }
 }

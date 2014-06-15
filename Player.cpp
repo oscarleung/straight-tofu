@@ -10,7 +10,6 @@ namespace{
 		}
 		if (inHand.getSuit() == inPlay.getSuit())
 		{
-			Rank temp = (Rank)(inPlay.getRank() + 1);
 			if (inHand.getRank() == (Rank)(inPlay.getRank() + 1) || (inHand.getRank() == (Rank)(inPlay.getRank() - 1)))
 			{
 				return true;
@@ -28,6 +27,13 @@ vector<Card> Player::getHand() const {
 }
 int Player::getScore() const {
     return score_;
+}
+int Player::getDiscardPileScore() const {
+    int score = 0;
+    for (int i=0; i < discardPile_.size(); i++) {
+        cout << discardPile_.at(i).getRank() << endl;
+    }
+    return score;
 }
 
 int Player::cardPos(Card target) const {
@@ -66,13 +72,7 @@ void Player::reset() {
 vector<Card> Player::getPlays(vector<Card> inPlay)
 {
 	vector<Card> plays;
-	int x = hand_.size();
-	vector<bool> playableFlag;
-	for (int i = 0; i < hand_.size(); i++)
-	{
-		playableFlag.push_back(false);
-	}
-	if (inPlay.size()== 0)
+    if (inPlay.size()== 0)
 	{
 		plays.push_back(Card(SPADE,SEVEN));
 		return plays;
@@ -84,22 +84,18 @@ vector<Card> Player::getPlays(vector<Card> inPlay)
 		{
 			if (isPlayable(inPlay[j], hand_[i]))
 			{
-				playableFlag[i] = true;
+				plays.push_back(hand_[i]);
+                break;
 			}
 		}
 	}
 
-	for (int i = 0; i < hand_.size(); i++)
-	{
-		if (playableFlag[i])
-			plays.push_back(hand_[i]);
-	}
 	return plays;
 }
 
 void Player::play(Card &c, vector<Card> &table)
 {
-	table.push_back(c);
+    table.push_back(c);
 	hand_.erase(find(hand_.begin(),hand_.end(),c));
 	cout << "Player " << playerNumber_ << " plays " << c << "." << endl;
 

@@ -11,7 +11,7 @@ namespace{
 		set<Card> spades;
 		for (int i = 0; i < table_.size(); i++)
 		{
-			if (table_[i].getSuit() == CLUB)
+            if (table_[i].getSuit() == CLUB)
 				clubs.insert(table_[i]);
 			else if (table_[i].getSuit() == DIAMOND)
 				diamonds.insert(table_[i]);
@@ -23,7 +23,7 @@ namespace{
 		cout << "Clubs:";
 		for (Card i : clubs)
 		{
-			cout << " " << i.getRank();
+			cout << " " << i.getStrRank();
 		}
 		cout << endl;
 		cout << "Diamonds:";

@@ -14,12 +14,10 @@ class Game{
         void start();
     private:
 		void initDeck();
-		bool playersHaveCards();
+		bool playersHaveCards(Player* playerList[]);
         void shuffleDeck();
         void initPlayers(Player* list[]);
         vector<Card> deck_;
         vector<Card> table_;
-
-
 
 };

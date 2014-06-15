@@ -16,7 +16,7 @@ void CompPlayer::turn(vector<Card> &table)
 	vector<Card> validPlays = getPlays(table);
 	if (validPlays.size() == 0)
 	{
-		discard(hand_[0]);
+		discard(hand_.at(0));
 	}
 	else{
 		play(validPlays[0],table);

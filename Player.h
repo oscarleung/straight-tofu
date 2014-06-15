@@ -10,7 +10,9 @@ using namespace std;
 class Player{
 public:
 	Player(int);
+    virtual ~Player() {}
     int getScore() const;                   // accessor
+    int getDiscardPileScore() const;        // accessor
 	vector<Card> getHand() const;           // accessor
     bool hasCard(Card) const;
 	void addCard(Card);                     // mutator
