@@ -1,6 +1,7 @@
 #include "Command.h"
 #include <cassert>
 #include <sstream>
+#include <vector>
 using namespace std;
 
 istream &operator>>(istream &in, Command &c){
@@ -26,4 +27,15 @@ istream &operator>>(istream &in, Command &c){
 	assert(!in.fail() && c.type != BAD_COMMAND);
 	
 	return in;
+}
+
+bool isValidCommand(Command cmd, vector<Card> x)
+{
+	switch (cmd.type)
+	{
+	case PLAY:
+	default:
+		break;
+	}
+	return true;
 }

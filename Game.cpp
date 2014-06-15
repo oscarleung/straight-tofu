@@ -1,45 +1,47 @@
 #include "Game.h"
 #include "Command.h"
+#include <set>
 
 void Game::printTable()
 {
-	vector<Card> clubs;
-	vector<Card> diamonds;
-	vector<Card> hearts;
-	vector<Card> spades;
+	
+	set<Card> clubs;
+	set<Card> diamonds;
+	set<Card> hearts;
+	set<Card> spades;
 	for (int i = 0; i < table_.size(); i++)
 	{
 		if (table_[i].getSuit() == CLUB)
-			clubs.push_back(table_[i]);
+			clubs.insert(table_[i]);
 		else if (table_[i].getSuit() == DIAMOND)
-			diamonds.push_back(table_[i]);
+			diamonds.insert(table_[i]);
 		else if (table_[i].getSuit() == HEART)
-			hearts.push_back(table_[i]);
+			hearts.insert(table_[i]);
 		else 
-			spades.push_back(table_[i]);
+			spades.insert(table_[i]);
 	}
 	cout << "Clubs:";
 	for (Card i : clubs)
 	{
-		cout << " " + i.getRank();
+		cout << " " << i.getRank();
 	}
 	cout << endl;
 	cout << "Diamonds:";
 	for (Card i : diamonds)
 	{
-		cout << " " + i.getRank();
+		cout << " " << i.getStrRank();
 	}
 	cout << endl;
 	cout << "Hearts:";
 	for (Card i : hearts)
 	{
-		cout << " " + i.getRank();
+		cout << " " << i.getStrRank();
 	}
 	cout << endl;
 	cout << "Spades:";
 	for (Card i : spades)
 	{
-		cout << " " + i.getRank();
+		cout << " " << i.getStrRank();
 	}
 	cout << endl;
 }
@@ -122,19 +124,8 @@ void Game::start()
 			cout <<" "<< c;
 		}
 		cout << endl;
-		Command cmd;
-		cin >> cmd;
-		switch (cmd.type)
-		{
-		case PLAY:
-		case DISCARD:
-		case DECK:
-		case QUIT:
-		case RAGEQUIT:
-		case BAD_COMMAND:
-		default:
-			break;
-		}
+		playerList[activePlayer]->turn(table_);
+	
         
         
         

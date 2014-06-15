@@ -16,10 +16,10 @@ public:
 	vector<Card> getHand() const;           // accessor
     bool hasCard(Card) const;
 	void addCard(Card);                     // mutator
-    void discard(Card);                     // mutator
     void addHand(vector<Card>);             // mutator
 	void addScore(int);                     // mutator
 	void reset();
+	void turn(vector<Card> &);
 private:
 	int score_ = 0;
 	vector<Card> hand_;

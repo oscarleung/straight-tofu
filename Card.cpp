@@ -19,6 +19,19 @@ Rank Card::getRank() const{
 bool operator==(const Card &a, const Card &b){
 	return a.getSuit() == b.getSuit() && a.getRank() == b.getRank();
 }
+bool operator<(const Card &a, const Card &b){
+	if (a.getSuit() == b.getSuit())
+		return a.getRank() < b.getRank();
+	else
+		return a.getSuit() < b.getSuit();
+}
+
+string Card::getStrRank() const{
+	string ranks[RANK_COUNT] = { "A", "2", "3", "4", "5", "6",
+		"7", "8", "9", "10", "J", "Q", "K" };
+	return ranks[getRank()];
+
+}
 
 ostream &operator<<(ostream &out, const Card &c){
 	string suits[SUIT_COUNT] = {"C", "D", "H", "S"};

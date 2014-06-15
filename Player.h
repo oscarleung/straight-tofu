@@ -16,13 +16,16 @@ public:
 	void addCard(Card);                     // mutator
     void discard(Card);                     // mutator
     void addHand(vector<Card>);             // mutator
-	vector<Card> getPlays(vector<Card>);
+	vector<Card> getPlays(vector<Card>);	// return valid plays
 	void addScore(int);                     // mutator
 	void reset();
+	virtual void turn(vector<Card> &) = 0;
+	void play(Card&, vector<Card> &);
 private:
 	int score_ = 0;
     vector<Card> hand_;
 	vector<Card> discardPile_;
+	bool active=true;
     int cardPos(Card) const;                // helper to find position of card
 };
 

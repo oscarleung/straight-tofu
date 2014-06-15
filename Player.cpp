@@ -97,3 +97,9 @@ vector<Card> Player::getPlays(vector<Card> inPlay)
 	return plays;
 }
 
+void Player::play(Card &c, vector<Card> &table)
+{
+	table.push_back(c);
+	hand_.erase(find(hand_.begin(),hand_.end(),c));
+
+}
