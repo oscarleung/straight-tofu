@@ -13,5 +13,12 @@ CompPlayer::CompPlayer(int playerNo, vector<Card> hand, vector<Card> discard, in
 }
 void CompPlayer::turn(vector<Card> &table)
 {
-	cout << "computer turn" << endl;
+	vector<Card> validPlays = getPlays(table);
+	if (validPlays.size() == 0)
+	{
+		discard(hand_[0]);
+	}
+	else{
+		play(validPlays[0],table);
+	}
 }

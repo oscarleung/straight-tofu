@@ -51,7 +51,7 @@ void Player::discard(Card target) {
     int pos = cardPos(target);                  // get position of discard target
     hand_.erase(hand_.begin() + pos);
     discardPile_.push_back(target);
-    return;
+	cout << "Player " << playerNumber_ << " discards " << target << "." << endl;
 }
 void Player::addHand(vector<Card> newHand) {
     hand_ = newHand;
