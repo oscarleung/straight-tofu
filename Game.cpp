@@ -26,23 +26,32 @@ void Game::initDeck()
 }
 
 void Game::shuffleDeck() {
-    // TODO shuffling
+    // shuffling
+    int n = 52;
+    
+	while ( n > 1 ) {
+		int k = (int) (lrand48() % n);
+		--n;
+		Card c = deck_[n];
+		deck_[n] = deck_[k];
+		deck_[k] = c;
+	}
 }
 
 void Game::initPlayers(Player* list[]) {
     for (int i = 0; i<4; i++) {
-        cout << "Is player " << i << " a human(h) or a computer(c)?" << endl;
+        cout << "Is player " << i+1 << " a human(h) or a computer(c)?" << endl;
         char playerType;
         cin >> playerType;
         assert( playerType == 'h' || playerType == 'H' || playerType == 'c' || playerType == 'C' );
         if (playerType == 'h' || playerType == 'H') {
             // make human player
-            Player* p = new HumanPlayer(i);
+            Player* p = new HumanPlayer(i+1);
             list[i] = p;
         }
         if (playerType == 'c' || playerType == 'C') {
             // make computer player
-            Player* p = new CompPlayer(i);
+            Player* p = new CompPlayer(i+1);
             list[i] = p;
         }
         
@@ -95,11 +104,12 @@ void Game::start()
         
         // round end, calculate score
         for (int i = 0; i < 4; i++) {
-            playerList[i]->getDiscardPileScore();
-            
+            playerList[i]->doScoring();
+        }
+        for (int i=0; i<4; i++) {               // check for end game
             if (playerList[i]->getScore() >= 80) {
                 // game is over, find winner and print winner message
-                int lowest = playerList[1]->getScore();
+                int lowest = playerList[0]->getScore();
                 for (int j = 1; j < 4; j++) {
                     if (playerList[j]->getScore() < lowest) lowest = playerList[j]->getScore();
                 }

@@ -12,7 +12,7 @@ public:
 	Player(int);
     virtual ~Player() {}
     int getScore() const;                   // accessor
-    int getDiscardPileScore() const;        // accessor
+    void doScoring() ;
 	vector<Card> getHand() const;           // accessor
     bool hasCard(Card) const;
 	void addCard(Card);                     // mutator

@@ -28,12 +28,17 @@ vector<Card> Player::getHand() const {
 int Player::getScore() const {
     return score_;
 }
-int Player::getDiscardPileScore() const {
-    int score = 0;
+void Player::doScoring() {
+    int roundScore = 0;
+    cout << "Player " << playerNumber_ << "'s discards:";
     for (int i=0; i < discardPile_.size(); i++) {
-        cout << discardPile_.at(i).getRank() << endl;
+        cout << " " << discardPile_.at(i);
+        roundScore += discardPile_.at(i).getRank()+1;
     }
-    return score;
+    cout << endl;
+    int newScore = score_ + roundScore;
+    cout << "Player " << playerNumber_ << "'s score: " << score_ << " + " << roundScore << " = " << newScore << endl;
+    score_ = newScore;
 }
 
 int Player::cardPos(Card target) const {
