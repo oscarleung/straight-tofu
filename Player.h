@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "Card.h"
+#include "Command.h"
 #include <iostream>
 using namespace std;
 
@@ -18,10 +19,11 @@ public:
 	void addCard(Card);                     // mutator
     void discard(Card);                     // mutator
     void addHand(vector<Card>);             // mutator
-	vector<Card> getPlays(vector<Card>);	// return valid plays
+	vector<Card> getPlays(vector<Card>) const;	// return valid plays
+	vector<Card> getDiscards() const;				// return discard pile 
 	void addScore(int);                     // mutator
 	void reset();
-	virtual void turn(vector<Card> &) = 0;
+	virtual Command turn(vector<Card> &) = 0;
 	void play(Card&, vector<Card> &);
 protected:
 	vector<Card> hand_;

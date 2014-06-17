@@ -56,21 +56,48 @@ void Game::start()
         // play the game
 		while (playersHaveCards(playerList))
 		{
-
-			try{
-				playerList[activePlayer]->turn(table_);
-			}
-			catch (ragequit_exception e)
-			{
-				delete playerList[activePlayer];
-				playerList[activePlayer] = new CompPlayer(activePlayer,e.hand_, e.discard_, e.score_);
-				playerList[activePlayer]->turn(table_);
-			}
+			Command cmd =	playerList[activePlayer]->turn(table_);
+			vector<Card> legalPlays = playerList[activePlayer]->getPlays(table_);
+				switch (cmd.type)
+				{
+				case PLAY:
+						playerList[activePlayer]->play(cmd.card, table_);
+					break;
+				case DISCARD:
+						playerList[activePlayer]->discard(cmd.card);
+					break;
+				case DECK:
+					// this is not printing.. needs a deck object,
+					// i guess u could do a throw.. and exception...
+					//Deck::printDeck();
+					break;
+				case QUIT:
+					exit(0);
+					break;
+				case RAGEQUIT:
+				{
+					vector<Card> tempHand = playerList[activePlayer]->getHand();
+					vector<Card> tempDiscard = playerList[activePlayer]->getDiscards();
+					int tempScore = playerList[activePlayer]->getScore();
+					delete playerList[activePlayer];
+					playerList[activePlayer] = new CompPlayer(activePlayer+1, tempHand, tempDiscard, tempScore);
+					playerList[activePlayer]->turn(table_);
+					break;
+				}
+				case BAD_COMMAND:
+				default:
+					break;
+				}
 			
-			if (activePlayer == 3)
-				activePlayer = 0;
-			else
-				activePlayer++;
+		
+				if (cmd.type != RAGEQUIT)
+				{
+
+					if (activePlayer == 3)
+						activePlayer = 0;
+					else
+						activePlayer++;
+				}
 		}
         
         // round end, calculate score

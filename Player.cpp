@@ -25,6 +25,9 @@ Player::Player(int num) {
 vector<Card> Player::getHand() const {
 	return hand_;
 }
+vector<Card> Player::getDiscards() const {
+	return discardPile_;
+}
 int Player::getScore() const {
     return score_;
 }
@@ -74,7 +77,7 @@ void Player::reset() {
     
 }
 
-vector<Card> Player::getPlays(vector<Card> inPlay)
+vector<Card> Player::getPlays(vector<Card> inPlay) const
 {
 	vector<Card> plays;
     if (inPlay.size()== 0)

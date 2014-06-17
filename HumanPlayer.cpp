@@ -48,7 +48,7 @@ HumanPlayer::HumanPlayer(int playerNo) :Player(playerNo){
     
 }
 
-void HumanPlayer::turn(vector<Card> &table)
+Command HumanPlayer::turn(vector<Card> &table)
 {
 	cout << "Cards on the table:" << endl;
 	printTable(table);
@@ -79,7 +79,7 @@ void HumanPlayer::turn(vector<Card> &table)
 			}
 			else
 			{
-				play(cmd.card, table);
+				//play(cmd.card, table);
 				successfulPlay = true;
 			}
 			break;
@@ -90,11 +90,12 @@ void HumanPlayer::turn(vector<Card> &table)
 			}
 			else
 			{
-				discard(cmd.card);
+				//discard(cmd.card);
 				successfulPlay = true;
 			}
 			break;
 		case DECK:
+			successfulPlay = true;
             // this is not printing.. needs a deck object,
             // i guess u could do a throw.. and exception...
             //Deck::printDeck();
@@ -103,12 +104,12 @@ void HumanPlayer::turn(vector<Card> &table)
 			exit(0);
 			break;
 		case RAGEQUIT:
-			throw ragequit_exception(hand_,discardPile_,getScore());
+			successfulPlay = true;
 			break;
 		case BAD_COMMAND:
 		default:
 			break;
 		}
 	}
-
+	return cmd;
 }
