@@ -33,7 +33,6 @@ void Game::start()
 	int activePlayer = 0;
     Player* playerList [4];
     initPlayers(playerList);         // init all player once
-    Deck gameDeck;                     // init the deck
     while (!cin.eof()) {
         gameDeck.shuffle();
         table_.clear();
@@ -67,6 +66,7 @@ void Game::start()
 						playerList[activePlayer]->discard(cmd.card);
 					break;
 				case DECK:
+					gameDeck.printDeck();
 					// this is not printing.. needs a deck object,
 					// i guess u could do a throw.. and exception...
 					//Deck::printDeck();
@@ -90,7 +90,7 @@ void Game::start()
 				}
 			
 		
-				if (cmd.type != RAGEQUIT)
+				if (cmd.type != RAGEQUIT && cmd.type != DECK)
 				{
 
 					if (activePlayer == 3)

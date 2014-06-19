@@ -31,8 +31,8 @@ void Deck::shuffle() {
 
 void Deck::printDeck() const {
     for (int j=0; j<4; j++) {
-        for (int i=1; i<=13; i++) {
-            cout << deck_.at(i+(13*j)-1) << " ";
+        for (int i=0; i<13; i++) {
+            cout << deck_[i+(13*j)] << " ";
         }
         cout << endl;
     }

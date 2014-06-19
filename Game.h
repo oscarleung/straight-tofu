@@ -19,5 +19,7 @@ class Game{
 		bool playersHaveCards(Player* playerList[]);
         void initPlayers(Player* list[]);
         vector<Card> table_;
+		Deck gameDeck;
+		void printDeck();
 
 };
