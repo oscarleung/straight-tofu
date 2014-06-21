@@ -11,6 +11,5 @@ int main(int argc, char* argv[])
         x.start(0);
     }
     
-	x.start();
 	return 0;
 }

@@ -42,6 +42,7 @@ void Player::doScoring() {
     int newScore = score_ + roundScore;
     cout << "Player " << playerNumber_ << "'s score: " << score_ << " + " << roundScore << " = " << newScore << endl;
     score_ = newScore;
+    discardPile_.clear();
 }
 
 int Player::cardPos(Card target) const {
