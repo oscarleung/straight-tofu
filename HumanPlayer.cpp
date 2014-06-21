@@ -72,45 +72,27 @@ Command HumanPlayer::turn(vector<Card> &table,bool print)
 		cout << endl;
 	}
 	Command cmd;
-	bool successfulPlay = false;
-	//get Command from player input, loop until valid command is given
-	while (!successfulPlay)
-	{
-		cin >> cmd;
-		switch (cmd.type)
-		{
+	//get Command from player input, check if valid command is given
+	
+    cin >> cmd;
+    switch (cmd.type)
+    {
 		case PLAY:
 			if (find(legalPlays.begin(), legalPlays.end(), cmd.card) == legalPlays.end())
 			{
 				throw runtime_error("This is not a legal play.");
 			}
-			else
-			{
-				successfulPlay = true;
-			}
 			break;
 		case DISCARD:
-			if (legalPlays.size() != 0)
+			if (!hasCard(cmd.card))
 			{
 				throw runtime_error("You have a legal play. You may not discard.");
 			}
-			else
-			{
-				successfulPlay = true;
-			}
 			break;
-		case DECK:
-			successfulPlay = true;
-            break;
-		case QUIT:
-			break;
-		case RAGEQUIT:
-			successfulPlay = true;
-			break;
-		case BAD_COMMAND:
+            
 		default:
 			break;
-		}
-	}
+    }
+	
 	return cmd;
 }

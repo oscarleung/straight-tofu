@@ -63,7 +63,7 @@ void Game::start(int seed)
 					switch (cmd.type)
 					{
 					case PLAY:
-						playerList[activePlayer]->play(cmd.card, table_);
+                        playerList[activePlayer]->play(cmd.card, table_);
 						break;
 					case DISCARD:
 						playerList[activePlayer]->discard(cmd.card);
@@ -90,19 +90,20 @@ void Game::start(int seed)
 					default:
 						break;
 					}
-				}
-				catch (runtime_error e)
-				{
-					cout << e.what() << endl;
-					print = false;
-				}
-				if (cmd.type != RAGEQUIT && cmd.type != DECK ||!print)
+                if ((cmd.type != RAGEQUIT && cmd.type != DECK) ||!print)
 				{
 					if (activePlayer == 3)
 						activePlayer = 0;
 					else
 						activePlayer++;
 				}
+				}
+				catch (runtime_error e)
+				{
+					cout << e.what() << endl;
+					print = false;
+				}
+				
 		}
         
         // round end, calculate score
