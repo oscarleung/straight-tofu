@@ -30,11 +30,12 @@ void Game::initPlayers(Player* list[]) {
 
 void Game::start(int seed)
 {
+    srand48(seed);
 	int activePlayer = 0;
     Player* playerList [4];
     initPlayers(playerList);         // init all player once
     while (!cin.eof()) {
-        gameDeck.shuffle(seed);
+        gameDeck.shuffle();
         table_.clear();
         // deal the deck
         for (int i = 0; i<4; i++) {

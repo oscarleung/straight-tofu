@@ -3,7 +3,14 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-	Game x;
-	x.start((int)argv[1]);
+    Game x;
+    if (argc == 2) {
+        x.start((atoi(argv[1])));
+    }
+    else {
+        x.start(0);
+    }
+    
+	x.start();
 	return 0;
 }

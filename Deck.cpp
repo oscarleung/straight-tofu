@@ -15,12 +15,12 @@ Deck::Deck()
     
 }
 
-void Deck::shuffle(int seed) {
+void Deck::shuffle() {
     // shuffling
     int n = CARD_COUNT;
     
 	while ( n > 1 ) {
-		int k = (int)(rand() % n);
+		int k = (int)(lrand48() % n);
 		--n;
 		Card c = deck_[n];
 		deck_[n] = deck_[k];
