@@ -1,17 +1,11 @@
 #include "CompPlayer.h"
-#include "HumanPlayer.h"
 #include "Command.h"
 
 CompPlayer::CompPlayer(int playerNo): Player(playerNo) {
     
 }
 CompPlayer::CompPlayer(const Player &x) : Player(x){}
-CompPlayer::CompPlayer(int playerNo, vector<Card> hand, vector<Card> discard, int score) : Player(playerNo)
-{
-	hand_ = hand;
-	discardPile_ = discard;
-	score_ = score;
-}
+
 Command CompPlayer::turn(vector<Card> &table,bool print)
 {
 	Command cmd;

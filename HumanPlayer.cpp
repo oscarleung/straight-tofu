@@ -1,5 +1,4 @@
 #include "HumanPlayer.h"
-#include "CompPlayer.h"
 
 namespace{
 	void printTable(vector<Card> table_)
@@ -101,9 +100,6 @@ Command HumanPlayer::turn(vector<Card> &table,bool print)
 			break;
 		case DECK:
 			successfulPlay = true;
-            // this is not printing.. needs a deck object,
-            // i guess u could do a throw.. and exception...
-            //Deck::printDeck();
             break;
 		case QUIT:
 			exit(0);

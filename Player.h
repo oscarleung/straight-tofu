@@ -2,7 +2,6 @@
 #define __straight_tofu__Player__
 
 #include <vector>
-#include <string>
 #include "Card.h"
 #include "Command.h"
 #include <iostream>
@@ -22,7 +21,6 @@ public:
 	vector<Card> getPlays(vector<Card>) const;	// return valid plays
 	vector<Card> getDiscards() const;				// return discard pile 
 	void addScore(int);                     // mutator
-	void reset();
 	virtual Command turn(vector<Card> &,bool print=true) = 0;
 	void play(Card&, vector<Card> &);
 protected:

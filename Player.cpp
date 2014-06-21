@@ -73,9 +73,6 @@ void Player::addHand(vector<Card> newHand) {
 void Player::addScore(int x) {
 	score_ += x;
 }
-void Player::reset() {
-    
-}
 
 vector<Card> Player::getPlays(vector<Card> inPlay) const
 {

@@ -114,6 +114,7 @@ void Game::start(int seed)
                 }
                 for (int j = 0; j < 4; j++) {
                     if (playerList[j]->getScore() == lowest) cout << "Player " << j + 1 << " wins!" << endl;
+					delete playerList[j];
                 }
                 return;
             }
