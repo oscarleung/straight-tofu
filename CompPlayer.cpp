@@ -11,6 +11,7 @@ Command CompPlayer::turn(vector<Card> &table,bool print)
 {
 	Command cmd;
 	vector<Card> validPlays = Player::getPlays(table);
+	vector<Card> hand_= getHand();
 	if (validPlays.size() == 0)
 	{
 		cmd.type = DISCARD;

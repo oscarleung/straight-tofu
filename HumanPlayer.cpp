@@ -52,6 +52,7 @@ HumanPlayer::HumanPlayer(int playerNo) :Player(playerNo){}
 Command HumanPlayer::turn(vector<Card> &table,bool print)
 {
 	vector<Card> legalPlays = Player::getPlays(table);
+	vector<Card> hand_= getHand();
 	//conditional print required for when "DECK" command is called
 	if (print)
 	{
