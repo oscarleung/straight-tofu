@@ -15,7 +15,7 @@ using namespace std;
 class HumanPlayer: public Player{
 public:
 	HumanPlayer(int);
-	Command turn(vector<Card> &);
+	Command turn(vector<Card> &,bool print=true);
 private:
 };
 

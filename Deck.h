@@ -9,7 +9,7 @@ using namespace std;
 class Deck{
 public:
 	Deck();
-    void shuffle();
+    void shuffle(int seed);
     void printDeck() const;
     vector<Card> getDeck() const;
 	

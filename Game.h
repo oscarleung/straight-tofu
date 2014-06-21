@@ -14,7 +14,7 @@ using namespace std;
 
 class Game{
     public:
-        void start();
+        void start(int seed=0);
     private:
 		bool playersHaveCards(Player* playerList[]);
         void initPlayers(Player* list[]);

@@ -48,23 +48,26 @@ HumanPlayer::HumanPlayer(int playerNo) :Player(playerNo){
     
 }
 
-Command HumanPlayer::turn(vector<Card> &table)
+Command HumanPlayer::turn(vector<Card> &table,bool print)
 {
-	cout << "Cards on the table:" << endl;
-	printTable(table);
-	cout << "Your hand:";
-	for (Card c : hand_)
-	{
-		cout << " " << c;
-	}
-	cout << endl;
-	cout << "Legal Plays:";
 	vector<Card> legalPlays = getPlays(table);
-	for (Card c : legalPlays)
+	if (print)
 	{
-		cout << " " << c;
+		cout << "Cards on the table:" << endl;
+		printTable(table);
+		cout << "Your hand:";
+		for (Card c : hand_)
+		{
+			cout << " " << c;
+		}
+		cout << endl;
+		cout << "Legal Plays:";
+		for (Card c : legalPlays)
+		{
+			cout << " " << c;
+		}
+		cout << endl;
 	}
-	cout << endl;
 	Command cmd;
 	bool successfulPlay = false;
 	while (!successfulPlay)

@@ -13,7 +13,7 @@ class CompPlayer: public Player{
 public:
 	CompPlayer(int);
 	CompPlayer(int,vector<Card>, vector<Card>, int);
-	Command turn(vector<Card> &);
+	Command turn(vector<Card> &,bool print=false);
 private:
 };
 

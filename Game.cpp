@@ -28,13 +28,13 @@ void Game::initPlayers(Player* list[]) {
     }
 }
 
-void Game::start()
+void Game::start(int seed)
 {
 	int activePlayer = 0;
     Player* playerList [4];
     initPlayers(playerList);         // init all player once
     while (!cin.eof()) {
-        gameDeck.shuffle();
+        gameDeck.shuffle(seed);
         table_.clear();
         // deal the deck
         for (int i = 0; i<4; i++) {
@@ -53,10 +53,12 @@ void Game::start()
             }
         }
         // play the game
+		bool print=true;
 		while (playersHaveCards(playerList))
 		{
-			Command cmd =	playerList[activePlayer]->turn(table_);
+			Command cmd =	playerList[activePlayer]->turn(table_,print);
 			vector<Card> legalPlays = playerList[activePlayer]->getPlays(table_);
+			print = true;
 				switch (cmd.type)
 				{
 				case PLAY:
@@ -67,6 +69,7 @@ void Game::start()
 					break;
 				case DECK:
 					gameDeck.printDeck();
+					print = false;
 					// this is not printing.. needs a deck object,
 					// i guess u could do a throw.. and exception...
 					//Deck::printDeck();
@@ -76,11 +79,13 @@ void Game::start()
 					break;
 				case RAGEQUIT:
 				{
+								 
 					vector<Card> tempHand = playerList[activePlayer]->getHand();
 					vector<Card> tempDiscard = playerList[activePlayer]->getDiscards();
 					int tempScore = playerList[activePlayer]->getScore();
 					delete playerList[activePlayer];
 					playerList[activePlayer] = new CompPlayer(activePlayer+1, tempHand, tempDiscard, tempScore);
+					
 					playerList[activePlayer]->turn(table_);
 					break;
 				}

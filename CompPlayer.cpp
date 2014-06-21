@@ -11,7 +11,7 @@ CompPlayer::CompPlayer(int playerNo, vector<Card> hand, vector<Card> discard, in
 	discardPile_ = discard;
 	score_ = score;
 }
-Command CompPlayer::turn(vector<Card> &table)
+Command CompPlayer::turn(vector<Card> &table,bool print)
 {
 	Command cmd;
 	vector<Card> validPlays = getPlays(table);
@@ -19,12 +19,10 @@ Command CompPlayer::turn(vector<Card> &table)
 	{
 		cmd.type = DISCARD;
 		cmd.card = hand_.at(0);
-		//discard(hand_.at(0));
 	}
 	else{
 		cmd.type = PLAY;
 		cmd.card = validPlays.at(0);
-		//play(validPlays[0],table);
 	}
 	return cmd;
 }

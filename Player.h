@@ -23,7 +23,7 @@ public:
 	vector<Card> getDiscards() const;				// return discard pile 
 	void addScore(int);                     // mutator
 	void reset();
-	virtual Command turn(vector<Card> &) = 0;
+	virtual Command turn(vector<Card> &,bool print=true) = 0;
 	void play(Card&, vector<Card> &);
 protected:
 	vector<Card> hand_;
@@ -33,16 +33,5 @@ protected:
 private:
     int cardPos(Card) const;                // helper to find position of card
 };
-class ragequit_exception :exception
-{
-public:
-	ragequit_exception(vector<Card> hand, vector<Card> discard, int score){
-		hand_ = hand;
-		discard_ = discard;
-		score_ = score;
-	}
-	vector<Card> hand_;
-	vector<Card> discard_;
-	int score_;
-};
+
 #endif /* defined(__straight_tofu__Player__) */
