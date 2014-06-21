@@ -20,7 +20,7 @@ void Deck::shuffle() {
     int n = CARD_COUNT;
     
 	while ( n > 1 ) {
-		int k = (int)(lrand48() % n);
+		int k = (int)(rand() % n);
 		--n;
 		Card c = deck_[n];
 		deck_[n] = deck_[k];

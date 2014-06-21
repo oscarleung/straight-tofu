@@ -9,6 +9,7 @@
 #include "Player.h"
 #include "Deck.h"
 #include "Command.h"
+#include <stdexcept>
 
 using namespace std;
 
@@ -17,6 +18,11 @@ public:
 	HumanPlayer(int);
 	Command turn(vector<Card> &,bool print=true);
 private:
+	vector<Card> getPlays(vector<Card>) const;	// return valid plays
+	vector<Card> hand_;						// stores all cards in a players hand
+	vector<Card> discardPile_;				// keeps track of the discards for a player in a given round
+	int score_ = 0;							// keeps track of score
+	int playerNumber_;
 };
 
 

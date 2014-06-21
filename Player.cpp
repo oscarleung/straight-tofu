@@ -27,10 +27,7 @@ Player::Player(int num) {
 vector<Card> Player::getHand() const {
 	return hand_;
 }
-//Accessor
-vector<Card> Player::getDiscards() const {
-	return discardPile_;
-}
+
 //Accessor
 int Player::getScore() const {
     return score_;
@@ -54,10 +51,7 @@ bool Player::hasCard(Card target) const {
 	if (distance(hand_.begin(), find(hand_.begin(), hand_.end(), target)) < hand_.size()) return true;
     return false;
 }
-//Mutator adds card to hand
-void Player::addCard(Card newCard) {
-	hand_.push_back(newCard);
-}
+
 //Mutator removes card from hand, adds it to discard, prints message
 void Player::discard(Card target) {
 	int pos = distance(hand_.begin(), find(hand_.begin(), hand_.end(), target));                  // get position of discard target
@@ -68,10 +62,6 @@ void Player::discard(Card target) {
 //Mutator for hand
 void Player::addHand(vector<Card> newHand) {
     hand_ = newHand;
-}
-//Mutator for score
-void Player::addScore(int amountToAdd) {
-	score_ += amountToAdd;
 }
 
 //returns a list of valid plays 

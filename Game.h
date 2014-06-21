@@ -20,5 +20,6 @@ class Game{
         void printDeck();
         vector<Card> table_;
 		Deck gameDeck;
+		Player* playerList[4];							//List of players
 		
 };

@@ -51,7 +51,7 @@ HumanPlayer::HumanPlayer(int playerNo) :Player(playerNo){}
 //Human plyer turn implementation
 Command HumanPlayer::turn(vector<Card> &table,bool print)
 {
-	vector<Card> legalPlays = getPlays(table);
+	vector<Card> legalPlays = Player::getPlays(table);
 	//conditional print required for when "DECK" command is called
 	if (print)
 	{
@@ -81,7 +81,7 @@ Command HumanPlayer::turn(vector<Card> &table,bool print)
 		case PLAY:
 			if (find(legalPlays.begin(), legalPlays.end(), cmd.card) == legalPlays.end())
 			{
-				cout << "This is not a legal play." << endl;
+				throw runtime_error("This is not a legal play.");
 			}
 			else
 			{
@@ -91,7 +91,7 @@ Command HumanPlayer::turn(vector<Card> &table,bool print)
 		case DISCARD:
 			if (legalPlays.size() != 0)
 			{
-				cout << "You have a legal play. You may not discard." << endl;
+				throw runtime_error("You have a legal play. You may not discard.");
 			}
 			else
 			{

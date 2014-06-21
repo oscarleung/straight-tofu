@@ -30,9 +30,8 @@ void Game::initPlayers(Player* list[]) {
 
 void Game::start(int seed)
 {
-    srand48(seed);
+    //srand48(seed);
 	int activePlayer = 0;
-    Player* playerList [4];
     initPlayers(playerList);         // init all player once
     while (!cin.eof()) {
         gameDeck.shuffle();             // shuffle card at beginning of each round
@@ -42,7 +41,6 @@ void Game::start(int seed)
             vector<Card> temp = gameDeck.getDeck();
             vector<Card> sub (temp.begin()+i*13, temp.begin()+(i+1)*13);
             playerList[i]->addHand(sub);
-            
         }
         // find starting person
         Card startCard(SPADE, SEVEN);
@@ -55,42 +53,50 @@ void Game::start(int seed)
         }
         // play the game
 		bool print=true;
+		Command cmd;
 		while (playersHaveCards(playerList))
 		{
-			Command cmd =	playerList[activePlayer]->turn(table_,print);
-			print = true;
-				switch (cmd.type)
-				{
-				case PLAY:
+			try
+			{
+					cmd = playerList[activePlayer]->turn(table_, print);
+					print = true;
+					switch (cmd.type)
+					{
+					case PLAY:
 						playerList[activePlayer]->play(cmd.card, table_);
-					break;
-				case DISCARD:
+						break;
+					case DISCARD:
 						playerList[activePlayer]->discard(cmd.card);
-					break;
-				case DECK:
-					gameDeck.printDeck();
-					print = false;
-					break;
-				case QUIT:
-                    for (int i=0; i<4; i++) {
-                        delete playerList[i];
-                    }
-					exit(0);
-					break;
-				case RAGEQUIT:
+						break;
+					case DECK:
+						gameDeck.printDeck();
+						print = false;
+						break;
+					case QUIT:
+						for (int i = 0; i < 4; i++) {
+							delete playerList[i];
+						}
+						exit(0);
+						break;
+					case RAGEQUIT:
+					{
+						 Player* replaceHuman = new CompPlayer(*playerList[activePlayer]);
+						 delete playerList[activePlayer];
+						 playerList[activePlayer] = replaceHuman;
+						 playerList[activePlayer]->turn(table_);
+						 break;
+					}
+					case BAD_COMMAND:
+					default:
+						break;
+					}
+				}
+				catch (runtime_error e)
 				{
-					Player* replaceHuman = new CompPlayer(*playerList[activePlayer]);
-					delete playerList[activePlayer];
-					playerList[activePlayer] = replaceHuman;
-					playerList[activePlayer]->turn(table_);
-					break;
+					cout << e.what() << endl;
+					print = false;
 				}
-				case BAD_COMMAND:
-				default:
-					break;
-				}
-		
-				if (cmd.type != RAGEQUIT && cmd.type != DECK)
+				if (cmd.type != RAGEQUIT && cmd.type != DECK ||!print)
 				{
 					if (activePlayer == 3)
 						activePlayer = 0;

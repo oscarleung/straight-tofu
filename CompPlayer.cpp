@@ -10,7 +10,7 @@ CompPlayer::CompPlayer(const Player &x) : Player(x){}
 Command CompPlayer::turn(vector<Card> &table,bool print)
 {
 	Command cmd;
-	vector<Card> validPlays = getPlays(table);
+	vector<Card> validPlays = Player::getPlays(table);
 	if (validPlays.size() == 0)
 	{
 		cmd.type = DISCARD;
