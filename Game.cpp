@@ -1,6 +1,6 @@
 #include "Game.h"
 
-bool Game::playersHaveCards(Player* playerList[])
+bool Game::playersHaveCards(Player* playerList[])               // check for end game where player is out of cards
 {
     for (int i=0; i<4; i++) {
         if (playerList[i]->getHand().size() != 0) return true;
@@ -35,7 +35,7 @@ void Game::start(int seed)
     Player* playerList [4];
     initPlayers(playerList);         // init all player once
     while (!cin.eof()) {
-        gameDeck.shuffle();
+        gameDeck.shuffle();             // shuffle card at beginning of each round
         table_.clear();
         // deal the deck
         for (int i = 0; i<4; i++) {
@@ -71,9 +71,6 @@ void Game::start(int seed)
 				case DECK:
 					gameDeck.printDeck();
 					print = false;
-					// this is not printing.. needs a deck object,
-					// i guess u could do a throw.. and exception...
-					//Deck::printDeck();
 					break;
 				case QUIT:
 					exit(0);
@@ -90,11 +87,9 @@ void Game::start(int seed)
 				default:
 					break;
 				}
-			
 		
 				if (cmd.type != RAGEQUIT && cmd.type != DECK)
 				{
-
 					if (activePlayer == 3)
 						activePlayer = 0;
 					else
@@ -114,6 +109,7 @@ void Game::start(int seed)
                     if (playerList[j]->getScore() < lowest) lowest = playerList[j]->getScore();
                 }
                 for (int j = 0; j < 4; j++) {
+                    // output winners
                     if (playerList[j]->getScore() == lowest) cout << "Player " << j + 1 << " wins!" << endl;
 					delete playerList[j];
                 }

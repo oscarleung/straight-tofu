@@ -13,12 +13,12 @@ using namespace std;
 
 class Game{
     public:
-        void start(int seed=0);
+        void start(int seed=0);                         // begin a new game
     private:
-		bool playersHaveCards(Player* playerList[]);
-        void initPlayers(Player* list[]);
+		bool playersHaveCards(Player* playerList[]);    // check players hand for end game
+        void initPlayers(Player* list[]);               // create a list of player
+        void printDeck();
         vector<Card> table_;
 		Deck gameDeck;
-		void printDeck();
-
+		
 };

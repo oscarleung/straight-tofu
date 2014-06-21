@@ -3,12 +3,12 @@ using namespace std;
 
 int main(int argc, char* argv[])
 {
-    Game x;
+    Game straightsgame;
     if (argc == 2) {
-        x.start((atoi(argv[1])));
+        straightsgame.start((atoi(argv[1])));
     }
     else {
-        x.start(0);
+        straightsgame.start();
     }
     
 	return 0;

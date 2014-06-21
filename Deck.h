@@ -8,14 +8,14 @@ using namespace std;
 
 class Deck{
 public:
-	Deck();
-    void shuffle();
-    void printDeck() const;
-    vector<Card> getDeck() const;
+	Deck();                         // constructor
+    void shuffle();                 // shuffle function
+    void printDeck() const;         // print entire deck
+    vector<Card> getDeck() const;   // return deck as vector
 	
 private:
 	vector<Card> deck_;
-    const int CARD_COUNT = 52;
+    const int CARD_COUNT = 52;      // constant card count at 52
 };
 
 #endif /* defined(__straight_tofu__Deck__) */
