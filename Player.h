@@ -29,7 +29,6 @@ protected:
 	int score_ = 0;							// keeps track of score
 	int playerNumber_;						
 private:
-    int cardPos(Card) const;                // helper to find position of card
 };
 
 #endif /* defined(__straight_tofu__Player__) */

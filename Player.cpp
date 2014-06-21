@@ -49,15 +49,9 @@ void Player::doScoring() {
     score_ = newScore;
     discardPile_.clear();
 }
-//get the postion of a given card 
-int Player::cardPos(Card target) const {
-  
-	return distance(hand_.begin(),find(hand_.begin(), hand_.end(), target));
-
-}
 
 bool Player::hasCard(Card target) const {
-    if (cardPos(target) < hand_.size()) return true;
+	if (distance(hand_.begin(), find(hand_.begin(), hand_.end(), target)) < hand_.size()) return true;
     return false;
 }
 //Mutator adds card to hand
@@ -66,7 +60,7 @@ void Player::addCard(Card newCard) {
 }
 //Mutator removes card from hand, adds it to discard, prints message
 void Player::discard(Card target) {
-    int pos = cardPos(target);                  // get position of discard target
+	int pos = distance(hand_.begin(), find(hand_.begin(), hand_.end(), target));                  // get position of discard target
     hand_.erase(hand_.begin() + pos);
     discardPile_.push_back(target);
 	cout << "Player " << playerNumber_ << " discards " << target << "." << endl;
