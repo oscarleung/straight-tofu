@@ -49,15 +49,11 @@ void Player::doScoring() {
     score_ = newScore;
     discardPile_.clear();
 }
-//get the 
+//get the postion of a given card 
 int Player::cardPos(Card target) const {
-    for (int i=0; i < hand_.size(); i++) {
-        if (hand_.at(i) == target) {
-            return i;
-        }
-    }
-    // not found
-    return (int)hand_.size();
+  
+	return distance(hand_.begin(),find(hand_.begin(), hand_.end(), target));
+
 }
 
 bool Player::hasCard(Card target) const {

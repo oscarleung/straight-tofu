@@ -58,7 +58,6 @@ void Game::start(int seed)
 		while (playersHaveCards(playerList))
 		{
 			Command cmd =	playerList[activePlayer]->turn(table_,print);
-			vector<Card> legalPlays = playerList[activePlayer]->getPlays(table_);
 			print = true;
 				switch (cmd.type)
 				{
