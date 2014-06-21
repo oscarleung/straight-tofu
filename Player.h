@@ -9,25 +9,25 @@ using namespace std;
 
 class Player{
 public:
-	Player(int);
-    virtual ~Player() {}
-    int getScore() const;                   // accessor
-    void doScoring() ;
+	Player(int);							//contructor sets player player number
+    virtual ~Player() {}					//detructor
+    int getScore() const;                   //accessor
+    void doScoring() ;						//prints scores and discard pile for end of round
 	vector<Card> getHand() const;           // accessor
-    bool hasCard(Card) const;
+    bool hasCard(Card) const;				// checks for valid plays
 	void addCard(Card);                     // mutator
     void discard(Card);                     // mutator
     void addHand(vector<Card>);             // mutator
 	vector<Card> getPlays(vector<Card>) const;	// return valid plays
-	vector<Card> getDiscards() const;				// return discard pile 
+	vector<Card> getDiscards() const;		// return discard pile 
 	void addScore(int);                     // mutator
-	virtual Command turn(vector<Card> &,bool print=true) = 0;
-	void play(Card&, vector<Card> &);
+	virtual Command turn(vector<Card> &,bool print=true) = 0;	//begins a players turn. Implementation depends on type of derived class
+	void play(Card&, vector<Card> &);		// mutator, removes card from hand, adds it to set of cards in play
 protected:
-	vector<Card> hand_;
-	vector<Card> discardPile_;
-	int score_ = 0;
-	int playerNumber_;
+	vector<Card> hand_;						// stores all cards in a players hand
+	vector<Card> discardPile_;				// keeps track of the discards for a player in a given round
+	int score_ = 0;							// keeps track of score
+	int playerNumber_;						
 private:
     int cardPos(Card) const;                // helper to find position of card
 };

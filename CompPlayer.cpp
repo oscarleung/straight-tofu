@@ -1,11 +1,12 @@
 #include "CompPlayer.h"
 #include "Command.h"
 
-CompPlayer::CompPlayer(int playerNo): Player(playerNo) {
-    
-}
+CompPlayer::CompPlayer(int playerNo): Player(playerNo) {}
+
+//copy constructor to allow conversion from Human to computer player easily
 CompPlayer::CompPlayer(const Player &x) : Player(x){}
 
+//Computer player turn implementation, AI just plays first possible play or discards first possible card if it has no plays
 Command CompPlayer::turn(vector<Card> &table,bool print)
 {
 	Command cmd;

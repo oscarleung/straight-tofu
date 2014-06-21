@@ -8,9 +8,9 @@ using namespace std;
 
 class CompPlayer: public Player{
 public:
-	CompPlayer(int);
-	explicit CompPlayer(const Player &);
-	Command turn(vector<Card> &,bool print=false);
+	CompPlayer(int);								//Constructor sets player number
+	explicit CompPlayer(const Player &);			//Copy constructor to allow conversion from human to computer player
+	Command turn(vector<Card> &,bool print=false);	//Computer player turn implementation
 private:
 };
 

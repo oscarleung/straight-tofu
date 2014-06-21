@@ -1,6 +1,7 @@
 #include "HumanPlayer.h"
 
 namespace{
+	//helper function to print the current cards in play, with the required formatting
 	void printTable(vector<Card> table_)
 	{
 		set<Card> clubs;
@@ -44,14 +45,14 @@ namespace{
 		cout << endl;
 	}
 }
-HumanPlayer::HumanPlayer(int playerNo) :Player(playerNo){
-    
-}
+//Human player constructor uses base constructor(just sets player  number)
+HumanPlayer::HumanPlayer(int playerNo) :Player(playerNo){}
 
-
+//Human plyer turn implementation
 Command HumanPlayer::turn(vector<Card> &table,bool print)
 {
 	vector<Card> legalPlays = getPlays(table);
+	//conditional print required for when "DECK" command is called
 	if (print)
 	{
 		cout << "Cards on the table:" << endl;
@@ -71,6 +72,7 @@ Command HumanPlayer::turn(vector<Card> &table,bool print)
 	}
 	Command cmd;
 	bool successfulPlay = false;
+	//get Command from player input, loop until valid command is given
 	while (!successfulPlay)
 	{
 		cin >> cmd;
@@ -83,7 +85,6 @@ Command HumanPlayer::turn(vector<Card> &table,bool print)
 			}
 			else
 			{
-				//play(cmd.card, table);
 				successfulPlay = true;
 			}
 			break;
@@ -94,7 +95,6 @@ Command HumanPlayer::turn(vector<Card> &table,bool print)
 			}
 			else
 			{
-				//discard(cmd.card);
 				successfulPlay = true;
 			}
 			break;
@@ -102,7 +102,6 @@ Command HumanPlayer::turn(vector<Card> &table,bool print)
 			successfulPlay = true;
             break;
 		case QUIT:
-			exit(0);
 			break;
 		case RAGEQUIT:
 			successfulPlay = true;
