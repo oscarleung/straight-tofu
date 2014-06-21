@@ -73,6 +73,9 @@ void Game::start(int seed)
 					print = false;
 					break;
 				case QUIT:
+                    for (int i=0; i<4; i++) {
+                        delete playerList[i];
+                    }
 					exit(0);
 					break;
 				case RAGEQUIT:
