@@ -79,13 +79,9 @@ void Game::start(int seed)
 					break;
 				case RAGEQUIT:
 				{
-								 
-					vector<Card> tempHand = playerList[activePlayer]->getHand();
-					vector<Card> tempDiscard = playerList[activePlayer]->getDiscards();
-					int tempScore = playerList[activePlayer]->getScore();
+					Player* replaceHuman = new CompPlayer(*playerList[activePlayer]);
 					delete playerList[activePlayer];
-					playerList[activePlayer] = new CompPlayer(activePlayer+1, tempHand, tempDiscard, tempScore);
-					
+					playerList[activePlayer] = replaceHuman;
 					playerList[activePlayer]->turn(table_);
 					break;
 				}

@@ -1,4 +1,5 @@
 #include "HumanPlayer.h"
+#include "CompPlayer.h"
 
 namespace{
 	void printTable(vector<Card> table_)
@@ -47,6 +48,7 @@ namespace{
 HumanPlayer::HumanPlayer(int playerNo) :Player(playerNo){
     
 }
+
 
 Command HumanPlayer::turn(vector<Card> &table,bool print)
 {
