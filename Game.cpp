@@ -54,6 +54,7 @@ void Game::start(int seed)
         }
         // play the game
 		bool print=true;
+		bool incPlayer=true;
 		Command cmd;
 		while (playersHaveCards(playerList))
 		{
@@ -69,6 +70,7 @@ void Game::start(int seed)
 							throw runtime_error("This is not a legal play.");
 						}
 						playerList[activePlayer]->play(cmd.card, table_);
+						incPlayer = true;
 						break;
 					case DISCARD:
 						if (!playerList[activePlayer]->hasCard(cmd.card))
@@ -76,10 +78,12 @@ void Game::start(int seed)
 							throw runtime_error("You have a legal play. You may not discard.");
 						}
 						playerList[activePlayer]->discard(cmd.card);
+						incPlayer = true;
 						break;
 					case DECK:
 						gameDeck.printDeck();
 						print = false;
+						incPlayer = false;
 						break;
 					case QUIT:
 						for (int i = 0; i < 4; i++) {
@@ -100,7 +104,7 @@ void Game::start(int seed)
 					default:
 						break;
 					}
-					if ((cmd.type != RAGEQUIT && cmd.type != DECK) || !print)
+					if ((cmd.type != RAGEQUIT && cmd.type != DECK)||(!print && cmd.type==PLAY)||(!print && cmd.type==DISCARD))
 					{
 						if (activePlayer == 3)
 							activePlayer = 0;
@@ -112,6 +116,7 @@ void Game::start(int seed)
 				{
 					cout << e.what() << endl;
 					print = false;
+					incPlayer = false;
 				}
 				
 		}
