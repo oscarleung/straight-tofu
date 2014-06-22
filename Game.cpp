@@ -30,7 +30,7 @@ void Game::initPlayers(Player* list[]) {
 
 void Game::start(int seed)
 {
-    //srand48(seed);
+    srand48(seed);
 	int activePlayer = 0;
     initPlayers(playerList);         // init all player once
     while (!cin.eof()) {
