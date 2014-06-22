@@ -73,6 +73,7 @@ Command HumanPlayer::turn(vector<Card> &table,bool print)
 	}
 	Command cmd;
 	//get Command from player input, loop until valid command is given
-		cin >> cmd;
+	cout << ">";
+	cin >> cmd;
 	return cmd;
 }

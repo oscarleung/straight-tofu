@@ -12,6 +12,7 @@ void Game::initPlayers(Player* list[]) {
     for (int i = 0; i<4; i++) {
         cout << "Is player " << i+1 << " a human(h) or a computer(c)?" << endl;
         char playerType;
+		cout << ">";
         cin >> playerType;
         assert( playerType == 'h' || playerType == 'H' || playerType == 'c' || playerType == 'C' );
         if (playerType == 'h' || playerType == 'H') {
