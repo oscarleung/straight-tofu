@@ -21,6 +21,7 @@ namespace{
 }
 //contructor to set a player number on construction
 Player::Player(int num) {
+	score_ = 0;
 	playerNumber_ = num;
 }
 //Accessor
@@ -46,15 +47,25 @@ void Player::doScoring() {
     score_ = newScore;
     discardPile_.clear();
 }
-
+int Player::cardPos(Card target) const
+{
+	for (int i = 0; i < hand_.size(); i++)
+	{
+		if (hand_.at(i) == target)
+		{
+			return i;
+		}
+	}
+	return (int)hand_.size();
+}
 bool Player::hasCard(Card target) const {
-	if (distance(hand_.begin(), find(hand_.begin(), hand_.end(), target)) < hand_.size()) return true;
+	if (cardPos(target) < hand_.size()) return true;
     return false;
 }
 
 //Mutator removes card from hand, adds it to discard, prints message
 void Player::discard(Card target) {
-	int pos = distance(hand_.begin(), find(hand_.begin(), hand_.end(), target));                  // get position of discard target
+	int pos = cardPos(target);                  // get position of discard target
     hand_.erase(hand_.begin() + pos);
     discardPile_.push_back(target);
 	cout << "Player " << playerNumber_ << " discards " << target << "." << endl;
@@ -92,7 +103,7 @@ vector<Card> Player::getPlays(vector<Card> inPlay) const
 void Player::play(Card &c, vector<Card> &table)
 {
     table.push_back(c);
-	hand_.erase(find(hand_.begin(),hand_.end(),c));
+	hand_.erase(hand_.begin()+cardPos(c));
 	cout << "Player " << playerNumber_ << " plays " << c << "." << endl;
 
 }

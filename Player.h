@@ -22,10 +22,12 @@ public:
 private:
 	vector<Card> hand_;						// stores all cards in a players hand
 	vector<Card> discardPile_;				// keeps track of the discards for a player in a given round
-	int score_ = 0;							// keeps track of score
+	int score_ ;							// keeps track of score
 	int playerNumber_;						
 protected:
 	vector<Card> getPlays(vector<Card>) const;	// return valid plays
+	int cardPos(Card) const;
+	
 };
 
 #endif /* defined(__straight_tofu__Player__) */

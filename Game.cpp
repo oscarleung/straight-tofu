@@ -30,7 +30,7 @@ void Game::initPlayers(Player* list[]) {
 
 void Game::start(int seed)
 {
-    srand48(seed);
+    //srand48(seed);
 	int activePlayer = 0;
     initPlayers(playerList);         // init all player once
     while (!cin.eof()) {
@@ -63,9 +63,17 @@ void Game::start(int seed)
 					switch (cmd.type)
 					{
 					case PLAY:
-                        playerList[activePlayer]->play(cmd.card, table_);
+						if (!playerList[activePlayer]->hasCard(cmd.card))
+						{
+							throw runtime_error("This is not a legal play.");
+						}
+						playerList[activePlayer]->play(cmd.card, table_);
 						break;
 					case DISCARD:
+						if (!playerList[activePlayer]->hasCard(cmd.card))
+						{
+							throw runtime_error("You have a legal play. You may not discard.");
+						}
 						playerList[activePlayer]->discard(cmd.card);
 						break;
 					case DECK:
@@ -90,13 +98,13 @@ void Game::start(int seed)
 					default:
 						break;
 					}
-                if ((cmd.type != RAGEQUIT && cmd.type != DECK) ||!print)
-				{
-					if (activePlayer == 3)
-						activePlayer = 0;
-					else
-						activePlayer++;
-				}
+					if ((cmd.type != RAGEQUIT && cmd.type != DECK) || !print)
+					{
+						if (activePlayer == 3)
+							activePlayer = 0;
+						else
+							activePlayer++;
+					}
 				}
 				catch (runtime_error e)
 				{

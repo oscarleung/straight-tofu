@@ -15,7 +15,7 @@ public:
 	
 private:
 	vector<Card> deck_;
-    const int CARD_COUNT = 52;      // constant card count at 52
+    const int CARD_COUNT;      // constant card count at 52
 };
 
 #endif /* defined(__straight_tofu__Deck__) */
