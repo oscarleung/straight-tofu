@@ -1,5 +1,12 @@
 #include "Game.h"
-
+namespace{
+	void isInHand(Player* p,Card c){
+		if (!p->hasCard(c))
+		{
+			throw runtime_error("This is not a legal play.");
+		}
+	}
+}
 bool Game::playersHaveCards(Player* playerList[])               // check for end game where player is out of cards
 {
     for (int i=0; i<4; i++) {
@@ -65,18 +72,12 @@ void Game::start(int seed)
 					switch (cmd.type)
 					{
 					case PLAY:
-						if (!playerList[activePlayer]->hasCard(cmd.card))
-						{
-							throw runtime_error("This is not a legal play.");
-						}
+						isInHand(playerList[activePlayer], cmd.card);
 						playerList[activePlayer]->play(cmd.card, table_);
 						incPlayer = true;
 						break;
 					case DISCARD:
-						if (!playerList[activePlayer]->hasCard(cmd.card))
-						{
-							throw runtime_error("You have a legal play. You may not discard.");
-						}
+						isInHand(playerList[activePlayer], cmd.card);
 						playerList[activePlayer]->discard(cmd.card);
 						incPlayer = true;
 						break;
