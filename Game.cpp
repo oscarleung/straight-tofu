@@ -91,6 +91,7 @@ void Game::start(int seed)
 						 Player* replaceHuman = new CompPlayer(*playerList[activePlayer]);
 						 delete playerList[activePlayer];
 						 playerList[activePlayer] = replaceHuman;
+						 cout << "Player " << activePlayer + 1 << " ragequits. A computer will now take over." << endl;
 						 playerList[activePlayer]->turn(table_);
 						 break;
 					}
