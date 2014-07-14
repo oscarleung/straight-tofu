@@ -13,7 +13,8 @@ int main(int argc, char* argv[])
     Controller controller( &model );  // Create controller
 	View view( &controller, &model );     // Create the view -- is passed handle to controller and model
 	Gtk::Main::run( view );               // Show the window and return when it is closed.
-    
+   
+    // old game launched
     Game straightsgame;
     if (argc == 2) {
         straightsgame.start((atoi(argv[1])));

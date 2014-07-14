@@ -1,14 +1,25 @@
-//
-//  model.h
-//  straight-tofu
-//
-//  Created by Oscar Leung on 2014-07-14.
-//  Copyright (c) 2014 Oscar Leung. All rights reserved.
-//
+#ifndef MVC_MODEL_H
+#define MVC_MODEL_H
 
-#ifndef __straight_tofu__model__
-#define __straight_tofu__model__
+#include "subject.h"
 
-#include <iostream>
+const int numFaces = 6;
+const int numSuits = 4;
+const int numCards = numFaces * numSuits;
 
-#endif /* defined(__straight_tofu__model__) */
+enum Faces { NINE, TEN, JACK, QUEEN, KING, ACE, NOFACE };
+enum Suits { DIAMOND, CLUB, HEART, SPADE, NOSUIT };
+
+class Model : public Subject {
+public:
+    Model();
+    Suits suit();
+    Faces face();
+    void nextCard();
+    void resetCards();
+private:
+    int topCard_;
+}; // Model
+
+
+#endif

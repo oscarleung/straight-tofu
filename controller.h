@@ -1,14 +1,20 @@
-//
-//  controller.h
-//  straight-tofu
-//
-//  Created by Oscar Leung on 2014-07-14.
-//  Copyright (c) 2014 Oscar Leung. All rights reserved.
-//
+#ifndef MVC_CONTROLLER_H
+#define MVC_CONTROLLER_H
 
-#ifndef __straight_tofu__controller__
-#define __straight_tofu__controller__
 
-#include <iostream>
+#include <gtkmm.h>
 
-#endif /* defined(__straight_tofu__controller__) */
+class Model;
+
+class Controller {
+public:
+   Controller( Model* );
+   void nextButtonClicked();
+   void resetButtonClicked();
+private:
+   Model *model_;
+}; // Controller
+
+
+#endif
+

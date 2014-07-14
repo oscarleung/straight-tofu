@@ -1,9 +1,15 @@
-//
-//  controller.cpp
-//  straight-tofu
-//
-//  Created by Oscar Leung on 2014-07-14.
-//  Copyright (c) 2014 Oscar Leung. All rights reserved.
-//
-
 #include "controller.h"
+#include "model.h"
+
+
+Controller::Controller(Model *m) : model_(m) {}
+
+
+void Controller::nextButtonClicked() {
+     model_->nextCard();
+} 
+
+
+void Controller::resetButtonClicked() {
+     model_->resetCards();
+} 

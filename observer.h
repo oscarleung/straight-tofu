@@ -1,14 +1,13 @@
-//
-//  observer.h
-//  straight-tofu
-//
-//  Created by Oscar Leung on 2014-07-14.
-//  Copyright (c) 2014 Oscar Leung. All rights reserved.
-//
+#ifndef OBSERVER_H
+#define OBSERVER_H
 
-#ifndef straight_tofu_observer_h
-#define straight_tofu_observer_h
+class Subject;
 
+
+class Observer {
+public:
+	virtual void update () = 0;
+};
 
 
 #endif

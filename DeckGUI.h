@@ -1,0 +1,29 @@
+//
+//  DeckGUI.h
+//  straight-tofu
+//
+//  Created by Oscar Leung on 2014-07-14.
+//  Copyright (c) 2014 Oscar Leung. All rights reserved.
+//
+
+#ifndef __DECK_GUI_H
+#define __DECK_GUI_H
+#include <gdkmm/pixbuf.h>
+#include <vector>
+using std::vector;
+
+#include "model.h"
+
+
+
+class DeckGUI {
+public:
+	DeckGUI();
+	virtual ~DeckGUI();
+	Glib::RefPtr<Gdk::Pixbuf> image( Faces f, Suits s );   // Returns the image for the specified card.
+	Glib::RefPtr<Gdk::Pixbuf> null();                 // Returns the image to use for the placeholder.
+    
+private:
+	vector< Glib::RefPtr< Gdk::Pixbuf > > deck;                   // Contains the pixel buffer images.
+}; // DeckGUI
+#endif

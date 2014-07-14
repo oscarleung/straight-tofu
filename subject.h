@@ -1,14 +1,23 @@
-//
-//  subject.h
-//  straight-tofu
-//
-//  Created by Oscar Leung on 2014-07-14.
-//  Copyright (c) 2014 Oscar Leung. All rights reserved.
-//
+#ifndef MVC_SUBJECT_H
+#define MVC_SUBJECT_H
 
-#ifndef __straight_tofu__subject__
-#define __straight_tofu__subject__
+#include <set>
 
-#include <iostream>
 
-#endif /* defined(__straight_tofu__subject__) */
+class Observer;
+
+class Subject {
+public:
+       void subscribe( Observer* );
+       void unsubscribe( Observer* );
+
+protected:
+       void notify();
+
+private:
+       typedef std::set< Observer* > Observers;
+       Observers observers_;
+}; // Subject
+
+
+#endif
