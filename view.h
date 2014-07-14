@@ -26,10 +26,10 @@ private:
 	DeckGUI deck;
 
 	// Member widgets:
-	Gtk::HBox panels;      // Main window divided into two horizontal panels
-	Gtk::VBox butBox;      // Vertical boxes for stacking buttons vertically
-	Gtk::Button next_button;
-	Gtk::Button reset_button;
+	Gtk::VBox panels;      // Main window divided into two vertical panels
+	Gtk::HBox butBox;      // Vertical boxes for stacking buttons horizontally
+	Gtk::Button start_button;
+	Gtk::Button end_button;
 	Gtk::Image card;
 
 	// Signal handlers:

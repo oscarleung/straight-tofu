@@ -5,11 +5,11 @@
 Controller::Controller(Model *m) : model_(m) {}
 
 
-void Controller::nextButtonClicked() {
+void Controller::startButtonClicked() {
 //     model_->nextCard();
 } 
 
 
-void Controller::resetButtonClicked() {
+void Controller::endButtonClicked() {
   //   model_->resetCards();
 } 

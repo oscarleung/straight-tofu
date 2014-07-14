@@ -9,8 +9,8 @@ class Model;
 class Controller {
 public:
    Controller( Model* );
-   void nextButtonClicked();
-   void resetButtonClicked();
+   void startButtonClicked();
+   void endButtonClicked();
 private:
    Model *model_;
 }; // Controller
