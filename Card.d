@@ -1,1 +1,1 @@
-Card.o: Card.cpp Card.h
+Card.o: Card.cpp Card.h model.h subject.h

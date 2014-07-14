@@ -44,13 +44,13 @@ View::~View() {}
 
 
 void View::update() {
-  Suits suit = model_->suit();
-  Faces face = model_->face();
-  if ( suit == NOSUIT ) 
+  //Suit suit = model_->suit();
+  //Rank face = model_->face();
+  /*if ( suit == NOSUIT ) 
     card.set( deck.null() );
   else
     card.set( deck.image(face, suit) );
-
+*/
 }
 
 void View::nextButtonClicked() {

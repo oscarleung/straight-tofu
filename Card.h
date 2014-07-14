@@ -4,11 +4,7 @@
 #include <ostream>
 #include <istream>
 #include <string>
-
-enum Suit { CLUB, DIAMOND, HEART, SPADE, SUIT_COUNT };
-enum Rank { ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN,
-			EIGHT, NINE, TEN, JACK, QUEEN, KING, RANK_COUNT };
-
+#include "model.h"
 class Card{
 	friend std::istream &operator>>(std::istream &, Card &);
 
