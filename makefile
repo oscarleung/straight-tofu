@@ -1,11 +1,12 @@
 CXX = g++
-CXXFLAGS = -Wall -std=c++0x -MMD
-OBJECTS = Card.o Command.o launcher.o Game.o Deck.o Player.o HumanPlayer.o CompPlayer.o
+CXXFLAGS = -Wall -std=c++0x -MMD `pkg-config gtkmm-2.4 --cflags`
+LDFLAGS='pkg-config gtkmm-2.4 --libs`
+OBJECTS = Card.o Command.o launcher.o view.o model.o controller.o Game.o Deck.o Player.o HumanPlayer.o CompPlayer.o
 DEPENDS = ${OBJECTS:.o=.d}
 EXEC = straights
 
 ${EXEC} : ${OBJECTS}
-	${CXX} ${CXXFLAGS} ${OBJECTS} -o ${EXEC}
+	${CXX} ${CXXFLAGS} ${LDFLAGS} ${OBJECTS} -o ${EXEC}
 
 clean :
 	rm -rf ${DEPENDS} ${OBJECTS} ${EXEC}
