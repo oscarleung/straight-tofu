@@ -26,15 +26,18 @@ private:
 	DeckGUI deck;
 
 	// Member widgets:
+	
+	Gtk::Frame table, p1, p2, p3, p4, hand;
 	Gtk::VBox panels;      // Main window divided into two vertical panels
 	Gtk::HBox butBox;      // Vertical boxes for stacking buttons horizontally
 	Gtk::Button start_button;
 	Gtk::Button end_button;
+	Gtk::Button rage_button;
 	Gtk::Image card;
 
 	// Signal handlers:
-	void nextButtonClicked();
-	void resetButtonClicked();
+	void startButtonClicked();
+	void endButtonClicked();
 
 }; // View
 
