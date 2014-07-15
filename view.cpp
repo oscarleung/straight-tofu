@@ -6,13 +6,11 @@
 #include "DeckGUI.h"
 #include <iostream>
 
-// Creates buttons with labels. Sets butBox elements to have the same size, 
-// with 10 pixels between widgets
 View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 1), playerBox(true, 1), table("Cards on the table"), p1("Player 1"), p2("Player 2"), p3("Player 3"), p4("Player 4"), p1Box(true, 5), p2Box(true, 10), p3Box(true, 10), p4Box(true, 10), hand("Your hand"), panels(true,10), handBox(true, 1), butBox(false, 1), start_button( "Start new game with seed:" ), end_button( "End current game" ), p1Rage("Rage!"), p2Rage("Rage!"), p3Rage("Rage!"), p4Rage("Rage!"), p1Point("0 points"), p1Discard("0 discards"), p2Point("0 points"), p2Discard("0discards"), p3Point("0 points"), p3Discard("0 discards"), p4Point("0 points"), p4Discard("0 discards"),tableBox(true,5){
 
 	blankCard.set(deck.null());
 	// Sets some properties of the window.
-        set_title( "Straights" );
+    set_title( "Straights" );
 	set_border_width( 10 );
 	add(mainBox);
 	mainBox.add(butBox);
@@ -96,7 +94,58 @@ void View::update() {
 void View::startButtonClicked() {
   controller_->startButtonClicked();
 } // View::startButtonClicked
-
 void View::endButtonClicked() {
   controller_->endButtonClicked();
 } // View::endButtonClicked
+
+void View::p1RageButtonClicked() {
+    controller_->p1RageButtonClicked();
+}
+void View::p2RageButtonClicked() {
+    controller_->p2RageButtonClicked();
+}
+void View::p3RageButtonClicked() {
+    controller_->p3RageButtonClicked();
+}
+void View::p4RageButtonClicked() {
+    controller_->p4RageButtonClicked();
+}
+void View::hand1ButtonClicked() {
+    controller_->hand1ButtonClicked();
+}
+void View::hand2ButtonClicked() {
+    controller_->hand2ButtonClicked();
+}
+void View::hand3ButtonClicked() {
+    controller_->hand3ButtonClicked();
+}
+void View::hand4ButtonClicked() {
+    controller_->hand4ButtonClicked();
+}
+void View::hand5ButtonClicked() {
+    controller_->hand5ButtonClicked();
+}
+void View::hand6ButtonClicked() {
+    controller_->hand6ButtonClicked();
+}
+void View::hand7ButtonClicked() {
+    controller_->hand7ButtonClicked();
+}
+void View::hand8ButtonClicked() {
+    controller_->hand8ButtonClicked();
+}
+void View::hand9ButtonClicked() {
+    controller_->hand9ButtonClicked();
+}
+void View::hand10ButtonClicked() {
+    controller_->hand10ButtonClicked();
+}
+void View::hand11ButtonClicked() {
+    controller_->hand11ButtonClicked();
+}
+void View::hand12ButtonClicked() {
+    controller_->hand12ButtonClicked();
+}
+void View::hand13ButtonClicked() {
+    controller_->hand13ButtonClicked();
+}

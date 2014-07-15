@@ -40,9 +40,27 @@ private:
 	Gtk::Image blankCard;
 	Gtk::Entry seedEntry;
 	Gtk::Label p1Point, p1Discard, p2Point, p2Discard, p3Point, p3Discard, p4Point, p4Discard;
-	// Signal handlers:
+	
+    // Signal handlers:
 	void startButtonClicked();
 	void endButtonClicked();
+    void p1RageButtonClicked();
+    void p2RageButtonClicked();
+    void p3RageButtonClicked();
+    void p4RageButtonClicked();
+    void hand1ButtonClicked();
+    void hand2ButtonClicked();
+    void hand3ButtonClicked();
+    void hand4ButtonClicked();
+    void hand5ButtonClicked();
+    void hand6ButtonClicked();
+    void hand7ButtonClicked();
+    void hand8ButtonClicked();
+    void hand9ButtonClicked();
+    void hand10ButtonClicked();
+    void hand11ButtonClicked();
+    void hand12ButtonClicked();
+    void hand13ButtonClicked();
 
 }; // View
 
