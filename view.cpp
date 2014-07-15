@@ -8,25 +8,26 @@
 
 // Creates buttons with labels. Sets butBox elements to have the same size, 
 // with 10 pixels between widgets
-View::View(Controller *c, Model *m) : model_(m), controller_(c), table("Cards on the table"), p1("Player 1"), p2("Player 2"), p3("Player 3"), p4("Player 4"), hand("Your hand"), panels(true,10), butBox(true, 10), start_button( "Start new game with seed:" ), end_button( "End current game" ), rage_button("rage!"),  card(deck.null()) {
+View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(true, 10), playerBox(true, 10), table("Cards on the table"), p1("Player 1"), p2("Player 2"), p3("Player 3"), p4("Player 4"), hand("Your hand"), panels(true,10), handBox(true, 10), butBox(true, 10), start_button( "Start new game with seed:" ), end_button( "End current game" ), rage_button("rage!"),  card(deck.null()) {
 
 	// Sets some properties of the window.
         set_title( "Straights" );
-	set_border_width( 100 );
-	add(table);
-	table.add( panels );	
-	// Add panels to the window
-
-	// Add button box and card image to the panels
-	panels.add( butBox );
-	panels.add( card );
-	card.set( deck.null() );
-
-	// Add buttons to the box (a container). Buttons initially invisible
-	butBox.add( start_button );
-	butBox.add( end_button );
-	add(p1);
-
+	set_border_width( 10 );
+	add(mainBox);
+	mainBox.add(butBox);
+	butBox.add(start_button);
+	butBox.add(end_button);
+	mainBox.add(table);
+	table.add(card);
+	card.set(deck.null());
+	mainBox.add(playerBox);
+	playerBox.add(p1);
+	playerBox.add(p2);
+	playerBox.add(p3);
+	playerBox.add(p4);
+	mainBox.add(handBox);
+	handBox.add(hand);
+	
 	// Associate button "clicked" events with local onButtonClicked() method defined below.
 	start_button.signal_clicked().connect( sigc::mem_fun( *this, &View::startButtonClicked ) );
 	end_button.signal_clicked().connect( sigc::mem_fun( *this, &View::endButtonClicked ) );
