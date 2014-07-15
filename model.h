@@ -2,16 +2,14 @@
 #define MVC_MODEL_H
 
 #include "subject.h"
-
-enum Suit { CLUB, DIAMOND, HEART, SPADE, SUIT_COUNT };
-enum Rank { ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN,
-			EIGHT, NINE, TEN, JACK, QUEEN, KING, RANK_COUNT };
+#include "Game.h"
 
 class Model : public Subject {
 public:
     Model();
+	vector<Card> getActiveHand();
 private:
-    int topCard_;
+	Game game_;
 }; // Model
 
 
