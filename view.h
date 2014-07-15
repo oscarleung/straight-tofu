@@ -32,10 +32,12 @@ private:
 	Gtk::HBox rows[4];
 	Gtk::HBox butBox, playerBox, handBox,;      // Vertical boxes for stacking buttons horizontally
 	Gtk::Button handButtons[13];
+	Gtk::Image handCards[13];
 	Gtk::Button start_button;
 	Gtk::Button end_button;
 	Gtk::Button p1Rage, p2Rage, p3Rage, p4Rage;
 	Gtk::Image tableCards[4][13];
+	Gtk::Image blankCard;
 	Gtk::Entry seedEntry;
 	Gtk::Label p1Point, p1Discard, p2Point, p2Discard, p3Point, p3Discard, p4Point, p4Discard;
 	// Signal handlers:

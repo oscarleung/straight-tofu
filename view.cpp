@@ -10,7 +10,7 @@
 // with 10 pixels between widgets
 View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 1), playerBox(true, 1), table("Cards on the table"), p1("Player 1"), p2("Player 2"), p3("Player 3"), p4("Player 4"), p1Box(true, 5), p2Box(true, 10), p3Box(true, 10), p4Box(true, 10), hand("Your hand"), panels(true,10), handBox(true, 1), butBox(false, 1), start_button( "Start new game with seed:" ), end_button( "End current game" ), p1Rage("Rage!"), p2Rage("Rage!"), p3Rage("Rage!"), p4Rage("Rage!"), p1Point("0 points"), p1Discard("0 discards"), p2Point("0 points"), p2Discard("0discards"), p3Point("0 points"), p3Discard("0 discards"), p4Point("0 points"), p4Discard("0 discards"),tableBox(true,5){
 
-
+	blankCard.set(deck.null());
 	// Sets some properties of the window.
         set_title( "Straights" );
 	set_border_width( 10 );
@@ -25,8 +25,8 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 
 
 	// middle table
 	mainBox.add(table);
-	for(int i=0;i<13;i++){
-		for(int j=0;j<4;j++){
+	for(int j=0;j<4;j++){
+		for(int i=0;i<13;i++){
 		rows[j].add(tableCards[j][i]);
 		tableCards[j][i].set(deck.image((Rank)i,(Suit)j));
 		}
@@ -64,6 +64,8 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 
 	for(int l=0;l<13;l++)
 	{
 		handBox.add(handButtons[l]);
+		handButtons[l].set_image(handCards[l]);
+		handCards[l].set(deck.null());
 	}
 	// Associate button "clicked" events with local onButtonClicked() method defined below.
 	start_button.signal_clicked().connect( sigc::mem_fun( *this, &View::startButtonClicked ) );
