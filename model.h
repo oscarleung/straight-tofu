@@ -10,7 +10,9 @@ public:
 	vector<Card> getCardsInPlay();
 	vector<Card> getActivePlayerHand();
 	vector<Card> getActivePlayerValid();
+	int getActivePlayer();
 	void initPlayers(char[]);
+	void play(Card c);
 	void rageCurrentPlayer();
 	void end();
 	vector<Card> getActiveHand();

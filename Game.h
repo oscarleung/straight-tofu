@@ -14,11 +14,13 @@ using namespace std;
 class Game{
     public:
         void start(int seed=0);                         // begin a new game
+	void turn(Card c);
 	vector<Card> getActiveHand();	
 	vector<Card> getActiveValid();	
 	vector<Card> getCardsInPlay();	
         void initPlayers(char list[]);               // create a list of player
         void initRound();               // create a list of player
+	int getActivePlayerNo();
     private:
 		bool playersHaveCards(Player* playerList[]);    // check players hand for end game
         void printDeck();

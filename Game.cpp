@@ -62,7 +62,26 @@ void Game::initRound(){
             }
         }
 }
-
+void Game::turn(Card c)
+{
+	vector<Card> validPlays=playerList[activePlayer]->getPlays(table_);
+	if(validPlays.size()==0)
+	{
+		playerList[activePlayer]->discard(c);
+	}
+	else
+	{
+		playerList[activePlayer]->play(c, table_);
+	}
+	if (activePlayer == 3)
+		activePlayer = 0;
+	else
+		activePlayer++;
+}
+int Game::getActivePlayerNo()
+{
+	return activePlayer;
+}
 void Game::start(int seed)
 {
     while (!cin.eof()) {

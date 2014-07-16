@@ -15,6 +15,15 @@ vector<Card> Model::getActivePlayerHand()
 {
 	return game_->getActiveHand();
 }
+int Model::getActivePlayer()
+{
+	return game_->getActivePlayerNo();
+}
+void Model::play(Card c)
+{
+	game_->turn(c);
+	notify();
+}
 void Model::initPlayers(char playerType[])
 {
 	game_->initPlayers(playerType);

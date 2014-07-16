@@ -105,6 +105,7 @@ View::~View() {}
 void View::update() {
 	vector<Card> valid=model_->getActivePlayerValid();
 	vector<Card> hand=model_->getActivePlayerHand();
+	vector<Card> table=model_->getCardsInPlay();
 	for(int i=0;i<hand.size();i++)
 	{
 		handCards[i].set(deck.image(hand[i].getRank(),hand[i].getSuit()));	
@@ -134,6 +135,16 @@ void View::update() {
 		}
 		
 	}
+	//update table
+	for(int m=0;m<table.size();m++)
+	{
+		tableCards[(int)(table[m].getSuit())][(int)(table[m].getRank())].set(deck.image(table[m].getRank(),table[m].getSuit()));
+	}
+	for(int n=0;n<4;n++)
+	{
+		pRage[n].set_sensitive(false);
+	}
+	pRage[model_->getActivePlayer()].set_sensitive(true);
 }
 
 void View::startButtonClicked() {
@@ -185,41 +196,54 @@ void View::p4RageButtonClicked() {
 	    controller_->rageButtonClicked();
 }
 void View::hand1ButtonClicked() {
-    controller_->hand1ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[0]);
 }
 void View::hand2ButtonClicked() {
-    controller_->hand2ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[1]);
 }
 void View::hand3ButtonClicked() {
-    controller_->hand3ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[2]);
 }
 void View::hand4ButtonClicked() {
-    controller_->hand4ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[3]);
 }
 void View::hand5ButtonClicked() {
-    controller_->hand5ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[4]);
 }
 void View::hand6ButtonClicked() {
-    controller_->hand6ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[5]);
 }
 void View::hand7ButtonClicked() {
-    controller_->hand7ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[6]);
 }
 void View::hand8ButtonClicked() {
-    controller_->hand8ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[7]);
 }
 void View::hand9ButtonClicked() {
-    controller_->hand9ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[8]);
 }
 void View::hand10ButtonClicked() {
-    controller_->hand10ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[9]);
 }
 void View::hand11ButtonClicked() {
-    controller_->hand11ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[10]);
 }
 void View::hand12ButtonClicked() {
-    controller_->hand12ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[11]);
 }
 void View::hand13ButtonClicked() {
-    controller_->hand13ButtonClicked();
+	vector<Card> hand=model_->getActivePlayerHand();
+    controller_->handButtonClicked(hand[12]);
 }
