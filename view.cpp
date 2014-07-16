@@ -99,13 +99,11 @@ View::~View() {}
 
 
 void View::update() {
-  //Suit suit = model_->suit();
-  //Rank face = model_->face();
-  /*if ( suit == NOSUIT ) 
-    card.set( deck.null() );
-  else
-    card.set( deck.image(face, suit) );
-*/
+	vector<Card> hand=model_->getActivePlayerHand();
+	for(int i=0;i<hand.size();i++)
+	{
+		handCards[i].set(deck.image(hand[i].getRank(),hand[i].getSuit()));	
+	}
 }
 
 void View::startButtonClicked() {

@@ -7,6 +7,8 @@
 class Model : public Subject {
 public:
     Model();
+	vector<Card> getCardsInPlay();
+	vector<Card> getActivePlayerHand();
 	void start(int x=0);
 	void rageCurrentPlayer();
 	void end();

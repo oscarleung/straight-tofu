@@ -11,7 +11,7 @@ public:
     Controller( Model* );
     void startButtonClicked();
     void endButtonClicked();
-    void RageButtonClicked();
+    void rageButtonClicked();
     void hand1ButtonClicked();
     void hand2ButtonClicked();
     void hand3ButtonClicked();

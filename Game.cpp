@@ -14,7 +14,14 @@ bool Game::playersHaveCards(Player* playerList[])               // check for end
     }
 	return false;
 }
-
+vector<Card> Game::getActiveHand()
+{
+	return playerList[activePlayer]->getHand();
+}
+vector<Card> Game::getCardsInPlay()
+{
+	return table_;
+}
 void Game::initPlayers(Player* list[]) {
     for (int i = 0; i<4; i++) {
         cout << "Is player " << i+1 << " a human(h) or a computer(c)?" << endl;
@@ -39,7 +46,7 @@ void Game::initPlayers(Player* list[]) {
 void Game::start(int seed)
 {
     srand48(seed);
-	int activePlayer = 0;
+	activePlayer = 0;
     initPlayers(playerList);         // init all player once
     while (!cin.eof()) {
         gameDeck.shuffle();             // shuffle card at beginning of each round

@@ -14,6 +14,8 @@ using namespace std;
 class Game{
     public:
         void start(int seed=0);                         // begin a new game
+	vector<Card> getActiveHand();	
+	vector<Card> getCardsInPlay();	
     private:
 		bool playersHaveCards(Player* playerList[]);    // check players hand for end game
         void initPlayers(Player* list[]);               // create a list of player
@@ -21,5 +23,6 @@ class Game{
         vector<Card> table_;
 		Deck gameDeck;
 		Player* playerList[4];							//List of players
+		int activePlayer;							//Active  player
 		
 };
