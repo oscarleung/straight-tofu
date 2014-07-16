@@ -7,9 +7,12 @@
 class Model : public Subject {
 public:
     Model();
+	void start(int x=0);
+	void rageCurrentPlayer();
+	void end();
 	vector<Card> getActiveHand();
 private:
-	Game game_;
+	Game* game_;
 }; // Model
 
 
