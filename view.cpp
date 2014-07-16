@@ -68,6 +68,23 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 
 	// Associate button "clicked" events with local onButtonClicked() method defined below.
 	start_button.signal_clicked().connect( sigc::mem_fun( *this, &View::startButtonClicked ) );
 	end_button.signal_clicked().connect( sigc::mem_fun( *this, &View::endButtonClicked ) );
+	p1Rage.signal_clicked().connect( sigc::mem_fun( *this, &View::p1RageButtonClicked ) );
+	p2Rage.signal_clicked().connect( sigc::mem_fun( *this, &View::p2RageButtonClicked ) );
+	p3Rage.signal_clicked().connect( sigc::mem_fun( *this, &View::p3RageButtonClicked ) );
+	p4Rage.signal_clicked().connect( sigc::mem_fun( *this, &View::p4RageButtonClicked ) );
+	handButtons[0].signal_clicked().connect( sigc::mem_fun( *this, &View::hand1ButtonClicked ) );
+	handButtons[1].signal_clicked().connect( sigc::mem_fun( *this, &View::hand2ButtonClicked ) );
+	handButtons[2].signal_clicked().connect( sigc::mem_fun( *this, &View::hand3ButtonClicked ) );
+	handButtons[3].signal_clicked().connect( sigc::mem_fun( *this, &View::hand4ButtonClicked ) );
+	handButtons[4].signal_clicked().connect( sigc::mem_fun( *this, &View::hand5ButtonClicked ) );
+	handButtons[5].signal_clicked().connect( sigc::mem_fun( *this, &View::hand6ButtonClicked ) );
+	handButtons[6].signal_clicked().connect( sigc::mem_fun( *this, &View::hand7ButtonClicked ) );
+	handButtons[7].signal_clicked().connect( sigc::mem_fun( *this, &View::hand8ButtonClicked ) );
+	handButtons[8].signal_clicked().connect( sigc::mem_fun( *this, &View::hand9ButtonClicked ) );
+	handButtons[9].signal_clicked().connect( sigc::mem_fun( *this, &View::hand10ButtonClicked ) );
+	handButtons[10].signal_clicked().connect( sigc::mem_fun( *this, &View::hand11ButtonClicked ) );
+	handButtons[11].signal_clicked().connect( sigc::mem_fun( *this, &View::hand12ButtonClicked ) );
+	handButtons[12].signal_clicked().connect( sigc::mem_fun( *this, &View::hand13ButtonClicked ) );
 	
 	
 	// The final step is to display the buttons (they display themselves)
