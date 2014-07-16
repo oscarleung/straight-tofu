@@ -99,16 +99,16 @@ void View::endButtonClicked() {
 } // View::endButtonClicked
 
 void View::p1RageButtonClicked() {
-    controller_->p1RageButtonClicked();
+    controller_->rageButtonClicked();
 }
 void View::p2RageButtonClicked() {
-    controller_->p2RageButtonClicked();
+    controller_->rageButtonClicked();
 }
 void View::p3RageButtonClicked() {
-    controller_->p3RageButtonClicked();
+    controller_->rageButtonClicked();
 }
 void View::p4RageButtonClicked() {
-    controller_->p4RageButtonClicked();
+    controller_->rageButtonClicked();
 }
 void View::hand1ButtonClicked() {
     controller_->hand1ButtonClicked();

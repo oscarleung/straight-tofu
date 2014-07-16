@@ -6,22 +6,18 @@ Controller::Controller(Model *m) : model_(m) {}
 
 
 void Controller::startButtonClicked() {
-//     model_->startGame();
+     model_->start();
 } 
 
 
 void Controller::endButtonClicked() {
-  //   model_->endGame();
+     model_->end();
 } 
 
-void Controller::p1RageButtonClicked() {
+void Controller::rageButtonClicked() {
+    model_->rageCurrentPlayer();
 }
-void Controller::p2RageButtonClicked() {
-}
-void Controller::p3RageButtonClicked() {
-}
-void Controller::p4RageButtonClicked() {
-}
+
 void Controller::hand1ButtonClicked() {
 }
 void Controller::hand2ButtonClicked() {
