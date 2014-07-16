@@ -9,7 +9,7 @@ public:
     Model();
 	vector<Card> getCardsInPlay();
 	vector<Card> getActivePlayerHand();
-	void start(int x=0);
+	void initPlayers(char[]);
 	void rageCurrentPlayer();
 	void end();
 	vector<Card> getActiveHand();

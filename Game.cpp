@@ -22,42 +22,33 @@ vector<Card> Game::getCardsInPlay()
 {
 	return table_;
 }
-void Game::initPlayers(Player* list[]) {
+void Game::initPlayers(char list[]) {
+
+    srand48(0);
     for (int i = 0; i<4; i++) {
-        cout << "Is player " << i+1 << " a human(h) or a computer(c)?" << endl;
-        char playerType;
-		cout << ">";
-        cin >> playerType;
-        assert( playerType == 'h' || playerType == 'H' || playerType == 'c' || playerType == 'C' );
-        if (playerType == 'h' || playerType == 'H') {
+        if (list[i] == 'h'){
             // make human player
             Player* p = new HumanPlayer(i+1);
-            list[i] = p;
+            playerList[i] = p;
         }
-        if (playerType == 'c' || playerType == 'C') {
+        if (list[i] == 'c'){
             // make computer player
             Player* p = new CompPlayer(i+1);
-            list[i] = p;
+            playerList[i] = p;
         }
         
     }
 }
 
-void Game::start(int seed)
-{
-    srand48(seed);
-	activePlayer = 0;
-    initPlayers(playerList);         // init all player once
-    while (!cin.eof()) {
+void Game::initRound(){
+
         gameDeck.shuffle();             // shuffle card at beginning of each round
         table_.clear();
-        // deal the deck
         for (int i = 0; i<4; i++) {
             vector<Card> temp = gameDeck.getDeck();
             vector<Card> sub (temp.begin()+i*13, temp.begin()+(i+1)*13);
             playerList[i]->addHand(sub);
         }
-        // find starting person
         Card startCard(SPADE, SEVEN);
         for (int i = 0; i<4; i++) {
             if(playerList[i]->hasCard(startCard)) {
@@ -66,6 +57,14 @@ void Game::start(int seed)
                 break;
             }
         }
+
+}
+void Game::start(int seed)
+{
+	activePlayer = 0;
+    while (!cin.eof()) {
+        // deal the deck
+        // find starting person
         // play the game
 		bool print=true;
 		bool incPlayer=true;

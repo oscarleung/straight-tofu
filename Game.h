@@ -16,9 +16,10 @@ class Game{
         void start(int seed=0);                         // begin a new game
 	vector<Card> getActiveHand();	
 	vector<Card> getCardsInPlay();	
+        void initPlayers(char list[]);               // create a list of player
+        void initRound();               // create a list of player
     private:
 		bool playersHaveCards(Player* playerList[]);    // check players hand for end game
-        void initPlayers(Player* list[]);               // create a list of player
         void printDeck();
         vector<Card> table_;
 		Deck gameDeck;

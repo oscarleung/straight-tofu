@@ -9,7 +9,7 @@ class Model;
 class Controller {
 public:
     Controller( Model* );
-    void startButtonClicked();
+    void startButtonClicked(char []);
     void endButtonClicked();
     void rageButtonClicked();
     void hand1ButtonClicked();
