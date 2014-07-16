@@ -7,6 +7,10 @@ vector<Card> Model::getCardsInPlay()
 {
 	return game_->getCardsInPlay();
 }
+vector<Card> Model::getActivePlayerValid()
+{
+	return game_->getActiveValid();
+}
 vector<Card> Model::getActivePlayerHand()
 {
 	return game_->getActiveHand();

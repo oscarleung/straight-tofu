@@ -18,6 +18,10 @@ vector<Card> Game::getActiveHand()
 {
 	return playerList[activePlayer]->getHand();
 }
+vector<Card> Game::getActiveValid()
+{
+	return playerList[activePlayer]->getPlays(table_);
+}
 vector<Card> Game::getCardsInPlay()
 {
 	return table_;
@@ -57,11 +61,10 @@ void Game::initRound(){
                 break;
             }
         }
-
 }
+
 void Game::start(int seed)
 {
-	activePlayer = 0;
     while (!cin.eof()) {
         // deal the deck
         // find starting person

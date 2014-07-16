@@ -6,7 +6,7 @@
 #include "DeckGUI.h"
 #include <iostream>
 
-View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 1), playerBox(true, 1), table("Cards on the table"), p1("Player 1"), p2("Player 2"), p3("Player 3"), p4("Player 4"), p1Box(true, 5), p2Box(true, 10), p3Box(true, 10), p4Box(true, 10), hand("Your hand"), panels(true,10), handBox(true, 1), butBox(false, 1), start_button( "Start new game with seed:" ), end_button( "End current game" ), p1Rage("Human"), p2Rage("Human"), p3Rage("Human"), p4Rage("Human"), p1Point("0 points"), p1Discard("0 discards"), p2Point("0 points"), p2Discard("0discards"), p3Point("0 points"), p3Discard("0 discards"), p4Point("0 points"), p4Discard("0 discards"),tableBox(true,5){
+View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 1), playerBox(true, 1), table("Cards on the table"), p1("Player 1"), p2("Player 2"), p3("Player 3"), p4("Player 4"), p1Box(true, 5), p2Box(true, 10), p3Box(true, 10), p4Box(true, 10), hand("Your hand"), panels(true,10), handBox(true, 1), butBox(false, 1), start_button( "Start new game with seed:" ), end_button( "End current game" ), p1Point("0 points"), p1Discard("0 discards"), p2Point("0 points"), p2Discard("0discards"), p3Point("0 points"), p3Discard("0 discards"), p4Point("0 points"), p4Discard("0 discards"),tableBox(true,5){
 
 	blankCard.set(deck.null());
 	// Sets some properties of the window.
@@ -34,25 +34,29 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 
 	}
 	table.add(tableBox);
 	// player section
+	for(int p=0;p<4;p++)
+	{
+		pRage[p].set_label("Human");
+	}
 	mainBox.add(playerBox);
 	playerBox.add(p1);
 	p1.add(p1Box);
-	p1Box.add(p1Rage);
+	p1Box.add(pRage[0]);
 	p1Box.add(p1Point);
 	p1Box.add(p1Discard);
 	playerBox.add(p2);
 	p2.add(p2Box);
-	p2Box.add(p2Rage);
+	p2Box.add(pRage[1]);
 	p2Box.add(p2Point);
 	p2Box.add(p2Discard);
 	playerBox.add(p3);
 	p3.add(p3Box);
-	p3Box.add(p3Rage);
+	p3Box.add(pRage[2]);
 	p3Box.add(p3Point);
 	p3Box.add(p3Discard);
 	playerBox.add(p4);
 	p4.add(p4Box);
-	p4Box.add(p4Rage);
+	p4Box.add(pRage[3]);
 	p4Box.add(p4Point);
 	p4Box.add(p4Discard);
 
@@ -68,10 +72,10 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 
 	// Associate button "clicked" events with local onButtonClicked() method defined below.
 	start_button.signal_clicked().connect( sigc::mem_fun( *this, &View::startButtonClicked ) );
 	end_button.signal_clicked().connect( sigc::mem_fun( *this, &View::endButtonClicked ) );
-	p1Rage.signal_clicked().connect( sigc::mem_fun( *this, &View::p1RageButtonClicked ) );
-	p2Rage.signal_clicked().connect( sigc::mem_fun( *this, &View::p2RageButtonClicked ) );
-	p3Rage.signal_clicked().connect( sigc::mem_fun( *this, &View::p3RageButtonClicked ) );
-	p4Rage.signal_clicked().connect( sigc::mem_fun( *this, &View::p4RageButtonClicked ) );
+	pRage[0].signal_clicked().connect( sigc::mem_fun( *this, &View::p1RageButtonClicked ) );
+	pRage[1].signal_clicked().connect( sigc::mem_fun( *this, &View::p2RageButtonClicked ) );
+	pRage[2].signal_clicked().connect( sigc::mem_fun( *this, &View::p3RageButtonClicked ) );
+	pRage[3].signal_clicked().connect( sigc::mem_fun( *this, &View::p4RageButtonClicked ) );
 	handButtons[0].signal_clicked().connect( sigc::mem_fun( *this, &View::hand1ButtonClicked ) );
 	handButtons[1].signal_clicked().connect( sigc::mem_fun( *this, &View::hand2ButtonClicked ) );
 	handButtons[2].signal_clicked().connect( sigc::mem_fun( *this, &View::hand3ButtonClicked ) );
@@ -99,27 +103,47 @@ View::~View() {}
 
 
 void View::update() {
+	vector<Card> valid=model_->getActivePlayerValid();
 	vector<Card> hand=model_->getActivePlayerHand();
 	for(int i=0;i<hand.size();i++)
 	{
 		handCards[i].set(deck.image(hand[i].getRank(),hand[i].getSuit()));	
 	}
+	for(int j=hand.size();j<13;j++)
+	{
+		handCards[j].set(deck.null());
+		handButtons[j].set_sensitive(false);
+	}
+	if(valid.size()==0)
+	{
+		for(int k=0;k<hand.size();k++)
+		{
+			handButtons[k].set_sensitive(true);
+		}
+	}
+	else
+	{
+		for(int k=0;k<hand.size();k++)
+		{
+			handButtons[k].set_sensitive(false);
+			for(int l=0;l<valid.size();l++)
+			{
+				if(valid[l]==hand[k])
+					handButtons[k].set_sensitive(true);
+			}
+		}
+		
+	}
 }
 
 void View::startButtonClicked() {
-	p1Rage.set_label("Rage!");
-	p1Rage.set_sensitive(false);
-	p2Rage.set_label("Rage!");
-	p2Rage.set_sensitive(false);
-	p3Rage.set_label("Rage!");
-	p3Rage.set_sensitive(false);
-	p4Rage.set_label("Rage!");
-	p4Rage.set_sensitive(false);
 	char playerType[4];
-	playerType[0]=(p1Rage.get_label()=="Human"?'h':'c');
-	playerType[1]=(p2Rage.get_label()=="Human"?'h':'c');
-	playerType[2]=(p3Rage.get_label()=="Human"?'h':'c');
-	playerType[3]=(p4Rage.get_label()=="Human"?'h':'c');
+	for(int i=0;i<4;i++)
+	{
+	pRage[i].set_label("Rage!");
+	pRage[i].set_sensitive(false);
+	playerType[i]=(pRage[i].get_label()=="Human"?'h':'c');
+	}
 	start_button.set_sensitive(false);
   controller_->startButtonClicked(playerType);
 } // View::startButtonClicked
@@ -129,34 +153,34 @@ void View::endButtonClicked() {
 } // View::endButtonClicked
 
 void View::p1RageButtonClicked() {
-	if(p1Rage.get_label()=="Human")
-		p1Rage.set_label("Computer");
-	else if(p1Rage.get_label()=="Computer")
-		p1Rage.set_label("Human");
+	if(pRage[0].get_label()=="Human")
+		pRage[0].set_label("Computer");
+	else if(pRage[0].get_label()=="Computer")
+		pRage[0].set_label("Human");
     controller_->rageButtonClicked();
 	
 }
 void View::p2RageButtonClicked() {
-	if(p2Rage.get_label()=="Human")
-		p2Rage.set_label("Computer");
-	else if(p2Rage.get_label()=="Computer")
-		p2Rage.set_label("Human");
+	if(pRage[1].get_label()=="Human")
+		pRage[1].set_label("Computer");
+	else if(pRage[1].get_label()=="Computer")
+		pRage[1].set_label("Human");
 	else
 	    controller_->rageButtonClicked();
 }
 void View::p3RageButtonClicked() {
-	if(p3Rage.get_label()=="Human")
-		p3Rage.set_label("Computer");
-	else if(p3Rage.get_label()=="Computer")
-		p3Rage.set_label("Human");
+	if(pRage[2].get_label()=="Human")
+		pRage[2].set_label("Computer");
+	else if(pRage[2].get_label()=="Computer")
+		pRage[2].set_label("Human");
 	else
 	    controller_->rageButtonClicked();
 }
 void View::p4RageButtonClicked() {
-	if(p4Rage.get_label()=="Human")
-		p4Rage.set_label("Computer");
-	else if(p4Rage.get_label()=="Computer")
-		p4Rage.set_label("Human");
+	if(pRage[3].get_label()=="Human")
+		pRage[3].set_label("Computer");
+	else if(pRage[3].get_label()=="Computer")
+		pRage[3].set_label("Human");
 	else
 	    controller_->rageButtonClicked();
 }

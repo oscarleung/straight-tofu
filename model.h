@@ -9,6 +9,7 @@ public:
     Model();
 	vector<Card> getCardsInPlay();
 	vector<Card> getActivePlayerHand();
+	vector<Card> getActivePlayerValid();
 	void initPlayers(char[]);
 	void rageCurrentPlayer();
 	void end();

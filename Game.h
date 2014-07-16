@@ -15,6 +15,7 @@ class Game{
     public:
         void start(int seed=0);                         // begin a new game
 	vector<Card> getActiveHand();	
+	vector<Card> getActiveValid();	
 	vector<Card> getCardsInPlay();	
         void initPlayers(char list[]);               // create a list of player
         void initRound();               // create a list of player

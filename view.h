@@ -35,7 +35,7 @@ private:
 	Gtk::Image handCards[13];
 	Gtk::Button start_button;
 	Gtk::Button end_button;
-	Gtk::Button p1Rage, p2Rage, p3Rage, p4Rage;
+	Gtk::Button pRage[4];
 	Gtk::Image tableCards[4][13];
 	Gtk::Image blankCard;
 	Gtk::Entry seedEntry;
