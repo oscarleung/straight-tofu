@@ -113,10 +113,11 @@ void View::reset()
         pPoint[p].set_text("0 points");
         pDiscard[p].set_text("0 discards");
 	}
-	for(int l=0;l<13;l++)
-	{
-		handCards[l].set(deck.null());
-	}
+	resetTable();
+	resetHand();
+}
+void View::resetTable()
+{
 	for(int j=0;j<4;j++){
 		for(int i=0;i<13;i++){
             rows[j].add(tableCards[j][i]);
@@ -124,7 +125,13 @@ void View::reset()
 		}
 	}
 }
-
+void View::resetHand()
+{
+	for(int l=0;l<13;l++)
+	{
+		handCards[l].set(deck.null());
+	}
+}
 void View::update() {
     if (model_->roundOver()) {
         // get the score ... calculate... return
@@ -146,6 +153,8 @@ void View::update() {
         }
         Gtk::MessageDialog dialog(*this, output);
         dialog.run();
+		model_->refreshRound();
+		resetTable();
         return;
     }
 	if(model_->getActivePlayer()==-1)

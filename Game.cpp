@@ -26,8 +26,7 @@ vector<int> Game::getPlayerDiscards()
 {
 	vector<int> discards;
     for (int i=0; i<4; i++) {
-      vector<Card> x=playerList[i]->getDiscard();
-	  discards.push_back(x.size());
+	  discards.push_back(playerList[i]->getNumDiscards());
     }
 	return discards;
 }

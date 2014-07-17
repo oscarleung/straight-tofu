@@ -14,6 +14,7 @@ public:
 	vector<int> getDiscards();
 	int getActivePlayer();
 	void initPlayers(char[]);
+	void refreshRound();
 	void play(Card c);
 	void end();
 	void seed(int s);

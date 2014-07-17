@@ -71,7 +71,10 @@ vector<Card> Player::getDiscard() {
     discardPile_.clear();
     return temp;
 }
-
+int Player::getNumDiscards()
+{
+	return discardPile_.size();
+}
 
 int Player::cardPos(Card target) const
 {

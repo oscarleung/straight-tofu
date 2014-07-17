@@ -63,6 +63,8 @@ private:
     void hand11ButtonClicked();
     void hand12ButtonClicked();
     void hand13ButtonClicked();
+	void resetTable();
+	void resetHand();
     
 }; // View
 

@@ -22,6 +22,7 @@ public:
 	vector<Card> getPlays(vector<Card>) const;	// return valid plays
     bool isHuman() const;
     int calcScore();
+    int getNumDiscards();
     vector<Card> getDiscard();
 private:
 	vector<Card> hand_;						// stores all cards in a players hand

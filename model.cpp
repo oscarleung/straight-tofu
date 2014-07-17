@@ -55,6 +55,10 @@ void Model::initPlayers(char playerType[])
 	game_->initRound();
 	notify();
 }
+void Model::refreshRound()
+{
+	game_->initRound();
+}
 void Model::rageCurrentPlayer()
 {
     
