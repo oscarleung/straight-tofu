@@ -19,9 +19,21 @@ int Model::getActivePlayer()
 {
 	return game_->getActivePlayerNo();
 }
-bool Mode::roundOver()
+int Model::calcScore(int player)
 {
-    //return game_->();
+    return game_->calcScore(player);
+}
+int Model::getScore(int player) const
+{
+    return game_->getScore(player);
+}
+vector<Card> Model::getDiscard(int player) const
+{
+    return game_->getDiscard(player);
+}
+bool Model::roundOver()
+{
+    return !game_->playersHaveCards();
 }
 
 void Model::play(Card c)

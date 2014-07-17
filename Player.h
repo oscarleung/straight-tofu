@@ -21,11 +21,13 @@ public:
 	void play(Card&, vector<Card> &);		// mutator, removes card from hand, adds it to set of cards in play
 	vector<Card> getPlays(vector<Card>) const;	// return valid plays
     bool isHuman() const;
+    int calcScore();
+    vector<Card> getDiscard();
 private:
 	vector<Card> hand_;						// stores all cards in a players hand
 	vector<Card> discardPile_;				// keeps track of the discards for a player in a given round
 	int score_ ;							// keeps track of score
-	int playerNumber_;						
+	int playerNumber_;
 protected:
 	int cardPos(Card) const;
     bool typeHuman_;

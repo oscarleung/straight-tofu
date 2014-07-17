@@ -105,6 +105,25 @@ View::~View() {}
 
 
 void View::update() {
+    if (model_->roundOver()) {
+        // get the score ... calculate... return
+        string output;
+        for (int i=0; i<4; i++)
+        {
+            int roundScore = model_->calcScore(i);
+            int newScore = model_->getScore(i);
+            vector<Card> temp = model_->getDiscard(i);
+            output.append("Player "+ i+1 +"'s discards: ");
+            for (int j=0; j<temp.size(); j++)
+            {
+                output.append(temp.at(j);)
+            }
+            output.append("\nPlayer "+ i+1 +"'s score: "+newScore-roundScore+" + "+roundScore+" = "+newScore+"\n");
+        }
+        Gtk::MessageDialog dialog(*this, output);
+        dialog.run();
+        return;
+    }
 	vector<Card> valid=model_->getActivePlayerValid();
 	vector<Card> hand=model_->getActivePlayerHand();
 	vector<Card> table=model_->getCardsInPlay();

@@ -7,7 +7,7 @@ namespace{
 		}
 	}
 }
-bool Game::playersHaveCards(Player* playerList[])               // check for end game where player is out of cards
+bool Game::playersHaveCards()               // check for end game where player is out of cards
 {
     for (int i=0; i<4; i++) {
         if (playerList[i]->getHand().size() != 0) return true;
@@ -25,6 +25,18 @@ vector<Card> Game::getActiveValid()
 vector<Card> Game::getCardsInPlay()
 {
 	return table_;
+}
+int Game::calcScore(int player)
+{
+    return playerList[player]->calcScore();
+}
+int Game::getScore(int player) const
+{
+    return playerList[player]->calcScore();
+}
+vector<Card> Game::getDiscard(int player) const
+{
+    return playerList[player]->getDiscard();
 }
 void Game::initPlayers(char list[]) {
     
@@ -78,9 +90,6 @@ void Game::turn(Card c)
 		activePlayer = 0;
 	else
 		activePlayer++;
-    if (!playersHaveCards(playerList)) {
-        
-    }
 }
 int Game::getActivePlayerNo()
 {
@@ -95,7 +104,7 @@ void Game::start(int seed)
 		bool print=true;
 		bool incPlayer=true;
 		Command cmd;
-		while (playersHaveCards(playerList))
+		while (playersHaveCards())
 		{
 			try
 			{

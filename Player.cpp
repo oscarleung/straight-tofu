@@ -53,6 +53,26 @@ void Player::doScoring() {
     score_ = newScore;
     discardPile_.clear();
 }
+
+int Player::calcScore() {
+    int roundScore = 0;
+    for (int i=0; i < discardPile_.size(); i++) {
+        roundScore += discardPile_.at(i).getRank()+1;
+    }
+    cout << endl;
+    int newScore = score_ + roundScore;
+    cout << "Player " << playerNumber_ << "'s score: " << score_ << " + " << roundScore << " = " << newScore << endl;
+    // set score to total, return round score
+    score_ = newScore;
+    return roundScore;
+}
+vector<Card> Player::getDiscard() {
+    vector<Card> temp = discardPile_;
+    discardPile_.clear();
+    return temp;
+}
+
+
 int Player::cardPos(Card target) const
 {
 	for (int i = 0; i < hand_.size(); i++)
@@ -81,7 +101,7 @@ void Player::addHand(vector<Card> newHand) {
     hand_ = newHand;
 }
 
-//returns a list of valid plays 
+//returns a list of valid plays
 vector<Card> Player::getPlays(vector<Card> inPlay) const
 {
 	vector<Card> plays;
@@ -90,7 +110,7 @@ vector<Card> Player::getPlays(vector<Card> inPlay) const
 		plays.push_back(Card(SPADE,SEVEN));
 		return plays;
 	}
-
+    
 	for (int i = 0; i < hand_.size(); i++)
 	{
 		for (int j = 0; j < inPlay.size(); j++)
@@ -102,7 +122,7 @@ vector<Card> Player::getPlays(vector<Card> inPlay) const
 			}
 		}
 	}
-
+    
 	return plays;
 }
 //Mutator, removes card from hand, adds it to set of cards in play, prints message
@@ -111,5 +131,5 @@ void Player::play(Card &c, vector<Card> &table)
     table.push_back(c);
 	hand_.erase(hand_.begin()+cardPos(c));
 	cout << "Player " << playerNumber_ << " plays " << c << "." << endl;
-
+    
 }

@@ -18,11 +18,14 @@ public:
 	vector<Card> getActiveHand();
 	vector<Card> getActiveValid();
 	vector<Card> getCardsInPlay();
+    int calcScore(int);
+    int getScore(int) const;
+    vector<Card> getDiscard(int) const;
     void initPlayers(char list[]);               // create a list of player
     void initRound();               // create a list of player
 	int getActivePlayerNo();
+    bool playersHaveCards();    // check players hand for end game
 private:
-    bool playersHaveCards(Player* playerList[]);    // check players hand for end game
     void printDeck();
     vector<Card> table_;
     Deck gameDeck;
