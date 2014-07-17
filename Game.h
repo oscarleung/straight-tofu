@@ -18,6 +18,8 @@ public:
 	vector<Card> getActiveHand();
 	vector<Card> getActiveValid();
 	vector<Card> getCardsInPlay();
+	vector<int> getPlayerScores();
+	vector<int> getPlayerDiscards();
     int calcScore(int);
     int getScore(int) const;
     vector<Card> getDiscard(int) const;

@@ -11,7 +11,7 @@ void Controller::startButtonClicked(char playerType[]) {
 
 
 void Controller::endButtonClicked() {
-     model_->end();
+     //model_->end();
 } 
 
 void Controller::rageButtonClicked() {

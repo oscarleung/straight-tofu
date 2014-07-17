@@ -121,7 +121,7 @@ void View::update() {
                 //output.append(temp.at(j));
             }
             output.append("\nPlayer " + to_string(player) + "'s score: " + to_string(oldScore) + " + ");
-	    output.append(roundScore + " = " + newScore + "\n");
+	    output.append(to_string(roundScore) + " = " + to_string(newScore) + "\n");
         }
         Gtk::MessageDialog dialog(*this, output);
         dialog.run();
@@ -130,6 +130,8 @@ void View::update() {
 	vector<Card> valid=model_->getActivePlayerValid();
 	vector<Card> hand=model_->getActivePlayerHand();
 	vector<Card> table=model_->getCardsInPlay();
+	vector<int> scores=model_->getScores();
+	vector<int> discards=model_->getDiscards();
 	for(int i=0;i<hand.size();i++)
 	{
 		handCards[i].set(deck.image(hand[i].getRank(),hand[i].getSuit()));
@@ -167,6 +169,8 @@ void View::update() {
 	for(int n=0;n<4;n++)
 	{
 		pRage[n].set_sensitive(false);
+		pPoint[n].set_text(to_string(scores[n])+" points");
+		pDiscard[n].set_text(to_string(discards[n])+" discards");
 	}
 	pRage[model_->getActivePlayer()].set_sensitive(true);
 }
@@ -182,7 +186,7 @@ void View::startButtonClicked() {
 	start_button.set_sensitive(false);
     controller_->startButtonClicked(playerType);
 	int player = model_->getActivePlayer();
-    Gtk::MessageDialog dialog(*this, "A new round begins. It's player "+ player +"'s turn to play.");
+    Gtk::MessageDialog dialog(*this, "A new round begins. It's player "+ to_string(player) +"'s turn to play.");
     dialog.run();
 }
 void View::endButtonClicked() {

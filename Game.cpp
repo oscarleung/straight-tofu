@@ -14,6 +14,24 @@ bool Game::playersHaveCards()               // check for end game where player i
     }
 	return false;
 }
+vector<int> Game::getPlayerScores()             
+{
+	vector<int> scores;
+    for (int i=0; i<4; i++) {
+        scores.push_back(playerList[i]->getScore());
+    }
+	return scores;
+}
+vector<int> Game::getPlayerDiscards()              
+{
+	vector<int> discards;
+    for (int i=0; i<4; i++) {
+      vector<Card> x=playerList[i]->getDiscard();
+	  discards.push_back(x.size());
+    }
+	return discards;
+}
+
 vector<Card> Game::getActiveHand()
 {
 	return playerList[activePlayer]->getHand();

@@ -51,8 +51,12 @@ void Model::rageCurrentPlayer()
 {
     
 }
-vector<Card> getActiveHand()
+vector<int> Model::getScores()
 {
-    vector<Card> x;
-    return x;
+    return game_->getPlayerScores();
+}
+
+vector<int> Model::getDiscards()
+{
+    return game_->getPlayerDiscards();
 }
