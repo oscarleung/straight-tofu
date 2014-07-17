@@ -10,6 +10,7 @@ class Deck{
 public:
 	Deck();                         // constructor
     void shuffle();                 // shuffle function
+    void reinit();                 // shuffle function
     void printDeck() const;         // print entire deck
     vector<Card> getDeck() const;   // return deck as vector
 	

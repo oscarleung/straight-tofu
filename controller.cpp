@@ -5,7 +5,8 @@
 Controller::Controller(Model *m) : model_(m) {}
 
 
-void Controller::startButtonClicked(char playerType[]) {
+void Controller::startButtonClicked(char playerType[],int seed) {
+	 model_->seed(seed);
      model_->initPlayers(playerType);
 } 
 

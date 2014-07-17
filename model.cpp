@@ -40,6 +40,10 @@ void Model::end()
 	game_->reset();
 	notify();
 }
+void Model::seed(int s)
+{
+	game_->seed(s);
+}
 void Model::play(Card c)
 {
 	game_->turn(c);

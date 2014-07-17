@@ -16,6 +16,7 @@ public:
 	void initPlayers(char[]);
 	void play(Card c);
 	void end();
+	void seed(int s);
 	void rageCurrentPlayer();
 	vector<Card> getActiveHand();
     bool roundOver();

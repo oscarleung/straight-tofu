@@ -14,7 +14,18 @@ Deck::Deck() :CARD_COUNT(52)
 	}
     
 }
-
+void Deck::reinit(){
+	deck_.clear();
+	for (int i = 0; i<=3;i++)
+	{
+		for (int j = 0; j <= 12; j++)
+		{
+			Card tempCard((Suit)i, (Rank)j);
+            deck_.push_back(tempCard);
+		}
+	}
+ 
+}
 void Deck::shuffle() {
     // shuffling
     int n = CARD_COUNT;

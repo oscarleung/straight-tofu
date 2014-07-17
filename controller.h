@@ -10,7 +10,7 @@ class Model;
 class Controller {
 public:
     Controller( Model* );
-    void startButtonClicked(char []);
+    void startButtonClicked(char [],int seed);
     void endButtonClicked();
     void rageButtonClicked();
     void handButtonClicked(Card c);

@@ -17,6 +17,7 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 
 	butBox.add(start_button);
     
 	seedEntry.set_max_length(10);
+	seedEntry.set_text("0");
 	seedEntry.select_region(0, seedEntry.get_text_length());
 	butBox.add(seedEntry);
 	butBox.add(end_button);
@@ -209,9 +210,9 @@ void View::startButtonClicked() {
         playerType[i]=(pRage[i].get_label()=="Human"?'h':'c');
 	}
 	start_button.set_sensitive(false);
-    controller_->startButtonClicked(playerType);
+    controller_->startButtonClicked(playerType,stoi(seedEntry.get_text().raw()));
 	int player = model_->getActivePlayer();
-    Gtk::MessageDialog dialog(*this, "A new round begins. It's player "+ to_string(player) +"'s turn to play.");
+    Gtk::MessageDialog dialog(*this, "A new round begins. It's player "+ to_string(player+1) +"'s turn to play.");
     dialog.run();
 }
 void View::endButtonClicked() {

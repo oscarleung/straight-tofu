@@ -16,6 +16,7 @@ public:
     void start(int seed=0);                         // begin a new game
 	void turn(Card c);
 	void reset();
+	void seed(int s);
 	vector<Card> getActiveHand();
 	vector<Card> getActiveValid();
 	vector<Card> getCardsInPlay();

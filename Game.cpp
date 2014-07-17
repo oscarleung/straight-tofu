@@ -37,6 +37,7 @@ void Game::reset()
 		delete playerList[i];
 	}
 	activePlayer=-1;
+    gameDeck.shuffle();  
 	table_.clear();
 
 }
@@ -64,9 +65,13 @@ vector<Card> Game::getDiscard(int player) const
 {
     return playerList[player]->getDiscard();
 }
+void Game::seed(int s)
+{
+	srand48(s);
+}
 void Game::initPlayers(char list[]) {
     
-    srand48(0);
+	gameDeck.reinit();
     for (int i = 0; i<4; i++) {
         if (list[i] == 'h'){
             // make human player
