@@ -27,7 +27,7 @@ vector<Card> Game::getCardsInPlay()
 	return table_;
 }
 void Game::initPlayers(char list[]) {
-
+    
     srand48(0);
     for (int i = 0; i<4; i++) {
         if (list[i] == 'h'){
@@ -45,23 +45,28 @@ void Game::initPlayers(char list[]) {
 }
 
 void Game::initRound(){
-
-        gameDeck.shuffle();             // shuffle card at beginning of each round
-        table_.clear();
-        for (int i = 0; i<4; i++) {
-            vector<Card> temp = gameDeck.getDeck();
-            vector<Card> sub (temp.begin()+i*13, temp.begin()+(i+1)*13);
-            playerList[i]->addHand(sub);
+    
+    gameDeck.shuffle();             // shuffle card at beginning of each round
+    table_.clear();
+    for (int i = 0; i<4; i++) {
+        vector<Card> temp = gameDeck.getDeck();
+        vector<Card> sub (temp.begin()+i*13, temp.begin()+(i+1)*13);
+        playerList[i]->addHand(sub);
+    }
+    Card startCard(SPADE, SEVEN);
+    for (int i = 0; i<4; i++) {
+        if(playerList[i]->hasCard(startCard)) {
+            activePlayer = i;
+            cout << "A new round begins. It's player " << i+1 << "'s turn to play." << endl;
+            break;
         }
-        Card startCard(SPADE, SEVEN);
-        for (int i = 0; i<4; i++) {
-            if(playerList[i]->hasCard(startCard)) {
-				activePlayer = i;
-                cout << "A new round begins. It's player " << i+1 << "'s turn to play." << endl;
-                break;
-            }
-        }
+    }
 }
+
+void Game::clearRound(){
+    table_.clear();
+}
+
 void Game::turn(Card c)
 {
 	vector<Card> validPlays=playerList[activePlayer]->getPlays(table_);
@@ -95,10 +100,10 @@ void Game::start(int seed)
 		{
 			try
 			{
-					cmd = playerList[activePlayer]->turn(table_, print);
-					print = true;
-					switch (cmd.type)
-					{
+                cmd = playerList[activePlayer]->turn(table_, print);
+                print = true;
+                switch (cmd.type)
+                {
 					case PLAY:
 						isInHand(playerList[activePlayer], cmd.card);
 						playerList[activePlayer]->play(cmd.card, table_);
@@ -122,32 +127,32 @@ void Game::start(int seed)
 						break;
 					case RAGEQUIT:
 					{
-						 Player* replaceHuman = new CompPlayer(*playerList[activePlayer]);
-						 delete playerList[activePlayer];
-						 playerList[activePlayer] = replaceHuman;
-						 cout << "Player " << activePlayer + 1 << " ragequits. A computer will now take over." << endl;
-						 playerList[activePlayer]->turn(table_);
-						 break;
+                        Player* replaceHuman = new CompPlayer(*playerList[activePlayer]);
+                        delete playerList[activePlayer];
+                        playerList[activePlayer] = replaceHuman;
+                        cout << "Player " << activePlayer + 1 << " ragequits. A computer will now take over." << endl;
+                        playerList[activePlayer]->turn(table_);
+                        break;
 					}
 					case BAD_COMMAND:
 					default:
 						break;
-					}
-					if ((cmd.type != RAGEQUIT && cmd.type != DECK)||(!print && cmd.type==PLAY)||(!print && cmd.type==DISCARD))
-					{
-						if (activePlayer == 3)
-							activePlayer = 0;
-						else
-							activePlayer++;
-					}
-				}
-				catch (runtime_error e)
-				{
-					cout << e.what() << endl;
-					print = false;
-					incPlayer = false;
-				}
-				
+                }
+                if ((cmd.type != RAGEQUIT && cmd.type != DECK)||(!print && cmd.type==PLAY)||(!print && cmd.type==DISCARD))
+                {
+                    if (activePlayer == 3)
+                        activePlayer = 0;
+                    else
+                        activePlayer++;
+                }
+            }
+            catch (runtime_error e)
+            {
+                cout << e.what() << endl;
+                print = false;
+                incPlayer = false;
+            }
+            
 		}
         
         // round end, calculate score

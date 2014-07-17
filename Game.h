@@ -12,21 +12,22 @@
 using namespace std;
 
 class Game{
-    public:
-        void start(int seed=0);                         // begin a new game
+public:
+    void start(int seed=0);                         // begin a new game
 	void turn(Card c);
-	vector<Card> getActiveHand();	
-	vector<Card> getActiveValid();	
-	vector<Card> getCardsInPlay();	
-        void initPlayers(char list[]);               // create a list of player
-        void initRound();               // create a list of player
+	vector<Card> getActiveHand();
+	vector<Card> getActiveValid();
+	vector<Card> getCardsInPlay();
+    void initPlayers(char list[]);               // create a list of player
+    void initRound();               // create a list of player
+    void clearRound();
 	int getActivePlayerNo();
-    private:
-		bool playersHaveCards(Player* playerList[]);    // check players hand for end game
-        void printDeck();
-        vector<Card> table_;
-		Deck gameDeck;
-		Player* playerList[4];							//List of players
-		int activePlayer;							//Active  player
-		
+private:
+    bool playersHaveCards(Player* playerList[]);    // check players hand for end game
+    void printDeck();
+    vector<Card> table_;
+    Deck gameDeck;
+    Player* playerList[4];							//List of players
+    int activePlayer;							//Active  player
+    
 };

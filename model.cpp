@@ -32,6 +32,7 @@ void Model::initPlayers(char playerType[])
 }
 void Model::end()
 {
+    game_->clearRound();
 }
 void Model::rageCurrentPlayer()
 {

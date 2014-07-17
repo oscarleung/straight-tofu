@@ -39,8 +39,9 @@ private:
 	Gtk::Image tableCards[4][13];
 	Gtk::Image blankCard;
 	Gtk::Entry seedEntry;
-	Gtk::Label p1Point, p1Discard, p2Point, p2Discard, p3Point, p3Discard, p4Point, p4Discard;
-	
+	Gtk::Label pPoint[4];
+    Gtk::Label pDiscard[4];
+    
     // Signal handlers:
 	void startButtonClicked();
 	void endButtonClicked();
