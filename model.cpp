@@ -19,6 +19,11 @@ int Model::getActivePlayer()
 {
 	return game_->getActivePlayerNo();
 }
+bool Mode::roundOver()
+{
+    //return game_->();
+}
+
 void Model::play(Card c)
 {
 	game_->turn(c);
@@ -30,15 +35,12 @@ void Model::initPlayers(char playerType[])
 	game_->initRound();
 	notify();
 }
-void Model::end()
-{
-    game_->clearRound();
-}
 void Model::rageCurrentPlayer()
 {
+    
 }
 vector<Card> getActiveHand()
 {
-vector<Card> x;
-return x;
+    vector<Card> x;
+    return x;
 }

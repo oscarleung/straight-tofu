@@ -20,7 +20,6 @@ public:
 	vector<Card> getCardsInPlay();
     void initPlayers(char list[]);               // create a list of player
     void initRound();               // create a list of player
-    void clearRound();
 	int getActivePlayerNo();
 private:
     bool playersHaveCards(Player* playerList[]);    // check players hand for end game

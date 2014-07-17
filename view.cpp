@@ -6,7 +6,7 @@
 #include "DeckGUI.h"
 #include <iostream>
 
-View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 1), playerBox(true, 1), table("Cards on the table"), p1("Player 1"), p2("Player 2"), p3("Player 3"), p4("Player 4"), p1Box(true, 5), p2Box(true, 10), p3Box(true, 10), p4Box(true, 10), hand("Your hand"), panels(true,10), handBox(true, 1), butBox(false, 1), start_button( "Start new game with seed:" ), end_button( "End current game" ), tableBox(true,5){
+View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 1), playerBox(true, 1), table("Cards on the table"), p1("Player 1"), p2("Player 2"), p3("Player 3"), p4("Player 4"), p1Box(true, 10), p2Box(true, 10), p3Box(true, 10), p4Box(true, 10), hand("Your hand"), panels(true,10), handBox(true, 1), butBox(false, 1), start_button( "Start new game with seed:" ), end_button( "End current game" ), tableBox(true,5){
     
 	blankCard.set(deck.null());
 	// Sets some properties of the window.
@@ -159,6 +159,8 @@ void View::startButtonClicked() {
 	}
 	start_button.set_sensitive(false);
     controller_->startButtonClicked(playerType);
+    Gtk::MessageDialog dialog(*this, "A new round begins. It's player "+ model_->getActivePlayer() +"'s turn to play.");
+    dialog.run();
 }
 void View::endButtonClicked() {
     start_button.set_sensitive(true);
@@ -170,7 +172,6 @@ void View::endButtonClicked() {
         pRage[i].set_sensitive(true);
 	}
     // clear middle table
-    controller_->endButtonClicked();
     for(int j=0;j<4;j++){
 		for(int i=0;i<13;i++){
             tableCards[j][i].set(deck.null());
@@ -179,6 +180,7 @@ void View::endButtonClicked() {
     for(int l=0;l<13;l++)
 	{
 		handCards[l].set(deck.null());
+        handButtons[j].set_sensitive(false);
 	}
 }
 
@@ -187,7 +189,8 @@ void View::p1RageButtonClicked() {
 		pRage[0].set_label("Computer");
 	else if(pRage[0].get_label()=="Computer")
 		pRage[0].set_label("Human");
-    controller_->rageButtonClicked();
+    else
+        controller_->rageButtonClicked();
 	
 }
 void View::p2RageButtonClicked() {

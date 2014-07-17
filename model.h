@@ -14,7 +14,6 @@ public:
 	void initPlayers(char[]);
 	void play(Card c);
 	void rageCurrentPlayer();
-	void end();
 	vector<Card> getActiveHand();
 private:
 	Game* game_;

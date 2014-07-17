@@ -45,8 +45,10 @@ namespace{
 		cout << endl;
 	}
 }
-//Human player constructor uses base constructor(just sets player  number)
-HumanPlayer::HumanPlayer(int playerNo) :Player(playerNo){}
+//Human player constructor (just sets player  number)
+HumanPlayer::HumanPlayer(int playerNo) :Player(playerNo){
+    typeHuman_ = true;
+}
 
 //Human plyer turn implementation
 Command HumanPlayer::turn(vector<Card> &table,bool print)

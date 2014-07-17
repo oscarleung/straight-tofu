@@ -63,10 +63,6 @@ void Game::initRound(){
     }
 }
 
-void Game::clearRound(){
-    table_.clear();
-}
-
 void Game::turn(Card c)
 {
 	vector<Card> validPlays=playerList[activePlayer]->getPlays(table_);
@@ -82,6 +78,9 @@ void Game::turn(Card c)
 		activePlayer = 0;
 	else
 		activePlayer++;
+    if (!playersHaveCards(playerList)) {
+        
+    }
 }
 int Game::getActivePlayerNo()
 {

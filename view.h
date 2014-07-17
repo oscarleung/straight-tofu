@@ -11,20 +11,20 @@ class Model;
 
 class View : public Gtk::Window, public Observer {
 public:
-        View( Controller*, Model* );
+    View( Controller*, Model* );
 	virtual ~View();
 	virtual void update();	// Observer Pattern: concrete update() method
-
+    
 private:
 	// Observer Pattern: to access Model accessors without having to downcast subject
 	Model *model_;
 	
 	// Strategy Pattern member (plus signal handlers)
 	Controller *controller_;
-
+    
 	// Card Images
 	DeckGUI deck;
-
+    
 	// Member widgets:
 	
 	Gtk::Frame table, p1, p2, p3, p4, hand;
@@ -62,7 +62,7 @@ private:
     void hand11ButtonClicked();
     void hand12ButtonClicked();
     void hand13ButtonClicked();
-
+    
 }; // View
 
 #endif
