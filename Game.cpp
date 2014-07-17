@@ -31,7 +31,15 @@ vector<int> Game::getPlayerDiscards()
     }
 	return discards;
 }
+void Game::reset()
+{
+	for (int i = 0; i < 4; i++) {
+		delete playerList[i];
+	}
+	activePlayer=-1;
+	table_.clear();
 
+}
 vector<Card> Game::getActiveHand()
 {
 	return playerList[activePlayer]->getHand();

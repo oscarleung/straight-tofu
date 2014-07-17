@@ -35,7 +35,11 @@ bool Model::roundOver()
 {
     return !game_->playersHaveCards();
 }
-
+void Model::end()
+{
+	game_->reset();
+	notify();
+}
 void Model::play(Card c)
 {
 	game_->turn(c);

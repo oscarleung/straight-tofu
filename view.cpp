@@ -102,7 +102,27 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 
 } // View::View
 
 View::~View() {}
-
+void View::reset()
+{
+	start_button.set_sensitive(true);
+	for(int p=0;p<4;p++)
+	{
+		pRage[p].set_sensitive(true);
+		pRage[p].set_label("Human");
+        pPoint[p].set_text("0 points");
+        pDiscard[p].set_text("0 discards");
+	}
+	for(int l=0;l<13;l++)
+	{
+		handCards[l].set(deck.null());
+	}
+	for(int j=0;j<4;j++){
+		for(int i=0;i<13;i++){
+            rows[j].add(tableCards[j][i]);
+            tableCards[j][i].set(deck.null());
+		}
+	}
+}
 
 void View::update() {
     if (model_->roundOver()) {
@@ -127,6 +147,11 @@ void View::update() {
         dialog.run();
         return;
     }
+	if(model_->getActivePlayer()==-1)
+	{
+		reset();
+		return;
+	}
 	vector<Card> valid=model_->getActivePlayerValid();
 	vector<Card> hand=model_->getActivePlayerHand();
 	vector<Card> table=model_->getCardsInPlay();
