@@ -113,12 +113,15 @@ void View::update() {
             int roundScore = model_->calcScore(i);
             int newScore = model_->getScore(i);
             vector<Card> temp = model_->getDiscard(i);
-            output.append("Player "+ i+1 +"'s discards: ");
+	    int player = i+1;
+	    int oldScore = newScore-roundScore;
+            output.append("Player "+ to_string(player) +"'s discards: ");
             for (int j=0; j<temp.size(); j++)
             {
-                output.append(temp.at(j);)
+                //output.append(temp.at(j));
             }
-            output.append("\nPlayer "+ i+1 +"'s score: "+newScore-roundScore+" + "+roundScore+" = "+newScore+"\n");
+            output.append("\nPlayer " + to_string(player) + "'s score: " + to_string(oldScore) + " + ");
+	    output.append(roundScore + " = " + newScore + "\n");
         }
         Gtk::MessageDialog dialog(*this, output);
         dialog.run();
@@ -178,7 +181,8 @@ void View::startButtonClicked() {
 	}
 	start_button.set_sensitive(false);
     controller_->startButtonClicked(playerType);
-    Gtk::MessageDialog dialog(*this, "A new round begins. It's player "+ model_->getActivePlayer() +"'s turn to play.");
+	int player = model_->getActivePlayer();
+    Gtk::MessageDialog dialog(*this, "A new round begins. It's player "+ player +"'s turn to play.");
     dialog.run();
 }
 void View::endButtonClicked() {
@@ -199,7 +203,7 @@ void View::endButtonClicked() {
     for(int l=0;l<13;l++)
 	{
 		handCards[l].set(deck.null());
-        handButtons[j].set_sensitive(false);
+        handButtons[l].set_sensitive(false);
 	}
 }
 
