@@ -58,6 +58,10 @@ void Model::play(Card c)
 	game_->turn(c);
 	notify();
 }
+int Model::winnerFound()
+{
+    return game_->winner();
+}
 void Model::initPlayers(char playerType[])
 {
 	game_->initPlayers(playerType);

@@ -31,6 +31,7 @@ public:
 	int getActivePlayerNo();
     bool playersHaveCards();    // check players hand for end game
     bool isActivePlayerHuman();
+    int winner();
 private:
     void printDeck();
     vector<Card> table_;

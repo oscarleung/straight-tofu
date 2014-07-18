@@ -141,18 +141,26 @@ void View::update() {
             int roundScore = model_->calcScore(i);
             int newScore = model_->getScore(i);
             vector<Card> temp = model_->getDiscard(i);
-	    int player = i+1;
-	    int oldScore = newScore-roundScore;
+            int player = i+1;
+            int oldScore = newScore-roundScore;
             output.append("Player "+ to_string(player) +"'s discards: ");
             for (int j=0; j<temp.size(); j++)
             {
                 output=output+" "+temp[j].strCard();
             }
             output.append("\nPlayer " + to_string(player) + "'s score: " + to_string(oldScore) + " + ");
-	    output.append(to_string(roundScore) + " = " + to_string(newScore) + "\n");
+            output.append(to_string(roundScore) + " = " + to_string(newScore) + "\n");
         }
         Gtk::MessageDialog dialog(*this, output);
         dialog.run();
+        int winner = model_->winnerFound();
+        if(winner != 0) {
+            Gtk::MessageDialog dialogWin(*this, "Player " + winner + " wins!");
+            dialogWin.run();
+            endButtonClicked();
+            return;
+        }
+        
 		model_->refreshRound();
 		resetTable();
         return;
@@ -167,7 +175,7 @@ void View::update() {
 	vector<Card> table=model_->getCardsInPlay();
 	vector<int> scores=model_->getScores();
 	vector<int> discards=model_->getDiscards();
-
+    
 	//if human, update hand
 	if(model_->isActivePlayerHuman())
 	{
@@ -175,7 +183,7 @@ void View::update() {
 		{
 			handCards[i].set(deck.image(hand[i].getRank(),hand[i].getSuit()));
 		}
-	
+        
 		for(int j=hand.size();j<13;j++)
 		{
 			handCards[j].set(deck.null());
@@ -186,7 +194,7 @@ void View::update() {
 			for(int k=0;k<hand.size();k++)
 			{
 				handButtons[k].set_sensitive(true);
-		}
+            }
 		}
 		else
 		{
@@ -199,7 +207,7 @@ void View::update() {
 						handButtons[k].set_sensitive(true);
 				}
 			}
-		
+            
 		}
 	}
 	//update table

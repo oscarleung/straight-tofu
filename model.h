@@ -23,6 +23,7 @@ public:
 	void rageCurrentPlayer();
 	vector<Card> getActiveHand();
     bool roundOver();
+    int winnerFound();
     int calcScore(int);
     int getScore(int) const;
     vector<Card> getDiscard(int) const;
