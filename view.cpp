@@ -146,7 +146,7 @@ void View::update() {
             output.append("Player "+ to_string(player) +"'s discards: ");
             for (int j=0; j<temp.size(); j++)
             {
-                //output.append(temp.at(j));
+                output=output+" "+temp[j].strCard();
             }
             output.append("\nPlayer " + to_string(player) + "'s score: " + to_string(oldScore) + " + ");
 	    output.append(to_string(roundScore) + " = " + to_string(newScore) + "\n");
