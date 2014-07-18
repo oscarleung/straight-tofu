@@ -151,21 +151,27 @@ void View::update() {
             output.append("\nPlayer " + to_string(player) + "'s score: " + to_string(oldScore) + " + ");
             output.append(to_string(roundScore) + " = " + to_string(newScore) + "\n");
         }
-        Gtk::MessageDialog dialogScore(*this, output);
-        dialogScore.run();
+		{
+			Gtk::MessageDialog dialogScore(*this, output);
+			dialogScore.run();
+		}
         int winner = model_->winnerFound();
         if(winner != 0) {
+			{
             Gtk::MessageDialog dialogWin(*this, "Player " + to_string(winner) + " wins!");
             dialogWin.run();
-            endButtonClicked();
+            }
+			endButtonClicked();
             return;
         }
         resetTable();
 		resetHand();
 		model_->refreshRound();
 		int player = model_->getActivePlayer();
+		{
 		Gtk::MessageDialog dialog(*this, "A new round begins. It's player "+ to_string(player+1) +"'s turn to play.");
 		dialog.run();
+		}
 		model_->progressUntilHuman();
 		return;
     }
