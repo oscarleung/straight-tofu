@@ -14,7 +14,7 @@ bool Game::playersHaveCards()               // check for end game where player i
     }
 	return false;
 }
-vector<int> Game::getPlayerScores()             
+vector<int> Game::getPlayerScores()
 {
 	vector<int> scores;
     for (int i=0; i<4; i++) {
@@ -22,11 +22,11 @@ vector<int> Game::getPlayerScores()
     }
 	return scores;
 }
-vector<int> Game::getPlayerDiscards()              
+vector<int> Game::getPlayerDiscards()
 {
 	vector<int> discards;
     for (int i=0; i<4; i++) {
-	  discards.push_back(playerList[i]->getNumDiscards());
+        discards.push_back(playerList[i]->getNumDiscards());
     }
 	return discards;
 }
@@ -36,9 +36,9 @@ void Game::reset()
 		delete playerList[i];
 	}
 	activePlayer=-1;
-    gameDeck.shuffle();  
+    gameDeck.shuffle();
 	table_.clear();
-
+    
 }
 void Game::progressUntilHuman()
 {
@@ -46,7 +46,7 @@ void Game::progressUntilHuman()
 	{
 		Command cmd;
 		cmd = playerList[activePlayer]->turn(table_, true);
-		turn(cmd.card);	
+		turn(cmd.card);
 	}
 }
 bool Game::isActivePlayerHuman()
@@ -76,6 +76,24 @@ int Game::getScore(int player) const
 vector<Card> Game::getDiscard(int player) const
 {
     return playerList[player]->getDiscard();
+}
+int Game::winner() {
+    for (int i=0; i<4; i++) {               // check for end game
+        if (playerList[i]->getScore() >= 80) {
+            // game is over, find winner and print winner message
+            int lowest = playerList[0]->getScore();
+            for (int j = 1; j < 4; j++) {
+                if (playerList[j]->getScore() < lowest) lowest = playerList[j]->getScore();
+            }
+            for (int j = 0; j < 4; j++) {
+                // output winners
+                if (playerList[j]->getScore() == lowest)
+                    return j+1;
+                delete playerList[j];
+            }
+        }
+    }
+    return 0;
 }
 void Game::seed(int s)
 {
