@@ -155,7 +155,7 @@ void View::update() {
         dialog.run();
         int winner = model_->winnerFound();
         if(winner != 0) {
-            Gtk::MessageDialog dialogWin(*this, "Player " + winner + " wins!");
+            Gtk::MessageDialog dialogWin(*this, "Player " + to_string(winner) + " wins!");
             dialogWin.run();
             endButtonClicked();
             return;
