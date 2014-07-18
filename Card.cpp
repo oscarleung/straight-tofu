@@ -2,7 +2,7 @@
 #include <string>
 #include <cassert>
 using namespace std;
-// 
+//
 Card::Card(Suit s, Rank r){
 	suit_ = s;
 	rank_ = r;
@@ -30,14 +30,14 @@ string Card::getStrRank() const{
 	string ranks[RANK_COUNT] = { "A", "2", "3", "4", "5", "6",
 		"7", "8", "9", "10", "J", "Q", "K" };
 	return ranks[getRank()];
-
+    
 }
 string Card::strCard() const
 {
 	string suits[SUIT_COUNT] = {"C", "D", "H", "S"};
 	string ranks[RANK_COUNT] = {"A", "2", "3", "4", "5", "6",
 		"7", "8", "9", "10", "J", "Q", "K"};
-
+    
 	return (ranks[getRank()]+suits[getSuit()]);
 }
 
@@ -45,7 +45,7 @@ ostream &operator<<(ostream &out, const Card &c){
 	string suits[SUIT_COUNT] = {"C", "D", "H", "S"};
 	string ranks[RANK_COUNT] = {"A", "2", "3", "4", "5", "6",
 		"7", "8", "9", "10", "J", "Q", "K"};
-		
+    
 	out << ranks[c.getRank()] << suits[c.getSuit()];
 	
 	return out;

@@ -24,7 +24,7 @@ void Deck::reinit(){
             deck_.push_back(tempCard);
 		}
 	}
- 
+    
 }
 void Deck::shuffle() {
     // shuffling

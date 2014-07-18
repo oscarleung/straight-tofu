@@ -31,7 +31,7 @@ private:
 	Gtk::Frame table, p1, p2, p3, p4, hand;
 	Gtk::VBox panels, mainBox, p1Box, p2Box, p3Box, p4Box,tableBox;      // Main window divided into two vertical panels
 	Gtk::HBox rows[4];
-	Gtk::HBox butBox, playerBox, handBox,;      // Vertical boxes for stacking buttons horizontally
+	Gtk::HBox handBox, butBox, playerBox;      // Vertical boxes for stacking buttons horizontally
 	Gtk::Button handButtons[13];
 	Gtk::Image handCards[13];
 	Gtk::Button start_button;

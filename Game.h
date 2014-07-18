@@ -13,8 +13,8 @@ using namespace std;
 
 class Game{
 public:
-    void start(int seed=0);                         // begin a new game
-	void turn(Card c);
+    //void start(int seed=0);                         // (OLD) begin a new game
+    void turn(Card c);
 	void reset();
 	void seed(int s);
 	vector<Card> getActiveHand();
@@ -32,6 +32,7 @@ public:
     bool playersHaveCards();    // check players hand for end game
     bool isActivePlayerHuman();
     int winner();
+    void convert();
 private:
     void printDeck();
     vector<Card> table_;

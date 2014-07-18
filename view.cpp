@@ -6,7 +6,7 @@
 #include "DeckGUI.h"
 #include <iostream>
 
-View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 1), playerBox(true, 1), table("Cards on the table"), p1("Player 1"), p2("Player 2"), p3("Player 3"), p4("Player 4"), p1Box(true, 10), p2Box(true, 10), p3Box(true, 10), p4Box(true, 10), hand("Your hand"), panels(true,10), handBox(true, 1), butBox(false, 1), start_button( "Start new game with seed:" ), end_button( "End current game" ), tableBox(true,5){
+View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 1), table("Cards on the table"), playerBox(true, 1), p1("Player 1"), p2("Player 2"), p3("Player 3"), p4("Player 4"), hand("Your hand"), p1Box(true, 10), p2Box(true, 10), p3Box(true, 10), p4Box(true, 10), panels(true,10), handBox(true, 1), butBox(false, 1), tableBox(true,5), start_button( "Start new game with seed:" ), end_button( "End current game" ){
     
 	blankCard.set(deck.null());
 	// Sets some properties of the window.
@@ -161,7 +161,7 @@ void View::update() {
             endButtonClicked();
             return;
         }
-        	resetTable();
+        resetTable();
 		resetHand();
 		model_->refreshRound();
 		int player = model_->getActivePlayer();
@@ -172,11 +172,10 @@ void View::update() {
     }
 	if(model_->getActivePlayer()==-1)
 	{
-		cout << "bad";
 		reset();
 		return;
 	}
-	cout << "okay";
+    
 	vector<Card> valid=model_->getActivePlayerValid();
 	vector<Card> hand=model_->getActivePlayerHand();
 	vector<Card> table=model_->getCardsInPlay();
@@ -257,7 +256,7 @@ void View::endButtonClicked() {
 	}
     // clear middle table
 	resetTable();
-	resetHand();    
+	resetHand();
 }
 
 void View::p1RageButtonClicked() {

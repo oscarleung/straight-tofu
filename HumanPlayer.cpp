@@ -79,19 +79,19 @@ Command HumanPlayer::turn(vector<Card> &table,bool print)
 	cin >> cmd;
 	bool isValid = false;
 	switch (cmd.type){
-	case PLAY:
-		for (int i = 0; i < legalPlays.size(); i++)
-		{
-			if (cmd.card == legalPlays[i])
-				isValid = true;
-		}
-		if (!isValid)
-			throw runtime_error("This is not a legal play.");
-		break;
-	case DISCARD:
-		if (legalPlays.size()!=0)
-			throw runtime_error("You have a legal play. You may not discard.");
-		break;
+        case PLAY:
+            for (int i = 0; i < legalPlays.size(); i++)
+            {
+                if (cmd.card == legalPlays[i])
+                    isValid = true;
+            }
+            if (!isValid)
+                throw runtime_error("This is not a legal play.");
+            break;
+        case DISCARD:
+            if (legalPlays.size()!=0)
+                throw runtime_error("You have a legal play. You may not discard.");
+            break;
 	}
 	return cmd;
 }

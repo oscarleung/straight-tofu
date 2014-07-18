@@ -74,7 +74,7 @@ void Model::refreshRound()
 }
 void Model::rageCurrentPlayer()
 {
-    
+    game_->convert();
 }
 vector<int> Model::getScores()
 {

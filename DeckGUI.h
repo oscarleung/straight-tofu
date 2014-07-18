@@ -1,11 +1,3 @@
-//
-//  DeckGUI.h
-//  straight-tofu
-//
-//  Created by Oscar Leung on 2014-07-14.
-//  Copyright (c) 2014 Oscar Leung. All rights reserved.
-//
-
 #ifndef __DECK_GUI_H
 #define __DECK_GUI_H
 #include <gdkmm/pixbuf.h>
@@ -13,8 +5,6 @@
 using std::vector;
 
 #include "model.h"
-
-
 
 class DeckGUI {
 public:

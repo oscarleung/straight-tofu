@@ -6,17 +6,17 @@
 #include <string>
 enum Suit { CLUB, DIAMOND, HEART, SPADE, SUIT_COUNT };
 enum Rank { ACE, TWO, THREE, FOUR, FIVE, SIX, SEVEN,
-			EIGHT, NINE, TEN, JACK, QUEEN, KING, RANK_COUNT };
+    EIGHT, NINE, TEN, JACK, QUEEN, KING, RANK_COUNT };
 
 class Card{
 	friend std::istream &operator>>(std::istream &, Card &);
-
+    
 public:
 	Card(Suit, Rank);
 	Suit getSuit() const;
 	Rank getRank() const;
 	std::string getStrRank() const;
-	std::string strCard() const;	
+	std::string strCard() const;
 private:
 	Suit suit_;
 	Rank rank_;
