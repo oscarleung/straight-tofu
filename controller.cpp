@@ -21,4 +21,5 @@ void Controller::rageButtonClicked() {
 
 void Controller::handButtonClicked(Card c) {
 	model_->play(c);
+	model_->progressUntilHuman();
 }
