@@ -89,7 +89,6 @@ int Game::winner() {
                 // output winners
                 if (playerList[j]->getScore() == lowest)
                     return j+1;
-                delete playerList[j];
             }
         }
     }
