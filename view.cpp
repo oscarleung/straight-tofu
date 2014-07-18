@@ -6,7 +6,7 @@
 #include "DeckGUI.h"
 #include <iostream>
 
-View::View(Controller *c, Model *m) : model_(m), controller_(c), mainBox(false, 1), table("Cards on the table"), playerBox(true, 1), p1("Player 1"), p2("Player 2"), p3("Player 3"), p4("Player 4"), hand("Your hand"), p1Box(true, 10), p2Box(true, 10), p3Box(true, 10), p4Box(true, 10), panels(true,10), handBox(true, 1), butBox(false, 1), tableBox(true,5), start_button( "Start new game with seed:" ), end_button( "End current game" ){
+View::View(Controller *c, Model *m) : model_(m), controller_(c), table("Cards on the table"), p1("Player 1"), p2("Player 2"), p3("Player 3"), p4("Player 4"), hand("Your hand"), panels(true,10), mainBox(false, 1), p1Box(true, 10), p2Box(true, 10), p3Box(true, 10), p4Box(true, 10), tableBox(true,5), handBox(true, 1), butBox(false, 1), playerBox(true, 1), start_button( "Start new game with seed:" ), end_button( "End current game" ){
     
 	blankCard.set(deck.null());
 	// Sets some properties of the window.
@@ -120,7 +120,6 @@ void View::resetTable()
 {
 	for(int j=0;j<4;j++){
 		for(int i=0;i<13;i++){
-            rows[j].add(tableCards[j][i]);
             tableCards[j][i].set(deck.null());
 		}
 	}
