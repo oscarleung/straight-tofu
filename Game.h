@@ -27,8 +27,10 @@ public:
     vector<Card> getDiscard(int) const;
     void initPlayers(char list[]);               // create a list of player
     void initRound();               // create a list of player
+    void progressUntilHuman();
 	int getActivePlayerNo();
     bool playersHaveCards();    // check players hand for end game
+    bool isActivePlayerHuman();
 private:
     void printDeck();
     vector<Card> table_;

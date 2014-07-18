@@ -45,9 +45,9 @@ namespace{
 		cout << endl;
 	}
 }
+bool HumanPlayer::isHuman(){return true;}
 //Human player constructor (just sets player  number)
 HumanPlayer::HumanPlayer(int playerNo) :Player(playerNo){
-    typeHuman_ = true;
 }
 
 //Human plyer turn implementation

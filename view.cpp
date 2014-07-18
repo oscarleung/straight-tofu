@@ -167,34 +167,40 @@ void View::update() {
 	vector<Card> table=model_->getCardsInPlay();
 	vector<int> scores=model_->getScores();
 	vector<int> discards=model_->getDiscards();
-	for(int i=0;i<hand.size();i++)
+
+	//if human, update hand
+	if(model_->isActivePlayerHuman())
 	{
-		handCards[i].set(deck.image(hand[i].getRank(),hand[i].getSuit()));
-	}
-	for(int j=hand.size();j<13;j++)
-	{
-		handCards[j].set(deck.null());
-		handButtons[j].set_sensitive(false);
-	}
-	if(valid.size()==0)
-	{
-		for(int k=0;k<hand.size();k++)
+		for(int i=0;i<hand.size();i++)
 		{
-			handButtons[k].set_sensitive(true);
+			handCards[i].set(deck.image(hand[i].getRank(),hand[i].getSuit()));
 		}
-	}
-	else
-	{
-		for(int k=0;k<hand.size();k++)
+	
+		for(int j=hand.size();j<13;j++)
 		{
-			handButtons[k].set_sensitive(false);
-			for(int l=0;l<valid.size();l++)
+			handCards[j].set(deck.null());
+			handButtons[j].set_sensitive(false);
+		}
+		if(valid.size()==0)
+		{
+			for(int k=0;k<hand.size();k++)
 			{
-				if(valid[l]==hand[k])
-					handButtons[k].set_sensitive(true);
-			}
+				handButtons[k].set_sensitive(true);
 		}
+		}
+		else
+		{
+			for(int k=0;k<hand.size();k++)
+			{
+				handButtons[k].set_sensitive(false);
+				for(int l=0;l<valid.size();l++)
+				{
+					if(valid[l]==hand[k])
+						handButtons[k].set_sensitive(true);
+				}
+			}
 		
+		}
 	}
 	//update table
 	for(int m=0;m<table.size();m++)
@@ -214,15 +220,16 @@ void View::startButtonClicked() {
 	char playerType[4];
 	for(int i=0;i<4;i++)
 	{
-        pRage[i].set_label("Rage!");
         pRage[i].set_sensitive(false);
         playerType[i]=(pRage[i].get_label()=="Human"?'h':'c');
+        pRage[i].set_label("Rage!");
 	}
 	start_button.set_sensitive(false);
     controller_->startButtonClicked(playerType,stoi(seedEntry.get_text().raw()));
 	int player = model_->getActivePlayer();
     Gtk::MessageDialog dialog(*this, "A new round begins. It's player "+ to_string(player+1) +"'s turn to play.");
     dialog.run();
+	model_->progressUntilHuman();
 }
 void View::endButtonClicked() {
     start_button.set_sensitive(true);

@@ -15,6 +15,15 @@ vector<Card> Model::getActivePlayerHand()
 {
 	return game_->getActiveHand();
 }
+void Model::progressUntilHuman()
+{
+	game_->progressUntilHuman();
+	notify();
+}
+bool Model::isActivePlayerHuman()
+{
+	return game_->isActivePlayerHuman();
+}
 int Model::getActivePlayer()
 {
 	return game_->getActivePlayerNo();

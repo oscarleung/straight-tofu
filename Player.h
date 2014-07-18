@@ -24,6 +24,7 @@ public:
     int calcScore();
     int getNumDiscards();
     vector<Card> getDiscard();
+	virtual bool isHuman()=0;
 private:
 	vector<Card> hand_;						// stores all cards in a players hand
 	vector<Card> discardPile_;				// keeps track of the discards for a player in a given round
@@ -31,7 +32,6 @@ private:
 	int playerNumber_;
 protected:
 	int cardPos(Card) const;
-    bool typeHuman_;
 	
 };
 

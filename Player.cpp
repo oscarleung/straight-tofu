@@ -25,11 +25,6 @@ Player::Player(int num) {
 	playerNumber_ = num;
 }
 
-bool Player::isHuman() const {
-    return typeHuman_;
-}
-
-
 //Accessor
 vector<Card> Player::getHand() const {
 	return hand_;

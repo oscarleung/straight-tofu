@@ -10,11 +10,13 @@ public:
 	vector<Card> getCardsInPlay();
 	vector<Card> getActivePlayerHand();
 	vector<Card> getActivePlayerValid();
+	bool isActivePlayerHuman();
 	vector<int> getScores();
 	vector<int> getDiscards();
 	int getActivePlayer();
 	void initPlayers(char[]);
 	void refreshRound();
+	void progressUntilHuman();
 	void play(Card c);
 	void end();
 	void seed(int s);

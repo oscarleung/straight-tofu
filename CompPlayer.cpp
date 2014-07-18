@@ -2,14 +2,15 @@
 #include "Command.h"
 
 CompPlayer::CompPlayer(int playerNo): Player(playerNo) {
-    typeHuman_ = false;
 }
 
 //copy constructor to allow conversion from Human to computer player easily
 CompPlayer::CompPlayer(const Player &x) : Player(x){
-    typeHuman_ = false;
 }
-
+bool CompPlayer::isHuman()
+{
+	return false;
+}
 //Computer player turn implementation, AI just plays first possible play or discards first possible card if it has no plays
 Command CompPlayer::turn(vector<Card> &table,bool print)
 {

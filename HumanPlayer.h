@@ -17,6 +17,7 @@ class HumanPlayer: public Player{
 public:
 	HumanPlayer(int);
 	Command turn(vector<Card> &,bool print=true);
+	bool isHuman();
 private:
 };
 

@@ -40,6 +40,19 @@ void Game::reset()
 	table_.clear();
 
 }
+void Game::progressUntilHuman()
+{
+	while(playersHaveCards()&&!isActivePlayerHuman())
+	{
+		Command cmd;
+		cmd = playerList[activePlayer]->turn(table_, true);
+		turn(cmd.card);	
+	}
+}
+bool Game::isActivePlayerHuman()
+{
+	return playerList[activePlayer]->isHuman();
+}
 vector<Card> Game::getActiveHand()
 {
 	return playerList[activePlayer]->getHand();

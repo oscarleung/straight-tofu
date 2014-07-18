@@ -11,6 +11,7 @@ public:
 	CompPlayer(int);								//Constructor sets player number
 	explicit CompPlayer(const Player &);			//Copy constructor to allow conversion from human to computer player
 	Command turn(vector<Card> &,bool print=false);	//Computer player turn implementation
+	bool isHuman();
 private:
 };
 
