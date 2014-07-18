@@ -65,12 +65,12 @@ int Model::winnerFound()
 void Model::initPlayers(char playerType[])
 {
 	game_->initPlayers(playerType);
-	game_->initRound();
-	notify();
+	refreshRound();
 }
 void Model::refreshRound()
 {
 	game_->initRound();
+    notify();
 }
 void Model::rageCurrentPlayer()
 {

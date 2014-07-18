@@ -71,7 +71,7 @@ int Game::calcScore(int player)
 }
 int Game::getScore(int player) const
 {
-    return playerList[player]->calcScore();
+    return playerList[player]->getScore();
 }
 vector<Card> Game::getDiscard(int player) const
 {
