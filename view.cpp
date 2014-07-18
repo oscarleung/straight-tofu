@@ -130,6 +130,7 @@ void View::resetHand()
 	for(int l=0;l<13;l++)
 	{
 		handCards[l].set(deck.null());
+		handButtons[l].set_sensitive(false);
 	}
 }
 void View::update() {
@@ -151,8 +152,8 @@ void View::update() {
             output.append("\nPlayer " + to_string(player) + "'s score: " + to_string(oldScore) + " + ");
             output.append(to_string(roundScore) + " = " + to_string(newScore) + "\n");
         }
-        Gtk::MessageDialog dialog(*this, output);
-        dialog.run();
+        Gtk::MessageDialog dialogScore(*this, output);
+        dialogScore.run();
         int winner = model_->winnerFound();
         if(winner != 0) {
             Gtk::MessageDialog dialogWin(*this, "Player " + to_string(winner) + " wins!");
@@ -160,16 +161,22 @@ void View::update() {
             endButtonClicked();
             return;
         }
-        
+        	resetTable();
+		resetHand();
 		model_->refreshRound();
-		resetTable();
-        return;
+		int player = model_->getActivePlayer();
+		Gtk::MessageDialog dialog(*this, "A new round begins. It's player "+ to_string(player+1) +"'s turn to play.");
+		dialog.run();
+		model_->progressUntilHuman();
+		return;
     }
 	if(model_->getActivePlayer()==-1)
 	{
+		cout << "bad";
 		reset();
 		return;
 	}
+	cout << "okay";
 	vector<Card> valid=model_->getActivePlayerValid();
 	vector<Card> hand=model_->getActivePlayerHand();
 	vector<Card> table=model_->getCardsInPlay();
@@ -249,16 +256,8 @@ void View::endButtonClicked() {
         pRage[i].set_sensitive(true);
 	}
     // clear middle table
-    for(int j=0;j<4;j++){
-		for(int i=0;i<13;i++){
-            tableCards[j][i].set(deck.null());
-		}
-	}
-    for(int l=0;l<13;l++)
-	{
-		handCards[l].set(deck.null());
-        handButtons[l].set_sensitive(false);
-	}
+	resetTable();
+	resetHand();    
 }
 
 void View::p1RageButtonClicked() {
