@@ -61,7 +61,7 @@ int Player::calcScore() {
     score_ = newScore;
     return roundScore;
 }
-vector<Card> Player::getDiscard() const{
+vector<Card> Player::getDiscard(){
     vector<Card> temp = discardPile_;
     discardPile_.clear();
     return temp;

@@ -23,7 +23,7 @@ public:
     bool isHuman() const;
     int calcScore();
     int getNumDiscards();
-    vector<Card> getDiscard() const;
+    vector<Card> getDiscard();
 	virtual bool isHuman()=0;
 private:
 	vector<Card> hand_;						// stores all cards in a players hand
