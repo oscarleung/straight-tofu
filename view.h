@@ -32,16 +32,16 @@ private:
 	Gtk::VBox panels, mainBox, p1Box, p2Box, p3Box, p4Box,tableBox;      // Main window divided into two vertical panels
 	Gtk::HBox rows[4];
 	Gtk::HBox handBox, butBox, playerBox;      // Vertical boxes for stacking buttons horizontally
-	Gtk::Button handButtons[13];
-	Gtk::Image handCards[13];
-	Gtk::Button start_button;
-	Gtk::Button end_button;
-	Gtk::Button pRage[4];
-	Gtk::Image tableCards[4][13];
+	Gtk::Button handButtons[13];				//buttons for active player hand
+	Gtk::Image handCards[13];					//images for each hand button
+	Gtk::Button start_button;					//start game button
+	Gtk::Button end_button;						//end game button
+	Gtk::Button pRage[4];						//ragequit/playertype buttons
+	Gtk::Image tableCards[4][13];				//images for cards in play
 	Gtk::Image blankCard;
-	Gtk::Entry seedEntry;
-	Gtk::Label pPoint[4];
-    Gtk::Label pDiscard[4];
+	Gtk::Entry seedEntry;						//entry box for random seed
+	Gtk::Label pPoint[4];						//player point labels
+    Gtk::Label pDiscard[4];						//player discard labels
     
     // Signal handlers:
 	void startButtonClicked();
