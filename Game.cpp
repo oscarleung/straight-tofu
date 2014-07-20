@@ -7,14 +7,14 @@ namespace{
 		}
 	}
 }
-bool Game::playersHaveCards()               // check for end game where player is out of cards
+bool Game::playersHaveCards() const               // check for end game where player is out of cards
 {
     for (int i=0; i<4; i++) {
         if (playerList[i]->getHand().size() != 0) return true;
     }
 	return false;
 }
-vector<int> Game::getPlayerScores()
+vector<int> Game::getPlayerScores() const
 {
 	vector<int> scores;
     for (int i=0; i<4; i++) {
@@ -22,8 +22,9 @@ vector<int> Game::getPlayerScores()
     }
 	return scores;
 }
-vector<int> Game::getPlayerDiscards()
+vector<int> Game::getPlayerDiscards() const
 {
+    // return the discard count of all players
 	vector<int> discards;
     for (int i=0; i<4; i++) {
         discards.push_back(playerList[i]->getNumDiscards());
@@ -49,19 +50,19 @@ void Game::progressUntilHuman()
 		turn(cmd.card);
 	}
 }
-bool Game::isActivePlayerHuman()
+bool Game::isActivePlayerHuman() const
 {
 	return playerList[activePlayer]->isHuman();
 }
-vector<Card> Game::getActiveHand()
+vector<Card> Game::getActiveHand() const
 {
 	return playerList[activePlayer]->getHand();
 }
-vector<Card> Game::getActiveValid()
+vector<Card> Game::getActiveValid() const
 {
 	return playerList[activePlayer]->getPlays(table_);
 }
-vector<Card> Game::getCardsInPlay()
+vector<Card> Game::getCardsInPlay() const
 {
 	return table_;
 }
@@ -158,96 +159,7 @@ void Game::convert()
     delete playerList[activePlayer];
     playerList[activePlayer] = replaceHuman;
 }
-int Game::getActivePlayerNo()
+int Game::getActivePlayerNo() const
 {
 	return activePlayer;
 }
-//void Game::start(int seed)
-//{
-//    while (!cin.eof()) {
-//        // deal the deck
-//        // find starting person
-//        // play the game
-//		bool print=true;
-//		bool incPlayer=true;
-//		Command cmd;
-//		while (playersHaveCards())
-//		{
-//			try
-//			{
-//                cmd = playerList[activePlayer]->turn(table_, print);
-//                print = true;
-//                switch (cmd.type)
-//                {
-//					case PLAY:
-//						isInHand(playerList[activePlayer], cmd.card);
-//						playerList[activePlayer]->play(cmd.card, table_);
-//						incPlayer = true;
-//						break;
-//					case DISCARD:
-//						isInHand(playerList[activePlayer], cmd.card);
-//						playerList[activePlayer]->discard(cmd.card);
-//						incPlayer = true;
-//						break;
-//					case DECK:
-//						gameDeck.printDeck();
-//						print = false;
-//						incPlayer = false;
-//						break;
-//					case QUIT:
-//						for (int i = 0; i < 4; i++) {
-//							delete playerList[i];
-//						}
-//						exit(0);
-//						break;
-//					case RAGEQUIT:
-//					{
-//                        Player* replaceHuman = new CompPlayer(*playerList[activePlayer]);
-//                        delete playerList[activePlayer];
-//                        playerList[activePlayer] = replaceHuman;
-//                        cout << "Player " << activePlayer + 1 << " ragequits. A computer will now take over." << endl;
-//                        playerList[activePlayer]->turn(table_);
-//                        break;
-//					}
-//					case BAD_COMMAND:
-//					default:
-//						break;
-//                }
-//                if ((cmd.type != RAGEQUIT && cmd.type != DECK)||(!print && cmd.type==PLAY)||(!print && cmd.type==DISCARD))
-//                {
-//                    if (activePlayer == 3)
-//                        activePlayer = 0;
-//                    else
-//                        activePlayer++;
-//                }
-//            }
-//            catch (runtime_error e)
-//            {
-//                cout << e.what() << endl;
-//                print = false;
-//                incPlayer = false;
-//            }
-//            
-//		}
-//        
-//        // round end, calculate score
-//        for (int i = 0; i < 4; i++) {
-//            playerList[i]->doScoring();
-//        }
-//        for (int i=0; i<4; i++) {               // check for end game
-//            if (playerList[i]->getScore() >= 80) {
-//                // game is over, find winner and print winner message
-//                int lowest = playerList[0]->getScore();
-//                for (int j = 1; j < 4; j++) {
-//                    if (playerList[j]->getScore() < lowest) lowest = playerList[j]->getScore();
-//                }
-//                for (int j = 0; j < 4; j++) {
-//                    // output winners
-//                    if (playerList[j]->getScore() == lowest) cout << "Player " << j + 1 << " wins!" << endl;
-//					delete playerList[j];
-//                }
-//                return;
-//            }
-//        }
-//    }
-//}

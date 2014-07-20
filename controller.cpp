@@ -10,17 +10,12 @@ void Controller::startButtonClicked(char playerType[],int seed) {
     model_->initPlayers(playerType);
 }
 
-
-void Controller::endButtonClicked() {
-    //model_->end();
-}
-
 void Controller::rageButtonClicked() {
-    model_->rageCurrentPlayer();
-    model_->progressUntilHuman();
+    model_->rageCurrentPlayer();        // convert player to computer
+    model_->progressUntilHuman();       // process all following computer moves
 }
 
 void Controller::handButtonClicked(Card c) {
-	model_->play(c);
-	model_->progressUntilHuman();
+	model_->play(c);                    // human player plays card
+	model_->progressUntilHuman();       // process all following computer moves
 }

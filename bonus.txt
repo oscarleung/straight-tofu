@@ -1,0 +1,9 @@
+Bonus Features
+
+1)  - Added visual cues for legal moves
+    - Disabled buttons for illegal moves
+    - When no legal "play" is available (player must discard), all buttons will have visual cue of legal move
+    
+2)  - better AI for computer player
+    - computer player will always play the highest available card
+    - computer player will always discard the lowest available card

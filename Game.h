@@ -17,20 +17,20 @@ public:
     void turn(Card c);
 	void reset();
 	void seed(int s);
-	vector<Card> getActiveHand();
-	vector<Card> getActiveValid();
-	vector<Card> getCardsInPlay();
-	vector<int> getPlayerScores();
-	vector<int> getPlayerDiscards();
-    int calcScore(int);
-    int getScore(int) const;
+	vector<Card> getActiveHand() const;
+	vector<Card> getActiveValid() const;
+	vector<Card> getCardsInPlay() const;
+	vector<int> getPlayerScores() const;
+	vector<int> getPlayerDiscards() const;
     vector<Card> getDiscard(int) const;
+    int getScore(int) const;
+	int getActivePlayerNo() const;
+    int calcScore(int);
     void initPlayers(char list[]);               // create a list of player
     void initRound();               // create a list of player
     void progressUntilHuman();
-	int getActivePlayerNo();
-    bool playersHaveCards();    // check players hand for end game
-    bool isActivePlayerHuman();
+    bool playersHaveCards() const;    // check players hand for end game
+    bool isActivePlayerHuman() const;
     int winner();
     void convert();
 private:
