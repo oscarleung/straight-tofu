@@ -22,7 +22,7 @@ Command CompPlayer::turn(vector<Card> &table,bool print)
 		cmd.type = DISCARD;
 		cmd.card = hand_.at(0);
         for (int i=1; i < hand_.size(); i++) {
-            if (hand_.at(i) < cmd.card) {
+            if (hand_.at(i).getRank() < cmd.card.getRank()) {
                 cmd.card = hand_.at(i);
             }
         }
@@ -31,7 +31,7 @@ Command CompPlayer::turn(vector<Card> &table,bool print)
 		cmd.type = PLAY;
 		cmd.card = validPlays.at(0);
         for (int i=0; i < validPlays.size(); i++) {
-            if (cmd.card < validPlays.at(i)) {
+            if (cmd.card.getRank() < validPlays.at(i).getRank()) {
                 cmd.card = validPlays.at(i);
             }
         }
