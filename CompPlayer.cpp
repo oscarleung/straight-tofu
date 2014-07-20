@@ -32,7 +32,7 @@ Command CompPlayer::turn(vector<Card> &table,bool print)
 		cmd.card = validPlays.at(0);
         for (int i=0; i < validPlays.size(); i++) {
             if (cmd.card < validPlays.at(i)) {
-                cmd.card = hand_.at(i);
+                cmd.card = validPlays.at(i);
             }
         }
 	}
