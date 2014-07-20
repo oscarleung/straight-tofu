@@ -15,11 +15,14 @@ vector<Card> Model::getActivePlayerHand() const
 {
 	return game_->getActiveHand();
 }
-void Model::progressUntilHuman()
+int Model::getScore(int player) const
 {
-    // process all following computer moves until a human player is reach
-	game_->progressUntilHuman();
-	notify();
+    // accessor for player score
+    return game_->getScore(player);
+}
+vector<Card> Model::getDiscard(int player) const
+{
+    return game_->getDiscard(player);
 }
 bool Model::isActivePlayerHuman() const
 {
@@ -29,19 +32,25 @@ int Model::getActivePlayer() const
 {
 	return game_->getActivePlayerNo();
 }
+vector<int> Model::getScores() const
+{
+    return game_->getPlayerScores();
+}
+
+vector<int> Model::getDiscards() const
+{
+    return game_->getPlayerDiscards();
+}
+void Model::progressUntilHuman()
+{
+    // process all following computer moves until a human player is reach
+	game_->progressUntilHuman();
+	notify();
+}
 int Model::calcScore(int player)
 {
     //calculate score and return the new score
     return game_->calcScore(player);
-}
-int Model::getScore(int player) const
-{
-    // accessor for player score
-    return game_->getScore(player);
-}
-vector<Card> Model::getDiscard(int player) const
-{
-    return game_->getDiscard(player);
 }
 bool Model::roundOver()
 {
@@ -79,13 +88,4 @@ void Model::refreshRound()
 void Model::rageCurrentPlayer()
 {
     game_->convert();
-}
-vector<int> Model::getScores() const
-{
-    return game_->getPlayerScores();
-}
-
-vector<int> Model::getDiscards() const
-{
-    return game_->getPlayerDiscards();
 }

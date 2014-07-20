@@ -161,5 +161,6 @@ void Game::convert()
 }
 int Game::getActivePlayerNo() const
 {
+    // return active player's number
 	return activePlayer;
 }

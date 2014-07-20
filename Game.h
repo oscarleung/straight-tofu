@@ -13,9 +13,8 @@ using namespace std;
 
 class Game{
 public:
-    //void start(int seed=0);                         // (OLD) begin a new game
     void turn(Card c);
-	void reset();
+	void reset();                           // shuffle the deck, rest all players, and clear table
 	void seed(int s);
 	vector<Card> getActiveHand() const;
 	vector<Card> getActiveValid() const;
@@ -25,14 +24,14 @@ public:
     vector<Card> getDiscard(int) const;
     int getScore(int) const;
 	int getActivePlayerNo() const;
+    bool playersHaveCards() const;      // check players hand for end game
+    bool isActivePlayerHuman() const;   // check if human player
     int calcScore(int);
     void initPlayers(char list[]);               // create a list of player
     void initRound();               // create a list of player
     void progressUntilHuman();
-    bool playersHaveCards() const;    // check players hand for end game
-    bool isActivePlayerHuman() const;
-    int winner();
-    void convert();
+    int winner();                   // return player number of the winner
+    void convert();                 // convert human player to computer
 private:
     void printDeck();
     vector<Card> table_;
