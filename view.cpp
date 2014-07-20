@@ -41,6 +41,7 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table("Cards on
         pPoint[p].set_text("0 points");
         pDiscard[p].set_text("0 discards");
 	}
+	//add elements to view
 	mainBox.add(playerBox);
 	playerBox.add(p1);
 	p1.add(p1Box);
@@ -105,6 +106,7 @@ View::View(Controller *c, Model *m) : model_(m), controller_(c), table("Cards on
 View::~View() {}
 void View::reset()
 {
+	//reset view to clean state between rounds
 	start_button.set_sensitive(true);
 	for(int p=0;p<4;p++)
 	{
@@ -113,11 +115,13 @@ void View::reset()
         pPoint[p].set_text("0 points");
         pDiscard[p].set_text("0 discards");
 	}
+	//blank all hand and table cards
 	resetTable();
 	resetHand();
 }
 void View::resetTable()
 {
+	//blank all table cards
 	for(int j=0;j<4;j++){
 		for(int i=0;i<13;i++){
             tableCards[j][i].set(deck.null());
@@ -126,6 +130,7 @@ void View::resetTable()
 }
 void View::resetHand()
 {
+	//blank all hand cards
 	for(int l=0;l<13;l++)
 	{
 		handCards[l].set(deck.null());
@@ -136,6 +141,7 @@ void View::update() {
     if (model_->roundOver()) {
         // get the score ... calculate... return
         string output;
+		//dialog boxes for end round/game
         for (int i=0; i<4; i++)
         {
             int roundScore = model_->calcScore(i);
@@ -164,9 +170,12 @@ void View::update() {
 			endButtonClicked();
             return;
         }
+		//clear table and hand cards between rounds/games
         resetTable();
 		resetHand();
+		//reset model state between rounds
 		model_->refreshRound();
+		//round begin dialog
 		int player = model_->getActivePlayer();
 		{
 		Gtk::MessageDialog dialog(*this, "A new round begins. It's player "+ to_string(player+1) +"'s turn to play.");
@@ -175,12 +184,13 @@ void View::update() {
 		model_->progressUntilHuman();
 		return;
     }
+	//reset view if at round end
 	if(model_->getActivePlayer()==-1)
 	{
 		reset();
 		return;
 	}
-    
+   	//pull data from model to update view 
 	vector<Card> valid=model_->getActivePlayerValid();
 	vector<Card> hand=model_->getActivePlayerHand();
 	vector<Card> table=model_->getCardsInPlay();
@@ -200,6 +210,7 @@ void View::update() {
 			handCards[j].set(deck.null());
 			handButtons[j].set_sensitive(false);
 		}
+		//enable/disable hand buttons to only allow valid plays
 		if(valid.size()==0)
 		{
 			for(int k=0;k<hand.size();k++)
@@ -226,6 +237,7 @@ void View::update() {
 	{
 		tableCards[(int)(table[m].getSuit())][(int)(table[m].getRank())].set(deck.image(table[m].getRank(),table[m].getSuit()));
 	}
+	//update score/dicards/player buttons
 	for(int n=0;n<4;n++)
 	{
 		pRage[n].set_sensitive(false);
@@ -236,6 +248,7 @@ void View::update() {
 }
 
 void View::startButtonClicked() {
+	//initalizes view, sends player types to model to start game
 	char playerType[4];
 	for(int i=0;i<4;i++)
 	{
@@ -248,9 +261,11 @@ void View::startButtonClicked() {
 	int player = model_->getActivePlayer();
     Gtk::MessageDialog dialog(*this, "A new round begins. It's player "+ to_string(player+1) +"'s turn to play.");
     dialog.run();
+	//model runs ai turns until human or round end
 	model_->progressUntilHuman();
 }
 void View::endButtonClicked() {
+	//resets view to blank state, start button will initalize game
     start_button.set_sensitive(true);
     for(int i=0;i<4;i++)
 	{
@@ -265,6 +280,7 @@ void View::endButtonClicked() {
 }
 
 void View::p1RageButtonClicked() {
+	//toggles human/comp player if pre-round, ragequits otherwise
 	if(pRage[0].get_label()=="Human")
 		pRage[0].set_label("Computer");
 	else if(pRage[0].get_label()=="Computer")
@@ -274,6 +290,7 @@ void View::p1RageButtonClicked() {
 	
 }
 void View::p2RageButtonClicked() {
+	//toggles human/comp player if pre-round, ragequits otherwise
 	if(pRage[1].get_label()=="Human")
 		pRage[1].set_label("Computer");
 	else if(pRage[1].get_label()=="Computer")
@@ -282,6 +299,7 @@ void View::p2RageButtonClicked() {
 	    controller_->rageButtonClicked();
 }
 void View::p3RageButtonClicked() {
+	//toggles human/comp player if pre-round, ragequits otherwise
 	if(pRage[2].get_label()=="Human")
 		pRage[2].set_label("Computer");
 	else if(pRage[2].get_label()=="Computer")
@@ -290,6 +308,7 @@ void View::p3RageButtonClicked() {
 	    controller_->rageButtonClicked();
 }
 void View::p4RageButtonClicked() {
+	//toggles human/comp player if pre-round, ragequits otherwise
 	if(pRage[3].get_label()=="Human")
 		pRage[3].set_label("Computer");
 	else if(pRage[3].get_label()=="Computer")
@@ -297,6 +316,7 @@ void View::p4RageButtonClicked() {
 	else
 	    controller_->rageButtonClicked();
 }
+//maps all hand cards to controler fxns
 void View::hand1ButtonClicked() {
 	vector<Card> hand=model_->getActivePlayerHand();
     controller_->handButtonClicked(hand[0]);
